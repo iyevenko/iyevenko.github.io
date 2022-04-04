@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "RL Transfer Learning"
-date:   2022-04-04 19:00:00 -0500
+date:   2022-04-04 18:00:00 -0500
 categories: jekyll update
 ---
 Click [here](https://drive.google.com/drive/folders/19JuxNfYaxAnZI6tRyt-nZ-9eFvOWEGoB?usp=sharing) if you just want to watch some cool videos.
