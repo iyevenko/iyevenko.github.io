@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "What an alternative to Neural Networks might look like (1/N)"
+title:  "What an alternative to Neural Networks might look like"
 date:   2022-03-13 17:00:00 -0500
 categories: jekyll update
 ---
