@@ -31,7 +31,7 @@ Seeing as the thing I love to do most in life is learn, it infuriates me that so
 I've got two approaches to solving education that I'm excited about:
 
 **Calculator School:**
-This is an idea that I've been exploring with my [friend and roommate](https://clayhaight.com/index.html)for the past few years (take a look at his blog post "Educational Manifesto"). I'll make a blog post detailing how it works in the future, but the main idea is that learning is most effective when you're stuck on a hard problem.
+This is an idea that I've been exploring with my [friend and roommate](https://clayhaight.com/index.html) for the past few years (take a look at his blog post "Educational Manifesto"). I'll make a blog post detailing how it works in the future, but the main idea is that learning is most effective when you're stuck on a hard problem.
 
 I've found that you must be both acquiring and applying knowledge simultaneously for it to actually make permanent and meaningful connections in your brain. Given that observation, the solution is to replace lectures as the atomic unit of learning with *simulations*. Making a simulation of a physical phenomenon is the only way to prove your understanding of it, so in order to prove you've learned something you should be able to simulate it. This is where the term "calculator school" comes from. The curriculum is just a set of calculators that predict the real world with reasonable accuracy. The final product would look like a template for a "calculator course" that profs could use to make any course a more hands-on learning experience.
 
@@ -48,6 +48,6 @@ I don't think that has to be science fiction anymore. We have all the necessary 
 2. Index that information so that it's easily searchable
 3. Query for information using language and have it presented in a useful way
 
-Step 1 is super easy, I've already done it with MacOS API's to grab screenshots and run OCR. Step 2 & 3 is where LLM's come in. I'm working on giving GPT-4 access to a semantic search engine that searches over information snippets extracted by GPT-4. My [cofounder](https://www.brianmach.com/)is working on a general way to intelligently combine those information snippets into the optimal visualization of the answer to any query.
+Step 1 is super easy, I've already done it with MacOS API's to grab screenshots and run OCR. Step 2 & 3 is where LLM's come in. I'm working on giving GPT-4 access to a semantic search engine that searches over information snippets extracted by GPT-4. My [cofounder](https://www.brianmach.com/) is working on a general way to intelligently combine those information snippets into the optimal visualization of the answer to any query.
 
 I'll be making regular posts to share my progress on Globe, since I'm taking the next 4 months off of school and coop to work on this. Goal is to make something useable by the end of May and give it to people by the end August.
