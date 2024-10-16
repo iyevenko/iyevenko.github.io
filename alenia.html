@@ -97,34 +97,55 @@
         .side-controls input[type="range"] {
             width: 100%;
         }
-    
-        /* .plots {
-            width: 300px;
-        } */
 
-        /* #energy-title, #entropy-title {
-            display: block;
+        #mobile-message {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: "CMU Sans Serif", sans-serif;
             text-align: center;
-            font-weight: bold;
-            margin-bottom: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        } */
+        }
+
+        #mobile-message h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #mobile-message p {
+            font-size: 18px;
+        }
+
+        #mobile-message img {
+            max-width: 200px;
+            margin-top: 20px;
+        }
 
         @media (max-width: 768px) {
-            .app-layout {
-                flex-direction: column;
+            #mobile-message {
+                display: flex;
             }
-    
-            .side-controls {
-                width: 100%;
+
+            .container {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
+    <div id="mobile-message">
+        <h2>Screen's too small homie</h2>
+        <p>Plus it needs a keyboard...</p>
+        <img src="https://media.giphy.com/media/8Bkr9UJQTuqEnzkOae/giphy.gif?cid=790b7611bby90m58licgbz78puar4at1dtyxeeqa5nlokfc1&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Funny GIF">
+    </div>
+
     <div class="container">
         <h1>Asymptotic Lenia Sandbox</h1>
         <div class="app-layout">
