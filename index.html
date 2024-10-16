@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <title>Ivan Yevenko</title>
+    <style>
+        .paper {
+            display: flex;
+            align-items: flex-start;
+        }
+        .paper-image {
+            display: block;
+            width: 50%;
+            align-self: flex-start;
+            margin-top: 1.5em;
+        }
+        .paper-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        .paper-content {
+            flex: 1;
+            padding-right: 20px;
+            max-height: 300px;
+            overflow: hidden;
+        }
+        .paper-abstract {
+            font-family: 'CMU Serif', serif;
+            margin-top: 0;
+            font-style: italic;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+            line-clamp: 5;
+        }
+        @media (max-width: 512px) {
+            .paper {
+                flex-direction: column;
+            }
+            .paper-content {
+                width: 100%;
+                padding-right: 0;
+            }
+            .paper-image {
+                width: 100%;
+                margin-top: 1em;
+            }
+            .paper-abstract {
+                display: none;
+            }
+        }
+        @media (min-width: 513px) {
+            .paper-abstract {
+                display: -webkit-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>Ivan Yevenko</h1>
+            </a>
+            <div style="display: flex; align-items: center;">
+                <span style="margin-right: 15px; display: flex; align-items: center;">Let's write a paper!</span>
+                <a href="mailto:theleniac@gmail.com" style="margin-right: 15px; display: flex;">
+                    <img src="images/email_icon.svg" alt="Email" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://x.com/ivan_yevenko" target="_blank" style="display: flex;">
+                    <img src="images/x_logo.svg" alt="X" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://github.com/iyevenko" target="_blank" style="margin-left: 15px; display: flex;">
+                    <img src="images/github_logo.svg" alt="GitHub" style="width: 20px; height: 20px">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <p>I'm an Artificial Life researcher. <a href="wtf_is_alife.html" target="_blank">WTF is Artificial Life?</a></p>
+        <p>There's no particular problem I'm trying to solve, but what I'm really interested in is developing an intuitive understanding of <i>how</i> and <i>why</i> life happens.</p>
+        <p>Some of the questions I'll need to answer to get there:</p>
+        <ul class="dashed">
+            <li>What is complexity? How does it emerge?</li>
+            <li>What is information? How do you describe life as an informational process?</li>
+        </ul>
+        <p>I believe creating life is a good test for whether you understand life, but an even better test is <i>designing</i> life.
+        This is analogous to both creating AGI and solving the alignment problem.
+        I'm also certain that computer simulations are by far the most effective tool for studying artificial life.
+        <a href="philosophy.html" target="_blank">More on my research philosophy.</a></p>
+    
+        <br>
+        <h2>Papers</h2>
+        <hr>
+
+        <div class="paper">
+            <div class="paper-content">
+                <h3 style="margin-bottom: 0;">*WIP* A mechanism for emergence of complex patterns in continuous CA's</h3>
+                <p style="margin-top: 0; margin-bottom: 0;">[<a href="/paper2.html" target="_blank">Notes</a>]</p>
+                <p class="paper-abstract">
+                    Why do complex patterns emerge in continuous cellular automata? This seems like a question that cannot have a simple answer, much less a mathematically rigorous proof of its correctness. However, by assuming the existence of analytical forms of solutions to a general class of CA's, I find a set of conditions that necessarily imply the existence of complex solutions to the governing PDE. These solutions correspond directly to symmetries of the governing equation, and they can be used to find regions of persistent, dynamic patterns. What's even more exciting is that knowing the conditions for emergence of complex patterns potentially allows us to design CA's from scratch that exhibit complex behavior.
+                </p>
+            </div>
+            <a href="/paper2.html" target="_blank" class="paper-image">
+                <img class="paper-img" src="images/paper2_fig.png" alt="Paper 2 figure">
+            </a>
+        </div>
+
+        <hr>
+
+        <div class="paper">
+            <div class="paper-content">
+                <h3 style="margin-bottom: 0;">Classifying the fractal parameter space of the Lenia Orbium</h3>
+                <p style="margin-top: 0; margin-bottom: 0;">
+                    [<a href="https://doi.org/10.1162/isal_a_00728" target="_blank">Paper</a>]
+                    [<a href="#" onclick="openModal('images/alife_poster.png'); return false;">Poster</a>]
+                    [<a href="https://docs.google.com/presentation/d/11ACdkgVLH3AA3cWAo8KJpC4RLpVdkXh_/edit?usp=sharing&ouid=116319588689418399348&rtpof=true&sd=true" target="_blank">Slides</a>]
+                </p>
+                <p class="paper-abstract">
+                    The Lenia family of continuous cellular automata can be viewed as the iterative application of a constant function with unpredictable convergence properties. This makes it mathematically analogous to the Mandelbrot set and neural network trainability, which have both been shown to have fractal convergence boundaries. Using an escape-time algorithm, we plot the stability of the Orbium unicaudatus species as a function of two parameters at a time, generating fractals that persist on multiple spatial scales. We categorize regions in this parameter space and explore them to find a set of familiar species, one novel specimen, and many non-trivial variations of Orbium that fundamentally rely on discretization to survive. Based on these discoveries, we hypothesize the existence of many complex undiscovered species hidden in the fractal parameter spaces of the rest of the Lenia zoo.
+                </p>
+            </div>
+            <a href="https://doi.org/10.1162/isal_a_00728" target="_blank" class="paper-image">
+                <img class="paper-img" src="images/paper1_fig.png" alt="Paper 1 figure">
+            </a>
+        </div>    
+        <hr>
+    </main>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9);">
+        <span class="close" onclick="closeModal()" style="color: #f1f1f1; font-size: 40px; font-weight: bold; position: absolute; top: 15px; right: 35px; cursor: pointer;">&times;</span>
+        <div style="height: 100%; display: flex; align-items: center; justify-content: center;">
+            <img class="modal-content" id="modalImage" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+        </div>
+    </div>
+
+    <script>
+    function openModal(imageSrc) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "block";
+        modalImg.src = imageSrc;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            closeModal();
+        }
+    });
+
+    function adjustAbstractLines() {
+        const abstracts = document.querySelectorAll('.paper-abstract');
+        const images = document.querySelectorAll('.paper-img');
+        
+        abstracts.forEach((abstract, index) => {
+            if (window.innerWidth <= 512) {
+                abstract.style.display = 'none';
+            } else {
+                const image = images[index];
+                const lineHeight = parseInt(window.getComputedStyle(abstract).lineHeight);
+                const imageHeight = image.offsetHeight;
+                const maxLines = Math.floor(imageHeight / lineHeight) - 3;   
+                if (maxLines <= 3) {
+                    abstract.style.display = 'none';
+                } else {
+                    abstract.style.webkitLineClamp = maxLines.toString();
+                    abstract.style.display = '-webkit-box';
+                }
+            }
+        });
+    }
+    window.addEventListener('load', adjustAbstractLines);
+    window.addEventListener('resize', adjustAbstractLines);
+    </script>
+</body>
+</html>
