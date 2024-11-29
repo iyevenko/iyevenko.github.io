@@ -11,9 +11,9 @@ var kernel_A = 4;
 // var kernel_B = [1];
 var kernel_B = [1,1/2,1/2,1];
 
-var growth_fn = 3; // step growth
-var growth_m = 0.22;
-var growth_s = 0.029;
+var growth_fn = 1; // poly growth
+var growth_m = 0.24;
+var growth_s = 0.02;
 
 
 var isAsymptotic = true;
