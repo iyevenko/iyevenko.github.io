@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-light.min.css" rel="stylesheet" />
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {tex:{tags:'ams'}};</script>
+    <title>Differential Equations as Algorithms</title>
+    <style>
+        br {
+            content: "";
+            display: block;
+            margin-bottom: 2.5em;
+        }
+        /* Make inline refs black */
+        a mjx-mrow.MathJax_ref {
+            color: black;
+            text-decoration: none;
+        }
+        @media (max-width: 512px) {
+            .hide-on-mobile {
+                display: none !important;
+            }
+        }
+        blockquote {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>Ivan Yevenko</h1>
+            </a>
+            <div style="display: flex; align-items: center;">
+                <span class="hide-on-mobile" style="margin-right: 15px; display: flex; align-items: center;">Let's write a paper!</span>
+                <a href="mailto:theleniac@gmail.com" style="margin-right: 15px; margin-left: 15px; display: flex;">
+                    <img src="images/email_icon.svg" alt="Email" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://x.com/ivan_yevenko" target="_blank" style="display: flex;">
+                    <img src="images/x_logo.svg" alt="X" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://github.com/iyevenko" target="_blank" style="margin-left: 15px; display: flex;">
+                    <img src="images/github_logo.svg" alt="GitHub" style="width: 20px; height: 20px">
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <h2>Notes: Differential Equations as Algorithms</h2>
+        <h3> Part 1: p over what?</h3>
+        <p>
+            How do you define an algorithm? Wikipedia defines it as:
+        </p>
+        <blockquote>
+            ... a finite sequence of mathematically rigorous instructions, typically used to solve a class of specific problems or to perform a computation.
+        </blockquote>
+        <p>
+            So what's a computation?
+        </p>
+        <blockquote>
+            ... any type of arithmetic or non-arithmetic calculation that is well-defined.
+        </blockquote>
+        <p>
+            There seems to be no distinction between computation and calculation... interesting. Well what's a calculation?
+        </p>
+        <blockquote>
+            ... a deliberate mathematical process that transforms one or more inputs into one or more outputs or results
+        </blockquote>
+        <p>
+            This is a little better, but this is essentially the same as the definition for a function. It turns out the term "algorithm" has no agreed upon rigorous definition.
+            See <a href="https://en.wikipedia.org/wiki/Algorithm_characterizations">Algorithm Characterization</a>.
+        </p>
+        <p>
+            This is great news for me, because it means I can in good conscience make up my own definition and work with it. I define an algorithm as a mapping from a set of inputs to a set of outputs via <i>information processing</i>. Where information processing refers to moving and erasing of shannon information by sequential application of functions. Recall that Shannon information is defined as \(I(x) = -\log p(x)\) where \(p(x)\) is the probability of the event \(x\).
+        </p>
+        <p>
+            What do we gain from this seemingly esoteric restatement of a poorly-understood definition? Well, good definitions let you generalize an idea far beyond its initial scope. In this case, I argue that a generalization of the concept of an algorithm can help explain the relationship between computation, differential equations and fractals.
+        </p>
+        <p>
+            First, it's important to understand what Shannon information has to do with algorithms. For that we must make a small modification to the definition. I stated initially that an algorithm maps a set of inputs to a set of outputs. If for each input \(x \in \mathcal{X}\) we assign a corresponding normalized weight \(p_{\mathcal{X}}(x)\), then we can extend the initial definition to say that an algorithm maps a probability distribution over inputs \(p_{\mathcal{X}}\) to a probability distribution over outputs \(p_{\mathcal{Y}}\). This is still perfectly compatible with the initial definition, since we can always ignore the weights and simply count the set of inputs and outputs. But by extending it to distributions, we can now rigorously discuss what happens to the Shannon information.
+        </p>
+        <!-- TODO: Make this an expandable explanation-->
+        <!-- <p>
+            Shannon information is processed by an algorithm when it is moved or erased. Moving information is equivalent to passing any given input through a one-to-one (reversible) function. Erasing information is equivalent to passing any given input through a many-to-one (irreversible) function. Let's work through a concrete example where we'll calculate the Shannon information of each input (\(X\)) and output (\(Y\)) of the binary XOR gate:
+        </p>
+        $$ \begin{array}{|c c c|c c c|}
+            \hline
+            \quad X \quad & \quad p_{\mathcal{X}} \quad & \quad I_{\mathcal{X}} \quad & \quad Y \quad & \quad p_{\mathcal{Y}} \quad & \quad I_{\mathcal{Y}} \quad \\[0.5ex]
+            \hline
+            00 & \frac{1}{4} & 2 & 0 & \frac{1}{2} & 1 \\[0.75ex]
+            01 & \frac{1}{4} & 2 & 1 & \frac{1}{2} & 1 \\[0.75ex]
+            10 & \frac{1}{4} & 2 & 1 & \frac{1}{2} & 1 \\[0.75ex]
+            11 & \frac{1}{4} & 2 & 0 & \frac{1}{2} & 1 \\[0.5ex]
+            \hline
+        \end{array} $$
+        <p>
+            Evidently, every possible output results in a loss of precisely one bit of information. If we want to prevent the loss of information, we must keep track of that one bit with an uncorrelated variable. In this case, we can simply buffer the \(X_0\) variable since the mutual information between \(X_0\) and Y is zero. This gives us the following table:
+        </p>
+        $$ \begin{array}{|c c c|c c c|}
+            \hline
+            \quad X \quad & \quad p_{\mathcal{X}} \quad & \quad I_{\mathcal{X}} \quad & \quad Y \quad & \quad p_{\mathcal{Y}} \quad & \quad I_{\mathcal{Y}} \quad \\[0.5ex]
+            \hline
+            00 & \frac{1}{4} & 2 & 00 & \frac{1}{4} & 2 \\[0.75ex]
+            01 & \frac{1}{4} & 2 & 01 & \frac{1}{4} & 2 \\[0.75ex]
+            10 & \frac{1}{4} & 2 & 11 & \frac{1}{4} & 2 \\[0.75ex]
+            11 & \frac{1}{4} & 2 & 10 & \frac{1}{4} & 2 \\[0.5ex]
+            \hline
+        \end{array} $$
+        <p>
+            This is exactly the truth table for the CNOT gate, the classic example of a reversible gate.
+        </p> -->
+        <p>
+            In particular, we can answer the question of <i>where does the information go?</i> We know that by definition, a probability distribution must always remain normalized  — ensuring that probability is conserved. This implies that an increase in the information of one outcome must result in a corresponding decrease in the information of another outcome. Put another way, there is a causal interaction between different outcomes of a given computation, which depends on the algorithm being run.
+            The implications of this are very weird and difficult to grasp, but I'll try to convince you that this can actually be a reasonable way to think about computation.
+        </p>
+        <p>
+            Imagine that a computer is not a machine that executes a sequence of instructions, but rather an intricate piece of inter-dimensional plumbing that guides the flow of a fluid called information. It's a pretty picture, but it's too cluttered to really see what's going on. Here's what it looks like in the friendly 1-dimensional case:
+        </p>
+        <!-- TODO: Make an image -->
+        <pre><code class="language-python">
+def is_prime(n):
+    """Check if a number is a prime number."""
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+        </code></pre>
+        <p>
+            Pictured above, the \(\texttt{is_prime}\) function maps 32-bit positive integers to either \(\approx 4.4\) bits (if it's prime) or \(\approx 0.07\) bits (if it's not). Notice that when reading the code, you naturally think about how the algorithm acts on all possible inputs. In designing and understanding the algorithm, you do not simulate all possible inputs in your mind because that would be insanely impractical. Instead, you must think over the space of all possible inputs \(\mathcal{X}\) because that is the space though which information flows.
+        </p>
+
+        <h3> Part 2: </h3>
+        <p>
+            After getting through part 1, you should come away with one important idea: algorithms define a flow of information though the space of all possible inputs. As it turns out, so do differential equations! More precisely, the evolution of the probability distribution over phase space for DE's of the form \(\dot{\mathbf{x}} = f(\mathbf{x})\) is governed by the Liouville equation:
+        </p>
+        $$ \frac{\partial \rho}{\partial t} = -\nabla_{\mathbf{x}} \cdot [f(\mathbf{x}) \, \rho(\mathbf{x})] $$
+        <p>
+            We can get this to exactly match our shannon information quantity after doing some rearrangement for \(I = -\log \rho\):
+        </p>
+        $$ \frac{\partial I}{\partial t} = \underbrace{\nabla_{\mathbf{x}} \cdot f(\mathbf{x})}_{\text{creation/erasure}} -\, \underbrace{f(\mathbf{x}) \cdot \nabla_{\mathbf{x}} I(\mathbf{x})}_{\text{advection}} $$
+        <p>
+            And notice, that this expression neatly breaks down into the two fundamental information processing operations we discussed earlier: moving and erasing. The generalization from the discrete to the continuous setting comes with some important caveats though.
+        </p>
+        <p>
+            In the continuous setting, information creation is allowed so long as it does not result in unbounded growth that the boundary conditions cannot support. In fact, it is typical in dissipative systems for \(\nabla_{\mathbf{x}} \cdot f(\mathbf{x})\) to take on both positive and negative values. Another key difference is that the dimensionality is fixed in the continuous setting, whereas in the discrete setting we can map from any number of inputs to any number of outputs at each step. One consequence of this is that information cannot be copied — it is simply advected (moved) along the flow defined by \(f\). Finally, one should be careful when dealing with \(\log \rho\) since it is perfectly valid for \(\rho\) to be zero in some regions of phase space.
+        </p>
+    </main>
+    <br style="margin-bottom: 300px;">
+    <script>
+        // Auto-reload page when file changes
+        let lastModified = null;
+        setInterval(function() {
+            fetch(window.location.href, { method: 'HEAD' })
+                .then(response => {
+                    const currentModified = response.headers.get('last-modified');
+                    if (lastModified && currentModified !== lastModified) {
+                        window.location.reload();
+                    }
+                    lastModified = currentModified;
+                });
+        }, 500); // Check every 500ms
+    </script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</html>

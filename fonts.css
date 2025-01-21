@@ -158,11 +158,24 @@ a {
 a:hover {
     text-decoration: underline;
 }
-code {
+/* code {
     font-family: 'CMU Typewriter Text', monospace;
+} */
+pre[class*="language-"] {
+    font-family: 'CMU Typewriter Text', monospace;
+    background: #f5f2f0;
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+    border-radius: 4px;
+}
+
+code[class*="language-"] {
+    font-family: 'CMU Typewriter Text', monospace;
+    font-size: 14px;
 }
 blockquote {
-    font-family: 'CMU Concrete', serif;
+    font-family: 'CMU Serif', serif;
 }
 ul.dashed {
     list-style-type: none;
