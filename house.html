@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <title>Writing Pieces</title>
+    <style>
+        body {
+            margin: 0 auto; /* Add auto margins */
+            padding: 20px;
+            max-width: 800px; /* Add max-width to match fonts.css */
+            font-size: 18px; /* Increased from 16px */
+            font-family: 'CMU Sans Serif', sans-serif;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .nav-item {
+            cursor: pointer;
+            padding: 10px;
+            border: none;
+            background: none;
+            font-size: 18px; /* Increased to match body */
+            font-family: 'CMU Serif', serif;
+            position: relative;
+            text-decoration: none;
+        }
+        .nav-item:hover {
+            text-decoration: none;
+        }
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #cccccc;
+            margin-bottom: 0px;
+        }
+        /* Add this new rule to prevent underline on the last nav item (Apply) */
+        .nav-item:last-child.active::after {
+            display: none;
+        }
+        .content {
+            padding: 20px;
+        }
+        .piece {
+            display: none;
+        }
+        .piece.active {
+            display: block;
+        }
+        h1, h2 {
+            font-family: 'CMU Serif', serif;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1:hover {
+            text-decoration: none;
+        }
+        *[onclick] {
+            text-decoration: none;
+        }
+        *[onclick]:hover {
+            text-decoration: none;
+        }
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px #4a90e2, 0 0 10px #4a90e2, 0 0 15px #4a90e2;
+            }
+            50% {
+                box-shadow: 0 0 10px #4a90e2, 0 0 20px #4a90e2, 0 0 30px #4a90e2;
+            }
+            100% {
+                box-shadow: 0 0 5px #4a90e2, 0 0 10px #4a90e2, 0 0 15px #4a90e2;
+            }
+        }
+
+        .nav-item:last-child {
+            color: #4a90e2;
+            padding: 0px 10px;
+            border-radius: 18px;
+            animation: glow 4s ease-in-out infinite;
+            transition: all 1.0s ease;
+        }
+
+        .nav-item:last-child:hover {
+            color: #2171cd;
+            animation: none;
+            box-shadow: 0 0 15px #4a90e2, 0 0 25px #4a90e2, 0 0 35px #4a90e2;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; cursor: pointer;" onclick="showPiece(0)">House Name</h1>
+
+    <div class="nav-bar">
+        <button class="nav-item active" onclick="showPiece(0)">House Name</button>
+        <button class="nav-item" onclick="showPiece(1)">Philosophy</button>
+        <button class="nav-item" onclick="showPiece(2)">People</button>
+        <button class="nav-item" onclick="showPiece(3)">Future</button>
+        <button class="nav-item" onclick="showPiece(4)"><b>Apply</b></button>
+    </div>
+
+    <div class="content">
+        <div class="piece active" id="piece0">
+            <p>
+                Have you felt it?
+            </p>
+
+            <p>
+                If you've ever brushed up against the edge of human knowledge, you know how close it is.
+            </p>
+
+            <p>
+                One day you asked a simple question — but no matter who you asked, you couldn't find a good answer. It occurred to you that no one knows, and the only way to find out would be to answer it yourself. The answer would require not only mastery of the known, but creation of new knowledge altogether.
+            </p>
+
+            <p>
+                Once you felt the edge, you couldn't just walk away. Rabbitholing only fanned the flame, catalyzing your obsession with the unknown.
+            </p>
+
+            <p>
+                We know how hard it is to find others for whom creating knowledge has become an obsession. So we're making a place we can all call home.
+            </p>
+            <p>
+                Sound familiar? <a href="#apply" onclick="showPiece(4)">Apply</a> to join us in San Francisco.
+            </p>
+        </div>
+        <div class="piece" id="piece1">
+            <p>This house is built on the principle of creating new knowledge; <i>inventing</i>.</p>
+
+            <p>We believe invention has intrinsic value, and that there's nothing mysterious about the process. Inventors are radical truth-seekers, taking curiosity to its extreme and actively looking to disprove their ideas by creating and experimenting.</p>
+            
+            <p>We believe invention comes in many forms, but regardless of what you do it must be shared. Sharing your work — both privately and publicly — is the ultimate defense against delusion and a compass towards truth. Sharing knowledge exposes you to new and potentially better explanations, so to avoid sharing is to fear the truth.</p>
+            
+            <p>Knowledge that is never shared is a tragedy, but it must also be done with care. Over-simplification and over-complication are almost as bad as not sharing.</p>
+            
+            <p>Therefore the objective is to maximize that quantity of new knowledge created, subject to the constraint that it is shared with the world in its most honest representation.</p>
+            
+            <p>Living here is a commitment to sharing the knowledge you create. That means:</p>
+                <ul>
+                    <li>Publishing papers</li>
+                    <li>Open-sourcing hardware and/or software</li>
+                    <li>Gathering and releasing valuable data</li>
+                </ul>
+            </p>
+
+            <p>If these values resonate with you, <a href="#apply" onclick="showPiece(4)">apply</a> to join us.</p>
+        </div>
+        <div class="piece" id="piece2">
+            <p>
+                TBD
+            </p>
+        </div>
+        <div class="piece" id="piece3">
+            <p>
+                The Residency was founded with the mission of creating an alternative to college where you can learn by doing instead of rotting in a lecture hall. Since its inception in 2022, the Residency has grown to a diverse network of 10+ hacker houses across 6 countries. Hundreds of young founders have called the Residency home and now we're ready to expand to a new demographic: researchers.
+            </p>
+            <p>
+                (House name) is our first step in this direction. With it, we are laying the foundation for a new institution built on meritocracy not bureaucracy. We're bringing together talented inventors to seed the kind of innovative and truth-seeking culture that millions of college students have missed out on. We want the world to see that the only barrier to novel breakthroughs is a mindset, and that this mindset is contagious.
+            </p>
+            <p>
+                We've seen this innovation mindset repeatedly emerge across the Residency's network of houses when the right people were brought together. Values like curiosity, openness, optimism and agency became unspoken rules, collectively enforced through the daily exchange of ideas. It's a really special feeling when it happens, so we try hard to recreate these conditions.
+            </p>
+            <p>
+                As a founding resident, you'll get to help shape this culture with your own flavor of invention and impart some of your ambition onto the next generation of inventors. One year from now, we hope to run a collection of themed houses in close proximity to each other, all pushing frontiers in their respective domains. You'll have the opportunity to build a team around your research and scale up to a full-fledged lab if you so desire.
+            </p>
+            <p>
+                Join the first cohort at (house name) and build something that you can be proud of.
+            </p>
+        </div>
+        <div class="piece" id="piece4">
+            <p>The primary goal of this first cohort is to establish a lasting culture of invention. To accomplish this, it's important that we are all on the same page. Participation is a commitment to:</p>
+            <ul>
+                <li>Live with us in San Francisco for at least 3 months</li>
+                <li>Focus hard on one problem for the duration of your stay</li>
+                <li>Regularly produce high quality documentation of your progress</li>
+                <li>Follow through on difficult deadlines</li>
+                <li>Celebrate the accomplishments of others</li>
+            </ul>
+            <p>We want every single resident to create a meaningful contribution to the world, and that means honestly believing that you can.</p>
+            <p>If you are up to the task, apply below:</p>
+        </div>
+    </div>
+
+    <script>
+        function showPiece(index) {
+            // Update pieces visibility
+            const pieces = document.querySelectorAll('.piece');
+            pieces.forEach(piece => piece.classList.remove('active'));
+            document.getElementById(`piece${index}`).classList.add('active');
+            
+            // Update nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            navItems[index].classList.add('active');
+
+            // Update URL hash without triggering scroll
+            const pageTitles = ['house-name', 'philosophy', 'people', 'future', 'apply'];
+            history.pushState(null, '', '#' + pageTitles[index]);
+        }
+
+        // Handle initial hash on page load and hash changes
+        function handleHash() {
+            const hash = window.location.hash.substring(1);
+            const pageTitles = ['house-name', 'philosophy', 'people', 'future', 'apply'];
+            const index = pageTitles.indexOf(hash);
+            if (index !== -1) {
+                showPiece(index);
+            }
+        }
+
+        window.addEventListener('load', handleHash);
+        window.addEventListener('hashchange', handleHash);
+    </script>
+</body>
+</html>
