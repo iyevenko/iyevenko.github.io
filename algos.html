@@ -143,7 +143,7 @@ def is_prime(n):
             Pictured above, the \(\texttt{is_prime}\) function maps 32-bit positive integers to either \(\approx 4.4\) bits (if it's prime) or \(\approx 0.07\) bits (if it's not). Notice that when reading the code, you naturally think about how the algorithm acts on all possible inputs. In designing and understanding the algorithm, you do not simulate all possible inputs in your mind because that would be insanely impractical. Instead, you must think over the space of all possible inputs \(\mathcal{X}\) because that is the space though which information flows.
         </p>
 
-        <h3> Part 2: </h3>
+        <h3> Part 2: Continuous computation</h3>
         <p>
             After getting through part 1, you should come away with one important idea: algorithms define a flow of information though the space of all possible inputs. As it turns out, so do differential equations! More precisely, the evolution of the probability distribution over phase space for DE's of the form \(\dot{\mathbf{x}} = f(\mathbf{x})\) is governed by the Liouville equation:
         </p>
@@ -156,7 +156,10 @@ def is_prime(n):
             And notice, that this expression neatly breaks down into the two fundamental information processing operations we discussed earlier: moving and erasing. The generalization from the discrete to the continuous setting comes with some important caveats though.
         </p>
         <p>
-            In the continuous setting, information creation is allowed so long as it does not result in unbounded growth that the boundary conditions cannot support. In fact, it is typical in dissipative systems for \(\nabla_{\mathbf{x}} \cdot f(\mathbf{x})\) to take on both positive and negative values. Another key difference is that the dimensionality is fixed in the continuous setting, whereas in the discrete setting we can map from any number of inputs to any number of outputs at each step. One consequence of this is that information cannot be copied — it is simply advected (moved) along the flow defined by \(f\). Finally, one should be careful when dealing with \(\log \rho\) since it is perfectly valid for \(\rho\) to be zero in some regions of phase space.
+            In the continuous setting, information creation is allowed so long as it does not result in unbounded growth that the boundary conditions cannot support. In fact, it is typical in dissipative systems for \(\nabla_{\mathbf{x}} \cdot f(\mathbf{x})\) to take on both positive and negative values. Another key difference is that the dimensionality is fixed in the continuous setting, whereas in the discrete setting we can map from any number of inputs to any number of outputs at each step. One consequence of this is that information cannot be copied — it is simply advected (moved) along the flow defined by \(f\). Finally, one should be careful when dealing with \(\log \rho\) since it is perfectly valid for \(\rho\) to be zero in some regions of phase space. As long as these regions are measure zero, you can still integrate information over phase space to get a finite value since it is a density-like function.
+        </p>
+        <p>
+
         </p>
     </main>
     <br style="margin-bottom: 300px;">
