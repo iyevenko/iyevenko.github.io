@@ -67,7 +67,7 @@
         }
         h1, h2 {
             font-family: 'CMU Serif', serif;
-            font-size: 24px; /* Controlled heading size */
+            font-size: 32; /* Controlled heading size */
         }
         a {
             text-decoration: none;
@@ -81,30 +81,17 @@
         *[onclick]:hover {
             text-decoration: none;
         }
-        @keyframes glow {
-            0% {
-                box-shadow: 0 0 5px #4a90e2, 0 0 10px #4a90e2, 0 0 15px #4a90e2;
-            }
-            50% {
-                box-shadow: 0 0 10px #4a90e2, 0 0 20px #4a90e2, 0 0 30px #4a90e2;
-            }
-            100% {
-                box-shadow: 0 0 5px #4a90e2, 0 0 10px #4a90e2, 0 0 15px #4a90e2;
-            }
-        }
 
         .nav-item:last-child {
-            color: #4a90e2;
-            padding: 0px 8px; /* Reduced padding */
-            border-radius: 16px; /* Slightly reduced */
-            animation: glow 4s ease-in-out infinite;
-            transition: all 1.0s ease;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background-color: #1f5e96;
+            transition: all 0.3s ease;
         }
 
         .nav-item:last-child:hover {
-            color: #2171cd;
-            animation: none;
-            box-shadow: 0 0 15px #4a90e2, 0 0 25px #4a90e2, 0 0 35px #4a90e2;
+            background-color: #174775;
         }
 
         /* Mobile-specific styles */
