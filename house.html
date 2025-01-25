@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="fonts.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>House</title>
     <style>
         body {
@@ -50,7 +51,7 @@
             bottom: 0;
             width: 100%;
             height: 1px;
-            background-color: #cccccc;
+            background-color: #1f5e96;
             margin-bottom: 0px;
         }
         .nav-item:last-child.active::after {
@@ -126,10 +127,10 @@
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; cursor: pointer;" onclick="showPiece(0)">House Name</h1>
+    <h1 style="text-align: center; cursor: pointer;" onclick="showPiece(0)"><span style="font-size: 40px">\(\mathbf{\mathbb{C}}\)</span>alculus SF</h1>
 
     <div class="nav-bar">
-        <button class="nav-item active" onclick="showPiece(0)">House Name</button>
+        <button class="nav-item active" onclick="showPiece(0)">Our Home</button>
         <button class="nav-item" onclick="showPiece(1)">Philosophy</button>
         <button class="nav-item" onclick="showPiece(2)">People</button>
         <button class="nav-item" onclick="showPiece(3)">Future</button>
@@ -138,29 +139,20 @@
 
     <div class="content">
         <div class="piece active" id="piece0">
+            <img src="images/image.png" style="display: block; margin: 0 auto; width: 80%; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));">
+            <p><span style="font-size: 20px">\(\mathbb{C}\)</span>alculus is a hacker house for researchers and friends. We are a group of independent researchers working on important problems that don't quite fit into mainstream science. </p>
             <p>
-                If you've ever brushed up against the edge of human knowledge, you know how close it is.
-            </p>
-
-            <p>
-                One day you asked a simple question — but no matter who you asked, you couldn't find a good answer. It occurred to you that no one knows, and the only way to find out would be to answer it yourself. The answer would require not only mastery of the known, but creation of new knowledge altogether.
-            </p>
-
-            <!-- <p>
-                Once you felt the edge, you couldn't just walk away. Rabbitholing only fanned the flame, catalyzing your obsession with the unknown.
-            </p> -->
-
-            <p>
-                We know how hard it is to find others for whom creating knowledge has become an obsession. So we're making a place we can all call home.
+                We know how hard it is to find others for whom creating knowledge has become an obsession. So we're making a place we can all call <b>home</b>.
             </p>
             <p>
-                <a href="#apply" onclick="showPiece(4)">Apply</a> to join us in San Francisco.
+                <a href="#apply" onclick="showPiece(4)">Apply</a> to join us in San Francisco this June.
             </p>
+            <p>Questions? DM Ivan on <a href="https://x.com/ivan_yevenko" target="_blank">𝕏</a></p>
         </div>
         <div class="piece" id="piece1">
-            <p>This house is built on the principle of creating new knowledge; <i>inventing</i>.</p>
+            <img src="images/monkjak.png" style="width: 25%; display: block; margin-left: auto; margin-right: auto;">
 
-            <p>We believe invention has intrinsic value, and that there's nothing mysterious about the process. Inventors are radical truth-seekers, taking curiosity to its extreme and actively looking to disprove their ideas by creating and experimenting.</p>
+            <p>This house is built on the principle of creating new knowledge; <i>inventing</i>.</p>
             
             <p>We believe invention comes in many forms, but regardless of what you do it must be shared. Sharing your work — both privately and publicly — is the ultimate defense against delusion and a compass towards truth. Sharing knowledge exposes you to new and potentially better explanations, so to avoid sharing is to fear the truth.</p>
             
