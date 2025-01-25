@@ -59,12 +59,29 @@
         }
         .content {
             padding: 10px; /* Reduced padding */
+            max-width: 600px; /* Match header width */
+            margin: 0 auto; /* Center the content */
         }
         .piece {
             display: none;
         }
         .piece.active {
             display: block;
+        }
+                /* Update image container in piece0 */
+                #piece0 img {
+            display: block;
+            margin: 0 auto;
+            width: 100%; /* Full width of container */
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+        }
+        
+        /* Also update the image in piece1 to use percentages of the container */
+        #piece1 img {
+            width: 25%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         h1, h2 {
             font-family: 'CMU Serif', serif;
@@ -139,7 +156,7 @@
 
     <div class="content">
         <div class="piece active" id="piece0">
-            <img src="images/image.png" style="display: block; margin: 0 auto; width: 80%; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));">
+            <img src="images/homies.png" style="display: block; margin: 0 auto; border-radius: 4px;">
             <p><span style="font-size: 20px">\(\mathbb{C}\)</span>alculus is a hacker house for researchers and friends. We are a group of independent researchers working on important problems that don't quite fit into mainstream science. </p>
             <p>
                 We know how hard it is to find others for whom creating knowledge has become an obsession. So we're making a place we can all call <b>home</b>.
