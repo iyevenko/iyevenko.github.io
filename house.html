@@ -68,20 +68,39 @@
         .piece.active {
             display: block;
         }
-                /* Update image container in piece0 */
-                #piece0 img {
+        /* Update image container in piece0 */
+        #piece0 img {
             display: block;
             margin: 0 auto;
             width: 100%; /* Full width of container */
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
         }
-        
         /* Also update the image in piece1 to use percentages of the container */
         #piece1 img {
             width: 25%;
             display: block;
             margin-left: auto;
             margin-right: auto;
+        }
+        #piece2 .image-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            margin-bottom: 5%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        #piece2 .image-grid > div {
+            flex: 1;
+            text-align: center;
+        }
+        #piece2 img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 4px;
         }
         h1, h2 {
             font-family: 'CMU Serif', serif;
@@ -140,6 +159,16 @@
             ul {
                 padding-left: 20px;
             }
+
+            #piece2 .image-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            #piece2 .image-grid > div {
+                width: 100%;
+                max-width: 200px;
+            }
         }
     </style>
 </head>
@@ -188,16 +217,80 @@
             <p>If these values resonate with you, <a href="#apply" onclick="showPiece(4)">apply</a> to join us.</p>
         </div>
         <div class="piece" id="piece2">
-            <p>
-                TBD
-            </p>
+            <div class="image-grid">
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+            </div>
+            <div class="image-grid">
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+                <div>
+                    <img src="images/ivan.png" alt="Ivan">
+                    <p style="margin: 5px 0; font-family: CMU Typewriter Text"><a href="https://x.com/ivan_yevenko" target="_blank">x.com/ivan_yevenko</a></p>
+                    <p style="margin: 5px 0">Developing a theory of complexity and information to simulate life</p>
+                </div>
+            </div>
         </div>
         <div class="piece" id="piece3">
             <p>
-                The Residency was founded with the mission of creating an alternative to college where you can learn by doing instead of rotting in a lecture hall. Since its inception in 2022, the Residency has grown to a diverse network of 10+ hacker houses across 6 countries. Hundreds of young founders have called the Residency home and now we're ready to expand to a new demographic: researchers.
+                <span style="font-size: 20px">\(\mathbb{C}\)</span>alculus is a part of <a href="https://www.livetheresidency.com/" target="_blank">The Residency's</a> network of hacker houses.
             </p>
             <p>
-                (House name) is our first step in this direction. With it, we are laying the foundation for a new institution built on meritocracy not bureaucracy. We're bringing together talented inventors to seed the kind of innovative and truth-seeking culture that millions of college students have missed out on. We want the world to see that the only barrier to novel breakthroughs is a mindset, and that this mindset is contagious.
+                The Residency was founded with the mission of creating an alternative to college where you can learn by doing instead of rotting in a lecture hall. Since its inception in 2022, the Residency has grown to a diverse network of 10+ hacker houses across 6 countries. Hundreds of young founders have called the Residency home and now we're expanding it to a new demographic: researchers.
+            </p>
+            <p>
+                With this house, we are laying the foundation for a new institution built on meritocracy not bureaucracy. We're bringing together talented inventors to seed the kind of innovative and truth-seeking culture that millions of college students have missed out on. We want the world to see that the only barrier to novel breakthroughs is a mindset, and that this mindset is contagious.
             </p>
             <p>
                 We've seen this innovation mindset repeatedly emerge across the Residency's network of houses when the right people were brought together. Values like curiosity, openness, optimism and agency became unspoken rules, collectively enforced through the daily exchange of ideas. It's a really special feeling when it happens, so we try hard to recreate these conditions.
@@ -206,7 +299,7 @@
                 As a founding resident, you'll get to help shape this culture with your own flavor of invention and impart some of your ambition onto the next generation of inventors. One year from now, we hope to run a collection of themed houses in close proximity to each other, all pushing frontiers in their respective domains. You'll have the opportunity to build a team around your research and scale up to a full-fledged lab if you so desire.
             </p>
             <p>
-                Join the first cohort at (house name) and build something that you can be proud of.
+                Join the first cohort at <span style="font-size: 20px">\(\mathbb{C}\)</span>alculus and build something that you can be proud of.
             </p>
         </div>
         <div class="piece" id="piece4">
