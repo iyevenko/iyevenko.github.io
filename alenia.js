@@ -11,7 +11,7 @@ var kernel_A = 4;
 // var kernel_B = [1];
 var kernel_B = [1,1/2,1/2,1];
 
-var growth_fn = 1; // poly growth
+var growth_fn = 0; // poly growth
 var growth_m = 0.24;
 var growth_s = 0.02;
 
@@ -108,7 +108,6 @@ function UpdateField() {
   FFT2D(1, field, fieldIm);
   MatrixDot(field, fieldIm, kernelRe, kernelIm, neighRe, neighIm);
   FFT2D(-1, neighRe, neighIm);
-
   for (var i=0; i<SIZE; i++) {
     for (var j=0; j<SIZE; j++) {
       var u = neigh[i][j] = neighRe[i][j];
@@ -120,8 +119,33 @@ function UpdateField() {
 				v += g / TS;
         if (v<0) v = 0; else if (v>1) v = 1;
       }
-			lagrangian[i][j] = v*(g+1)/2 - 0.5*v*v;
+			// lagrangian[i][j] = v*(g+1)/2 - 0.5*v*v;
       field[i][j] = v;
+    }
+  }
+
+  // Create temporary arrays for lagrangian calculation
+  let lagrangianRe = Array(SIZE).fill().map(() => Array(SIZE).fill(0));
+  let lagrangianIm = Array(SIZE).fill().map(() => Array(SIZE).fill(0));
+  let convRe = Array(SIZE).fill().map(() => Array(SIZE).fill(0));
+  let convIm = Array(SIZE).fill().map(() => Array(SIZE).fill(0));
+
+  // Calculate term for lagrangian convolution
+  for (var i=0; i<SIZE; i++) {
+    for (var j=0; j<SIZE; j++) {
+      lagrangianRe[i][j] = -(neigh[i][j]-growth_m)/(growth_s*growth_s) * (growth[i][j]+1)/2;
+    }
+  }
+
+  // Calculate lagrangian via convolution
+  FFT2D(1, lagrangianRe, lagrangianIm);
+  MatrixDot(lagrangianRe, lagrangianIm, kernelRe, kernelIm, convRe, convIm);
+  FFT2D(-1, convRe, convIm);
+
+  // Update lagrangian array
+  for (var i=0; i<SIZE; i++) {
+    for (var j=0; j<SIZE; j++) {
+      lagrangian[i][j] = convRe[i][j] - 1;
     }
   }
 }

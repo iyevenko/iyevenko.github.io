@@ -11,14 +11,14 @@
         body {
             max-width: none !important;
             margin: 0 !important;
-            padding: 0 !important;
-        }
-        body {
+            padding: 0 0 200px 0 !important;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #f0f0f0;
+            gap: 20px;
         }
     
         .container {
@@ -140,6 +140,33 @@
     </style>
 </head>
 <body>
+    <div class="container" id="tutorial-container" style="width: 70%; margin: 0 auto;">
+        <h1>Tutorial</h1>
+        <div class="tutorial-content">
+            <p>
+                Hey! You might be wondering what's going on here. <a href="https://arxiv.org/pdf/1812.05433v3" target="_blank">Lenia</a> is a continuous version of <a href="https://playgameoflife.com/", target="_blank">Conway's Game of Life</a>, meaning the cells take on a values between 0 and 1 and space and time are defined on an infinitely small grid. Just like GoL, each cell looks at its neighbors and decides whether to increase or decrease using a function called the growth function. To make the math nice, we model this with a partial differential equation for the state of the system \(A(\mathbf{x}, t)\):
+
+                \[
+                \frac{\partial}{\partial t} A(\mathbf{x}, t) = T(K(\mathbf{x}) * A(\mathbf{x}, t)) - A(\mathbf{x}, t)
+                \]
+
+                Where \(K*A\) is a convolution and \(T\) a is a gaussian "growth function". That's it!
+
+                The purpose of this demo is to show the complex dynamic patterns that emerge on their own. After a few minutes of playing around with the canvas, you should be able to make some interesting patterns!
+            </p>
+            <p>
+                <strong>Instructions:</strong>
+                <ul>
+                    <li>Click and drag to draw on the canvas (you can draw while it's running!)</li>
+                    <li>Press [space] to play/pause the simulation</li>
+                    <li>Use the sliders to adjust the parameters (these change the behavior very drastically!)</li>
+                    <li>Change the shape and size of the brush and use white to erase. </li>
+                    <li>Clear the canvas to start fresh</li>
+                </ul>
+            </p>
+        </div>
+    </div>
+
     <div id="mobile-message">
         <h2>Screen's too small homie</h2>
         <p>Plus it needs a keyboard...</p>
@@ -178,8 +205,8 @@
             <div class="main-content">
                 <div class="main-controls">
                     <label for="brush-size">Brush Size:</label>
-                    <input type="range" id="brush-size" min="1" max="50" value="10">
-                    <span id="brush-size-value">10</span>
+                    <input type="range" id="brush-size" min="1" max="50" value="30">
+                    <span id="brush-size-value">30</span>
                     <button id="toggle-shape">Toggle Shape</button>
                     <button id="toggle-color">Toggle Color</button>
                     <button id="clear-canvas">Clear Canvas</button>
@@ -192,8 +219,8 @@
             <div class="plots">
                 <span id="energy-title">Energy</span>
                 <canvas id="energy-canvas"></canvas>
-                <span id="entropy-title">Entropy</span>
-                <canvas id="entropy-canvas"></canvas>
+                <span id="entropy-title" style="display: none;">Entropy</span>
+                <canvas id="entropy-canvas" style="display: none;"></canvas>
             </div>
         </div>
     </div>
@@ -236,7 +263,7 @@
             const maxEntropyHistory = 400;
 
             let isDrawing = false;
-            let brushSize = 10;
+            let brushSize = 30;
             let isCircle = true;
             let isBlack = true;
             let lastX, lastY;
@@ -414,7 +441,9 @@
                 energyCtx.stroke();
 
                 // Display min and max in title
-                energyTitle.textContent = `Energy (min: ${energyMin.toFixed(2)}, max: ${energyMax.toFixed(2)})`;
+                // energyTitle.textContent = `Energy (min: ${energyMin.toFixed(2)}, max: ${energyMax.toFixed(2)})`;
+                // Display current energy in title
+                energyTitle.textContent = `Energy (${energyHistory[energyHistory.length - 1].toFixed(2)})`;
             }
 
             function plotEntropy() {
@@ -458,12 +487,12 @@
                 field = getCanvasImageData();
                 UpdateField();
                 drawField();
-                const currentEntropy = fieldToPngBuffer().length;
-                entropyHistory.push(currentEntropy);
-                if (entropyHistory.length > maxEntropyHistory) {
-                    entropyHistory.shift();
-                }
-                plotEntropy();
+                // const currentEntropy = fieldToPngBuffer().length;
+                // entropyHistory.push(currentEntropy);
+                // if (entropyHistory.length > maxEntropyHistory) {
+                //     entropyHistory.shift();
+                // }
+                // plotEntropy();
 
                 const currentEnergy = Sum(lagrangian)
                 energyHistory.push(currentEnergy);
