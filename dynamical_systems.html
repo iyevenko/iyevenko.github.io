@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-light.min.css" rel="stylesheet" />
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {tex:{tags:'ams'}};</script>
+    <title>Differential Equations as Algorithms</title>
+    <style>
+        br {
+            content: "";
+            display: block;
+            margin-bottom: 2.5em;
+        }
+        /* Make inline refs black */
+        a mjx-mrow.MathJax_ref {
+            color: black;
+            text-decoration: none;
+        }
+        @media (max-width: 512px) {
+            .hide-on-mobile {
+                display: none !important;
+            }
+        }
+        blockquote {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>Ivan Yevenko</h1>
+            </a>
+            <div style="display: flex; align-items: center;">
+                <span class="hide-on-mobile" style="margin-right: 15px; display: flex; align-items: center;">Let's write a paper!</span>
+                <a href="mailto:theleniac@gmail.com" style="margin-right: 15px; margin-left: 15px; display: flex;">
+                    <img src="images/email_icon.svg" alt="Email" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://x.com/ivan_yevenko" target="_blank" style="display: flex;">
+                    <img src="images/x_logo.svg" alt="X" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://github.com/iyevenko" target="_blank" style="margin-left: 15px; display: flex;">
+                    <img src="images/github_logo.svg" alt="GitHub" style="width: 20px; height: 20px">
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <h2>Dynamical Systems for Generalists</h2>
+        <p>
+            <!-- Dynamical systems theory is a field which has largely been abandoned since the 1990s. It was developed by applied mathematicians -->
+            <!-- It's almost entirely unknown to physicists, biologists and ML researchers  -->
+        </p>
+        <p>
+            We begin with an ODE:
+            
+            \[\large
+            \frac{dx}{dt} = f(x), \quad x \in \mathbb{R}^n
+            \]
+            
+            This ODE is autonomous, meaning the dynamics do not depend on time. This is analogous to a Markov process. Now, we're interested in the behavior (dynamics) of \(x\) for a general non-linear function \(f\). Why non-linear? Because a linear system has a closed form solution:
+
+            \[\large
+            \frac{dx}{dt} = Ax \implies x(t) = e^{tA}\,x(0)
+            \]
+
+            Here, a solution means a mapping from an initial condition \(x(0)\) and a time \(t\) to a final state \(x(t)\). A general non-linear function doesn't have a closed form solution, but it can still have such a mapping. We call the function mapping \((x(0), t) \mapsto x(t)\) a flow, and denote it as:
+
+            \[\large
+            \begin{equation}
+            \Phi(x(0),t) = x(t) \label{1}
+            \end{equation}
+            \]
+            
+            In the case of the linear system, the flow is \(\Phi(x(0),t) = e^{tA}\,x(0)\). The flow encodes how every initial state maps to a final state, so it's natural to ask: how does the flow map an initial distribution over states to a final distribution? It turns out that with a few clever steps we can derive an evolution equation for the density: 
+
+            \begin{align}
+            \nabla \cdot f(\Phi(x,t)) &= \operatorname{Tr} (\nabla f(\Phi(x,t))) \nonumber \\[8pt] 
+            &= \tfrac{d}{dt} \log \det (\nabla \Phi(x,t)) & \text{(by Jacobi's formula)} \nonumber \\[8pt]
+            &= \partial_t \log \det (\nabla \Phi(x,t)) + f(\Phi(x,t)) \cdot \nabla \log \det (\nabla \Phi(x,t))& \text{(Material Derivative)} \nonumber \\[8pt]
+            \det (\nabla \Phi(x,t)) (\nabla \cdot f(\Phi(x,t))) &= \partial_t \det (\nabla \Phi(x,t)) + f(\Phi(x,t)) \cdot \nabla \det (\nabla \Phi(x,t)) &\nonumber \\[8pt]
+            \partial_t \det (\nabla \Phi(x,t)) &= -\nabla \cdot (f(\Phi(x,t)) \det (\nabla \Phi(x,t))) \label{2}&\\[8pt] 
+            \end{align}
+
+            This is exactly the form of the Liouville equation! We can recover it exactly, but we have to be incredibly careful not to mix up \(x\), \(x(0)\) and \(x(t)\). In \eqref{1}, we defined \(\Phi\) to be a function which is exactly the one which brings an initial state to a state at time \(t\). When we plug in a variable \(x\), it can have any value but it must be interpreted as an initial state that gets mapped by \(\Phi\). With that said, we can make the following definition:
+
+            \[\large
+            \rho(\Phi(x(0),t),t) = \frac{\rho(x(0),0)}{\det (\nabla \Phi(x(0),t))}
+            \]
+
+            Then, plugging this into \eqref{2} and letting \(x\) represent a <i>final</i> state, we get the Liouville equation:
+
+            \[\large
+            \partial_t \rho(x,t) = -\nabla \cdot \left(f(x)\, \rho(x,t)\right)
+            \]
+        
+
+            Intuitively, the determinant is playing the role of volume since \(\rho\) is a density. But does this tell us something new? The Liouville equation is a well known result which simply follows from conservation of probability. Well, the determinant is just the product of the singular values. Therefore:
+
+            \[\large
+            -\log \rho(x,t) = \sum_{i=1}^n \log \sigma_i \left(\nabla \Phi(x(0),t)\right)
+            \]
+
+            Another way to write this is:
+
+            \[\large
+            \nabla \Phi = U \Sigma V^\top \implies -\log \rho = \operatorname {Tr}(\log \Sigma)
+            \]
+
+            How do we interpret these singular values? Their product is a volume, and there's one for each state dimension, so maybe each one can be thought of as the axis lengths of some ellipsoid. While this is true, it turns out that whatever geometric shape you want to imagine gets rotated and distorted very quickly by the flow. To see that, we can look at the evolution equations for both the singular values and the left and right singular vectors:
+
+            \[\large
+            \begin{align*}
+            \dot U &= U \Omega_U \\
+            \dot V &= V \Omega_V \\
+            \dot \Sigma &= \Sigma \operatorname{diag}\left(U^\top (\nabla f) U\right)
+            \end{align*}
+            \]
+
+            Here, \(\Omega_U\) and \(\Omega_V\) are skew-symmetric matrices which evolve along the flow. Skew-symmetric matrices are the Lie algebra of rotations in n dimensions, so right multiplying is the same as an infinitesimal rotation. In simpler terms, \(\Omega_U\) and \(\Omega_V\) only rotate in a complex way. The exact expressions for the skew-symmetric matrices are quite ugly to write down in full, but if you're curious:
+
+            \[\large
+            \boxed{
+            \begin{aligned}
+                P &:=U^{\top}(\nabla f)\,U\\[8pt]
+                \dot\Sigma &= \Sigma\;\operatorname{diag}\bigl(P_{11},\dots ,P_{nn}\bigr),\\[8pt]
+                
+                \dot U &= U\,\Omega_U, & (\Omega_U)_{ij} &=\frac{P_{ij}-P_{ji}}{2}+\frac{\sigma_i^{2}+\sigma_j^{2}}{\sigma_j^{2}-\sigma_i^{2}} \frac{P_{ij}+P_{ji}}{2},\quad i\neq j,\\[8pt]
+                && (\Omega_U)_{ii}&=0, \quad \Omega_U^{\top}=-\Omega_U,\\[8pt]
+                
+                \dot V &= V\,\Omega_V,& (\Omega_V)_{ij} &=\frac{2\sigma_i\sigma_j}{\sigma_j^{2}-\sigma_i^{2}} \frac{P_{ij}+P_{ji}}{2},\quad i\neq j,\\[8pt]
+                && (\Omega_V)_{ii}&=0, \quad \Omega_V^{\top}=-\Omega_V. \\[8pt]
+            \end{aligned}}
+            \]
+
+            One more important note is that if there are multiple identical singular values, then \(U\) and \(V\) are actually arbitrary vectors that just span the space. They don't have a unique evolution equation. 
+
+            Now that we know how \(Sigma\) evolves, we see that it is just a matrix whose diagonal elements exponentially shrink/grow depending on the projection of the Jacobian of \(f\) onto the left singular vectors. In geometric terms, that means there is some ellipsoid that is advected, rotated and exponentially stretched/squeeze depending on how it aligns with the spatial variation in the flow. Still, this analogy is lacking because if you really were to drop some finite ellipsoid into the flow, it would get distorted until it was no longer an ellipsoid.
+        </p>
+        <p>
+            Fortunately, there exists a better interpretation. It turns out that the singular values of a Jacobian also appear in the study of deformable bodies! The right/left Cauchy-Green deformation tensors are defined as \(J^\top J = U^\top \Sigma^2 U\) and \(JJ^\top\ = V^\top \Sigma^2 V\) respectively, where \(J\) is the Jacobian of some deformation map. The eigenvalues of these tensors are the diagonal of \(\Sigma^2\) in both cases. Formally, \(J^\top J\) is a <i>metric</i> tensor which describes the local geometry as compared to the Euclidean metric. Physically, it encodes the squared local changes in distance. The singular values of the Jacobian are the ratio between the original lengths in Euclidean coordinates, and the stretched/compressed lengths in some rotated coordinates. This is directly related to strain, which is defined as a relative difference \(\frac{L - L_0}{L_0}\) so you just need to subtract the identity matrix from the metric tensor. Imagine this but in \(n\)-dimensions:
+        </p>
+        <p>
+            [image showing bending strain w/ tension and compression]
+        </p>
+
+    </main>
+    <br style="margin-bottom: 300px;">
+</body>
+</html>
