@@ -65,7 +65,7 @@
             \frac{dx}{dt} = f(x), \quad x \in \mathbb{R}^n, \quad x(0) = x_0
             \]
             
-            This ODE is autonomous, meaning the dynamics do not depend on time. This is analogous to a Markov process. Now, we're interested in the behavior (dynamics) of \(x\) for a general non-linear function \(f\). Why non-linear? Because a linear system has a closed form solution:
+            This ODE is autonomous, meaning the dynamics do not depend on time. This is analogous to a Markov process. We're interested in the behavior (dynamics) of \(x\) for a general non-linear function \(f\). Why non-linear? Because a linear system has a closed form solution and that's not very exciting:
 
             \[\large
             \frac{dx}{dt} = Ax \implies x(t) = e^{tA}\,x_0
@@ -89,10 +89,10 @@
             \partial_t \det (\nabla \Phi(x,t)) &= -\nabla \cdot (f(\Phi(x,t)) \det (\nabla \Phi(x,t))) \label{2}&\\[8pt] 
             \end{align}
 
-            This is exactly the form of the Liouville equation! We can recover it exactly, but we have to be incredibly careful not to mix up \(x\), \(x_0\) and \(x(t)\). In \eqref{1}, we defined \(\Phi\) to be a function which is exactly the one which brings an initial state to a state at time \(t\). When we plug in a variable \(x\), it can have any value but it must be interpreted as an initial state that gets mapped by \(\Phi\). With that said, we can make the following definition:
+            This is the form of the Liouville equation! We can recover it exactly, but we have to be incredibly careful not to mix up \(x\), \(x_0\) and \(x(t)\). In \eqref{1}, we defined \(\Phi\) to be the function which brings an initial state \(x_0\) to its future state at time \(t\). When we plug in a variable \(x\), it can have any value but it must be interpreted as an initial state that gets mapped by \(\Phi\). With that said, we can make the following definition:
 
             \[\large
-            \rho(\Phi(x_0,t),t) = \frac{\rho(x_0,0)}{\det (\nabla \Phi(x_0,t))}
+            \rho(\Phi(x,t),t) = \frac{\rho_0(x)}{\det (\nabla \Phi(x,t))}, \quad \rho(x, 0) = \rho_0(x)
             \]
 
             Then, plugging this into \eqref{2} and letting \(x\) represent a <i>final</i> state, we get the Liouville equation:
@@ -107,7 +107,7 @@
             -\log \rho(x,t) = \sum_{i=1}^n \log \sigma_i \left(\nabla \Phi(x_0,t)\right)
             \]
 
-            Another way to write this is:
+            Another way to write this is in the form of a singular value decomposition:
 
             \[\large
             \nabla \Phi = U \Sigma V^\top \implies -\log \rho = \operatorname {Tr}(\log \Sigma)
@@ -123,7 +123,7 @@
             \end{align*}
             \]
 
-            Here, \(\Omega_U\) and \(\Omega_V\) are skew-symmetric matrices which evolve along the flow. Skew-symmetric matrices are the Lie algebra of rotations in n dimensions, so right multiplying is the same as an infinitesimal rotation. In simpler terms, \(\Omega_U\) and \(\Omega_V\) only rotate in a complex way. The exact expressions for the skew-symmetric matrices are quite ugly to write down in full, but if you're curious:
+            Here, \(\Omega_U\) and \(\Omega_V\) are skew-symmetric matrices which evolve along the flow. Skew-symmetric matrices are the Lie algebra of rotations in n dimensions, so right multiplying is the same as an infinitesimal rotation. In simpler terms, \(\Omega_U\) and \(\Omega_V\) only rotate \(U\) and \(V\). The exact expressions for the skew-symmetric matrices are quite ugly to write down in full, but if you're curious:
 
             \[\large
             \boxed{
@@ -141,26 +141,26 @@
 
             One more important note is that if there are multiple identical singular values, then \(U\) and \(V\) are actually arbitrary vectors that just span the space. They don't have a unique evolution equation. 
 
-            Now that we know how \(Sigma\) evolves, we see that it is just a matrix whose diagonal elements exponentially shrink/grow depending on the projection of the Jacobian of \(f\) onto the left singular vectors. In geometric terms, that means there is some ellipsoid that is advected, rotated and exponentially stretched/squeeze depending on how it aligns with the spatial variation in the flow. Still, this analogy is lacking because if you really were to drop some finite ellipsoid into the flow, it would get distorted until it was no longer an ellipsoid.
+            Now that we know how \(Sigma\) evolves, we see that it is just a matrix whose diagonal elements exponentially shrink/grow depending on the projection of the Jacobian of \(f\) onto the left singular vectors. In geometric terms, that means there is some ellipsoid that is advected, rotated and exponentially stretched/squeezed depending on how it aligns with the spatial variation in the flow. Still, this analogy is lacking because if you really were to drop some finite ellipsoid into the flow, it would get distorted until it was no longer an ellipsoid.
         </p>
         <p>
-            Fortunately, there exists a better interpretation. It turns out that the singular values of a Jacobian also appear in the study of deformable bodies! The right/left Cauchy-Green deformation tensors are defined as \(J^\top J = U^\top \Sigma^2 U\) and \(JJ^\top\ = V^\top \Sigma^2 V\) respectively, where \(J\) is the Jacobian of some deformation map. The eigenvalues of these tensors are the diagonal of \(\Sigma^2\) in both cases. Formally, \(J^\top J\) is the <i>metric tensor</i> which describes the local geometry as compared to the Euclidean metric. Physically, it encodes the squared local changes in distance. The singular values of the Jacobian are the ratio between the original lengths in Euclidean coordinates, and the stretched/compressed lengths in some rotated coordinates. This is directly related to strain, which is defined as a relative difference \(\frac{l - l_0}{l_0}\) so you just need to subtract the identity matrix from the metric tensor. Imagine this but in \(n\)-dimensions:
+            Fortunately, there exists a better interpretation. It turns out that the singular values of a Jacobian also appear in the study of continuum mechanics! The right/left Cauchy-Green deformation tensors are defined as \(J^\top J = U^\top \Sigma^2 U\) and \(JJ^\top\ = V^\top \Sigma^2 V\) respectively, where \(J\) is the Jacobian of some deformation map. The eigenvalues of these tensors are the diagonal of \(\Sigma^2\) in both cases. Formally, \(J^\top J\) is the <i>metric tensor</i> which describes the local geometry as compared to the Euclidean metric. Physically, it encodes the squared local changes in distance. The singular values of the Jacobian are the ratio between the original lengths in Euclidean coordinates, and the stretched/compressed lengths in some rotated coordinates. This is directly related to strain, which is defined as a relative difference \(\frac{l - l_0}{l_0}\) so you just need to subtract the identity matrix from the metric tensor. 
         </p>
         <p>
-            [image showing bending strain w/ tension and compression]
-        </p>
+            Since \(\nabla \Phi\) is a Jacobian, we can interpret the flow \(\Phi\) as some kind of deformation in space which drastically changes the lengths between points so that in some directions, they shrink onto the same point, and in others they grow apart. But remember that these contractions and expansions are entirely <i>local</i>. Exponential growth of local distances does not imply that a small initial distance will exponentially grow forever. Just like when studying the deformation of a metal rod, we are making a very good first-order approximation of the actual deformation. The rod will eventually begin to buckle, tear, and fracture if you keep stretching far enough. In a similar way, a flow will eventually have higher order effects which behave nothing like exponential stretching/compression. The analogy only draws a parallel between the deformation of the lattice of atoms in a material and the abstract notion of coordinates deformed by a flow. Globally, a flow really behaves more like, well, a flow. 
+         </p>
         <h2>Lyapunov Exponents and their Corresponding Vectors</h2>
         <p>
             Lyapunov exponents are fundamental to the study of dynamical systems, but their mathematical definition is typically very confusing. To avoid this confusion, most sources just give the equation for the largest Lyapunov exponent, but that hides the true complexity of the object. I will also avoid talking about ergodicity, since it is highly system dependent and therefore removes necessary nuance.
         </p>
         <p>
-            The truth is, I've already introduced the Lyapunov exponents in the previous section! They are just averages of the log singular values we encountered before:
+            The truth is, I've already introduced a definition for Lyapunov exponents in the previous section! The textbook definitions are just the averages of the log singular values we encountered before:
 
             \[\large
             \begin{align*}
-                \lambda_i(x_0,t) &= \frac{1}{t} \int_0^t \log \sigma_i(\nabla \Phi(x_0,t))\, dt & \text{} \\[8pt]
+                \lambda_i(x,t) &= \frac{1}{t} \int_0^t \log \sigma_i(\nabla \Phi(x,t))\, dt & \text{} \\[8pt]
                 \bar \lambda_i(t) &= \int_{\mathbb{R}^n} \lambda_i(x_0,t) \rho(x_0,0)\, dx_0 & \text{(Finite Time Lyapunov exponents)} \\[8pt]
-                \lambda_i(x_0) & = \lim_{t \to \infty} \lambda_i(x_0,t) & \text{(Local Lyapunov exponents)} \\[8pt]
+                \lambda_i(x) & = \lim_{t \to \infty} \lambda_i(x,t) & \text{(Local Lyapunov exponents)} \\[8pt]
                 \bar \lambda_i & = \lim_{t \to \infty} \int_{\mathbb{R}^n} \lambda_i(x,t) \rho(x,0)\, dx & \text{(Lyapunov exponents)} \\[8pt]
             \end{align*}
             \]
@@ -183,7 +183,7 @@
         </p>
 
         <p>
-            How do we avoid this? Well, it turns out that there is a subspace of \(\mathbb{R}^n\) which contains only the vector that do not get rotated onto other singular vectors. The space, as implied in \eqref{3}, is called \(E_i(x)\) and it is the set of vectors which does not get rotated by the flow and gets stretched like \(e^{\lambda_i(x)t}\) asymptotically. The simplest example of such a space is just \(\operatorname{span}\{f(x)\}\). This corresponds to \(\lambda_i(x) = 0\) because perturbations in this direction don't grow or shrink, they just push the state forward or backward along the trajectory it was already going to take. If the ODE has any other symmetry besides time (e.g. rotation, scale invariance), then \(E_i(x)\) will have one dimension for each symmetry. 
+            How do we avoid this? Well, it turns out that there is a subspace of \(\mathbb{R}^n\) which contains only the vectors that do not get rotated onto other singular vectors. The space, as implied in \eqref{3}, is called \(E_i(x)\) and it is the set of vectors which does not get rotated by the flow and gets stretched like \(e^{\lambda_i(x)t}\) asymptotically. The simplest example of such a space is just \(\operatorname{span}\{f(x)\}\). This corresponds to \(\lambda_i(x) = 0\) because perturbations in this direction don't grow or shrink, they just push the state forward or backward along the trajectory it was already going to take. If the ODE has any other symmetry besides time (e.g. rotation, scale invariance), then \(E_i(x)\) will have one dimension for each symmetry. 
         </p>
         <p>
             Oseledet's Theorem (which, contrary to what Wikipedia says has nothing to do with ergodicity), states that as long as the expected norm of \(\nabla \Phi(x_0,1)\) is finite, then there exists a "spltting" of \(\mathbb{R}^n\) into independent subspaces \(E_i(x)\) which are invariant under the flow and grow like \(e^{\lambda_i(x)t}\). In simpler terms, that means for every lyapunov exponent, there is a corresponding vector space which contains perturbations that grow like that exponent. These subspaces span all of \(\mathbb{R}^n\) but they are not an orthogonal basis. You cannot project a given perturbation vector on to the basis by simple dot product, you must perform a \(QR\) decomposition of the basis and the project the vector with \(R^{-1}Q^\top\). Furthermore, linear combination of perturbation vectors with different Lyapunov exponents will grow like the largest exponent. That means we can actually generalize \eqref{3} to:
@@ -193,7 +193,16 @@
             \lambda_i(x_0) = \lim_{t \to \infty} \frac{1}{t} \log \bigl\|\nabla \Phi(x_0,t) \, v \bigr\|, \quad v \in \bigoplus_{j \ge i} E_j(x_0) \label{4}
             \end{equation}
             \]
+
+            The vectors in each of the subspaces \(E_i(x)\) are called covariant Lyapunov vectors, but this is poor naming because Lyapunov exponents already have associated vectors; namely, the left and right singular vectors of \(\nabla \Phi\). Perhaps they should be called Oseledets vectors, but for now I will just call them covariant vectors of the flow. They are called covariant because they vary "with the flow" in some sense. In particular:
+
+            \[\large
+            \dot v_i(x) = \nabla f(x)\, v_i(x)
+            \]
+
+            Unlike how it appears, \(v_i(x)\) cannot be solved using information about \(\nabla f\) alone. We really do need to take the long time limit in practice to calculate them. But once you know these covariant vectors, it opens the door to making informed perturbations that can actually drive a system to entirely new behaviors. 
         </p>
+        <h2>The Invariant Measure and its Dimension</h2>
 
     </main>
     <br style="margin-bottom: 300px;">
