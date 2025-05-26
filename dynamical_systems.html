@@ -92,7 +92,7 @@
             This is the form of the Liouville equation! We can recover it exactly, but we have to be incredibly careful not to mix up \(x\), \(x_0\) and \(x(t)\). In \eqref{1}, we defined \(\Phi\) to be the function which brings an initial state \(x_0\) to its future state at time \(t\). When we plug in a variable \(x\), it can have any value but it must be interpreted as an initial state that gets mapped by \(\Phi\). With that said, we can make the following definition:
 
             \[\large
-            \rho(\Phi(x,t),t) = \frac{\rho_0(x)}{\det (\nabla \Phi(x,t))}, \quad \rho(x, 0) = \rho_0(x)
+            \rho(\Phi(x,t),t) = \frac{\rho_0(x)}{\det (\nabla \Phi(x,t))}, \quad \rho(x,0) = \rho_0(x)
             \]
 
             Then, plugging this into \eqref{2} and letting \(x\) represent a <i>final</i> state, we get the Liouville equation:
@@ -158,14 +158,14 @@
 
             \[\large
             \begin{align*}
-                \lambda_i(x,t) &= \frac{1}{t} \int_0^t \log \sigma_i(\nabla \Phi(x,t))\, dt & \text{} \\[8pt]
-                \bar \lambda_i(t) &= \int_{\mathbb{R}^n} \lambda_i(x_0,t) \rho(x_0,0)\, dx_0 & \text{(Finite Time Lyapunov exponents)} \\[8pt]
+                \lambda_i(x,t) &= \frac{1}{t} \log \sigma_i(\nabla \Phi(x,t)) & \text{} \\[8pt]
+                \bar \lambda_i(t) &= \int_{\mathbb{R}^n} \lambda_i(x,t) \rho_0(x)\, dx & \text{(Finite Time Lyapunov exponents)} \\[8pt]
                 \lambda_i(x) & = \lim_{t \to \infty} \lambda_i(x,t) & \text{(Local Lyapunov exponents)} \\[8pt]
-                \bar \lambda_i & = \lim_{t \to \infty} \int_{\mathbb{R}^n} \lambda_i(x,t) \rho(x,0)\, dx & \text{(Lyapunov exponents)} \\[8pt]
+                \bar \lambda_i & = \lim_{t \to \infty} \int_{\mathbb{R}^n} \lambda_i(x,t) \rho_0(x)\, dx & \text{(Lyapunov exponents)} \\[8pt]
             \end{align*}
             \]
 
-            I've specially denoted the spatial averages with a bar, because these are typically the implied definitions. That's because most systems where Lyapunov exponents are applied are (approximately) ergodic, which just means that \(\lambda_i(x) = \bar \lambda_i \).
+            I've specially denoted the spatial averages with a bar, because these are typically the implied definitions. That's because most systems where Lyapunov exponents are applied are (approximately) ergodic, which just means that \(\lambda_i(x) = \bar \lambda_i \). While we don't require ergodicity, we do need some minimal conditions for these limits to actually exist. We will cover those later.
         </p>
         <p>
             Another formulation of Lyapunov exponents you might encounter is in terms of a small perturbation vector \(v_i\):
@@ -174,7 +174,7 @@
             \lambda_i(x_0) = \lim_{t \to \infty} \frac{1}{t} \log \bigl\|\nabla \Phi(x_0,t) \, v_i \bigr\|, \quad v_i \in E_i(x_0) \label{3}
             \end{equation}
             \]
-            ...except it would missing all the important details, which I will now explain. You see, you might expect that the vectors which satisfy the above equation are just the left or right singular vectors of the \(\nabla \Phi\). It's not that simple!
+            ...except it would normally be missing all the important details, which I will now explain. You see, you might expect that the vectors which satisfy the above equation are just the left or right singular vectors of the \(\nabla \Phi\). It's not that simple!
         </p>
         <p>
             Let's say you choose an initial condition \(x_0\) and some large time \(t\) and calculate that the \(i\)th right singular value of \(\nabla \Phi(x_0,t)\) is \(v_i\). Then, you plug that vector naively that into \eqref{3}. What you will get is not \(\lambda_i(x_0)\). Instead, the formula will give you \(\lambda_1(x_0)\) for every single \(v_i\)! This is because, as we derived before, the singular values constantly rotate over time. So, after a short time \(v_i\) will no longer correspond to a singular vector in \(V\) and it will have components in each one of the basis directions. That means it will have a finite component in the direction of the largest singular vector, and this component asymptotically will grow like the \(e^{\lambda_1(x_0)t}\). If the largest Lyapunov exponent is positive, then this immediately implies that almost any initial perturbation vector will grow exponentially. This is precisely the definition of a chaotic system.
@@ -200,10 +200,107 @@
             \dot v_i(x) = \nabla f(x)\, v_i(x)
             \]
 
-            Unlike how it appears, \(v_i(x)\) cannot be solved using information about \(\nabla f\) alone. We really do need to take the long time limit in practice to calculate them. But once you know these covariant vectors, it opens the door to making informed perturbations that can actually drive a system to entirely new behaviors. 
+            Although it appears possible, \(v_i(x)\) cannot be solved using information about \(\nabla f\) alone. We really do need to take the long time limit in practice to calculate them. But once you know these covariant vectors, it opens the door to making informed perturbations that can actually drive a system to entirely new behaviors. 
         </p>
-        <h2>The Invariant Measure and its Dimension</h2>
+        <h2>The Attractor and its Dimension</h2>
+        <p>
+            Before we can understand how the system will respond to perturbation, we better know how it behaves in the absence of perturbation. As \(t\to \infty\), how does the flow map an initial distribution of states to a final distribution? If we try to naively evaluate \(\lim_{t\to \infty} \rho(x,t)\) we immediately we run into a problem. Except in very special cases, \(\rho\) will exponentially grow/shrink and/or oscillate indefinitely so the limit doesn't exist. There are two ways to resolve this problem and each tells us different physically meaningful things about the system. 
+        </p>
+        <h3>Method 1: Normalizing with Time Averages</h3>
+        <p>
+            The first way is to just say that infinities and non-stationary distributions are totally fine as long as we only care about expectation values. We know that \(\lim_{t \to \infty} \int_{\mathbb{R}^n} \rho(x,t)\, dx\) is finite, in fact it's just equal to 1 by definition. However, for a smooth and bounded function \(\phi(x)\), its <i>ensemble average</i> \(\int_{\mathbb{R}^n} \phi(x)\rho(x,t)\, dx\) may oscillate or diverge as \(t\to \infty\) so the limit will not exist. For this reason, the only limits we can safely evaluate have to be both ensemble and time averages. To do this, will need 3 things:
+        </p>
+        <nl>
+            <li>\(f\) is continuous.</li>
+            <li>There exists a closed and bounded <i>invariant</i> set \(\Omega \subset \mathbb{R}^n\), meaning trajectories starting in \(\Omega\) will stay in \(\Omega\) forever.</li>
+            <li>\(\Omega\) is an absorbing set, meaning every trajectory in \(\mathbb{R}^n\) ends up in \(\Omega\) in finite time.</li>
+        </nl>
+        <p>
+            Those are precisely the conditions for the existence of a <i>global attractor</i>. Note that global just means "everything ends up in the set", but the set itself can be made up of several disjoint subsets. Knowing there exists a global attractor is a very good starting point for understanding long-time behavior of the system! We can now start to analyze the properties of the attractor.
+        </p>
+        <p>
+            Recall that our definition of Lyapunov exponents from before was exactly the time average of an ensemble average. Now we know that if a global attractor exists, then \(\bar\lambda_i\) is guaranteed to exist. We can use this to see that the time averaged rate of change of differential entropy is the sum of the Lyapunov exponents:
 
+            \[
+            \begin{aligned}
+            h(t)\, &\colon\!= -\int_{\mathbb{R}^{n}} \rho(x,t) \log \rho(x,t)\,dx & \text{(Definition of differential entropy)} \\
+            \implies \sum_{i=1}^{n}\bar\lambda_i
+            &= \sum_i^n \lim_{t\to\infty}\int_{\mathbb R^{n}} \frac{1}{t} \log \sigma_i(\nabla \Phi(x,t))\, \rho_0(x)\,dx &\\
+            &= \lim_{t\to\infty}\int_{\mathbb R^{n}} \frac{1}{t} \log \operatorname{det}(\nabla \Phi(x,t))\, \rho_0(x)\,dx &\\
+            &= \lim_{t\to\infty}\frac{1}{t} \int_{\mathbb R^{n}} \bigl( \log\rho_0(x) - \log \rho(\Phi(x,t),t) \bigr)\, \rho_0(x)\,dx &\\
+            &= \lim_{t\to\infty}\frac{1}{t} \left(-h(0) - \int_{\mathbb R^{n}} \rho(x,t) \log \rho(x,t)\,dx\right)  &\\
+            &= \lim_{t\to\infty}\frac{h(t)-h(0)}{t}&\\[4pt]
+            <!-- &= \lim_{t\to\infty}\frac{1}{t}\int_0^t \dot h(s) ds&\\[4pt] -->
+            &= \;\bigl\langle\dot h\bigr\rangle_{t}
+            \end{aligned}
+            \]
+
+            Another related identity is that:
+
+            \[\large
+            \begin{equation}
+            \dot h(t) = \int_{\mathbb{R}^n} ( \nabla \cdot f(x))\, \rho(x,t) \, dx = \big\langle \nabla \cdot f \bigr\rangle_{\rho_t} \label{5}
+            \end{equation}
+            \]
+        </p>
+        <h3>Method 2: Normalizing by Coarse-Graining</h3>
+        <p>
+            The second way to resolve the problem of the diverging state distribution is to coarse-grain \(\rho\). This instantly solves the problem of singular (infinite) densities since the infinites always appear below any finite resolution. It does not, however, solve the problem of non-stationary/oscillating densities. To avoid that problem this time around, we are going to restrict our focus to the coarse-grained entropy of the attractor.
+        <p>
+            There are a number of ways you could go about coarse-graining the density. The simplest way is to discretize the state space into cubes of side length \(\varepsilon\) (volume \(\varepsilon^n\)) and redefine the expectation integral with a sum. Another way is to convolve the density with a Gaussian kernel with covariance \(\varepsilon^2 I\). The entropy associated with the cube coarse-graining is defined as:
+
+            \[\large
+            H^{\varepsilon}(t) = -\sum_{i=1}^N p_i(t) \log p_i(t), \quad p_i(t) = \int_{C_i} \rho(x,t)\, dx
+            \]
+            
+            where \(C_i\) is the \(i\)th \(\varepsilon\)-cube. This is known to be related to the differential entropy by the following asymptotic \(\varepsilon \to 0\) relation:
+
+            \[\large
+            H^{\varepsilon}(t) = h(t) - D_I \log \varepsilon + \mathcal{O}(1), \quad D_I \in [0,n]
+            \]
+            
+            where the \(\mathcal{O}(1)\) terms come from particular choice of coarse-graining procedure. \(D_I\) is a constant known as the <i>information dimension</i> of the attractor. In this form, \(D_I\) just looks like an empirical constant and that's the way it's been largely been treated in the literature. I will show that with my (mostly) novel reinterpretation of the existing math, \(D_I\) becomes intimately tied to the dynamics of the system.
+        </p>
+        <p>
+            The coarse-graining trick I'll use is to bake information loss into the dynamics, rather than sampling the density after the fact. To do this, let's consider upgrading the dynamics to the SDE:
+
+            \[\large
+            \begin{equation}
+            dX_t = f(X_t)\, dt + \sqrt{2 \varepsilon^2}\, dW_t, \quad x(t) \sim X_t \label{6} 
+            \end{equation}
+            \]
+
+            which just means to add zero-mean gaussian noise to our ODE with diagonal covariance \(\varepsilon^2 I\). The upgraded density evolution equation is the Fokker-Planck equation:
+
+            \[\large
+            \partial_t \rho(x,t) = -\nabla \cdot (f(x)\, \rho(x,t)) + \varepsilon^2\, \nabla^2 \rho(x,t)
+            \]
+
+            At first glance, this might seem harder to solve than the Liouville equation, but actually the solution is much better behaved! If we once again assume that the system has a global attractor, then the solution to the fokker planck is not only smooth and bounded for all time, but it is also guaranteed to converge to the same stationary distribution regardless of the initial distribution. What that means is that not only does \(\lim_{t \to \infty} \rho(x,t)\) exist, but it is also to the unique solution to \(\partial_t \rho = 0\). Even better, the stationary distribution is guaranteed to be ergodic, meaning we can equate time averages with ensemble averages. Knowing this, we can evaluate the time derivative of the entropy of the stationary density:
+
+            \[
+            \begin{align*}
+            \dot h^\varepsilon(t)\,\,&\colon\!= - \partial_t \int_{\mathbb{R}^n} \rho^\varepsilon(x,t) \log \rho^\varepsilon(x,t)\, dx \\[8pt]
+            &= \int_{\mathbb{R}^n} (\nabla \cdot f(x))\, \rho^\varepsilon(x,t) \, dx + \varepsilon^2 \int_{\mathbb{R}^n} \rho^\varepsilon(x,t)\, \|\nabla \log \rho^\varepsilon(x,t)\|^2\, dx & \text{(Generalization of \eqref{5})} \\[8pt]
+            &= \big\langle \nabla \cdot f \bigr\rangle_{\rho_t^\varepsilon} + \varepsilon^2\, \langle \|\nabla \log \rho^\varepsilon\|^2 \bigr\rangle_{\rho_t^\varepsilon} \\[8pt]
+            \implies h^\varepsilon(t) &= h^\varepsilon(0) + \int_0^t \big\langle \nabla \cdot f \bigr\rangle_{\rho_s^\varepsilon} + \varepsilon^2\, \mathcal{I}^\varepsilon(s)\, ds \\[8pt]
+            \end{align*}
+            \]
+
+            where \(\mathcal{I}(\cdot)\) is the non-parametric Fisher information.
+
+            <!-- \[\large
+            \begin{align*}
+            \partial_t \rho_\infty^\varepsilon &= - \nabla \cdot (f\, \rho_\infty^\varepsilon) + \varepsilon^2\, \nabla^2 \rho_\infty^\varepsilon = 0 & \text{(Stationary Fokker-Planck)} \\[8pt]
+            \implies \dot h_\infty^\varepsilon &\colon\!= - \partial_t \int_{\mathbb{R}^n} \rho_\infty^\varepsilon \log \rho_\infty^\varepsilon\, dx \\[8pt]
+            0 &= \int_{\mathbb{R}^n} (\nabla \cdot f) \rho_\infty^\varepsilon\, dx + \varepsilon^2 \int_{\mathbb{R}^n} \rho_\infty^\varepsilon\ \|\nabla \log \rho_\infty^\varepsilon\|^2, dx & \text{(Generalization of \eqref{5})} \\[8pt]
+            &= \big\langle \nabla \cdot f \bigr\rangle_{\rho_\infty^\varepsilon} + \varepsilon^2\, \langle \|\nabla \log \rho_\infty^\varepsilon\|^2 \bigr\rangle_{\rho_\infty^\varepsilon} \\[8pt]
+            \varepsilon^2\, \mathcal{I}(\rho_\infty^\varepsilon) &= - \big\langle \nabla \cdot f \bigr\rangle_{\rho_\infty^\varepsilon}
+            \end{align*}
+            \] -->
+            
+
+        </p>
     </main>
     <br style="margin-bottom: 300px;">
 </body>
