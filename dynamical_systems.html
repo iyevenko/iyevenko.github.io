@@ -57,7 +57,7 @@
             <!-- Dynamical systems theory is a field which has largely been abandoned since the 1990s. It was developed by applied mathematicians -->
             <!-- It's almost entirely unknown to physicists, biologists and ML researchers  -->
         </p>
-        <h2>Flow: A Mathematical and Geometric Interpretation</h2>
+        <h2>1. Flow: A Mathematical and Geometric Interpretation</h2>
         <p>
             We begin with an ODE:
             
@@ -149,7 +149,7 @@
         <p>
             Since \(\nabla \Phi\) is a Jacobian, we can interpret the flow \(\Phi\) as some kind of deformation in space which drastically changes the lengths between points so that in some directions, they shrink onto the same point, and in others they grow apart. But remember that these contractions and expansions are entirely <i>local</i>. Exponential growth of local distances does not imply that a small initial distance will exponentially grow forever. Just like when studying the deformation of a metal rod, we are making a very good first-order approximation of the actual deformation. The rod will eventually begin to buckle, tear, and fracture if you keep stretching far enough. In a similar way, a flow will eventually have higher order effects which behave nothing like exponential stretching/compression. The analogy only draws a parallel between the deformation of the lattice of atoms in a material and the abstract notion of coordinates deformed by a flow. Globally, a flow really behaves more like, well, a flow. 
          </p>
-        <h2>Lyapunov Exponents and their Corresponding Vectors</h2>
+        <h2>2. Lyapunov Exponents and their Corresponding Vectors</h2>
         <p>
             Lyapunov exponents are fundamental to the study of dynamical systems, but their mathematical definition is typically very confusing. To avoid this confusion, most sources just give the equation for the largest Lyapunov exponent, but that hides the true complexity of the object. I will also avoid talking about ergodicity, since it is highly system dependent and therefore removes necessary nuance.
         </p>
@@ -202,7 +202,7 @@
 
             Although it appears possible, \(v_i(x)\) cannot be solved using information about \(\nabla f\) alone. We really do need to take the long time limit in practice to calculate them. But once you know these covariant vectors, it opens the door to making informed perturbations that can actually drive a system to entirely new behaviors. 
         </p>
-        <h2>The Attractor and its Dimension</h2>
+        <h2>3. The Attractor and its Dimension</h2>
         <p>
             Before we can understand how the system will respond to perturbation, we better know how it behaves in the absence of perturbation. As \(t\to \infty\), how does the flow map an initial distribution of states to a final distribution? If we try to naively evaluate \(\lim_{t\to \infty} \rho(x,t)\) we immediately we run into a problem. Except in very special cases, \(\rho\) will exponentially grow/shrink and/or oscillate indefinitely so the limit doesn't exist. There are two ways to resolve this problem and each tells us different physically meaningful things about the system. 
         </p>
@@ -250,10 +250,17 @@
             There are a number of ways you could go about coarse-graining the density. The simplest way is to discretize the state space into cubes of side length \(\varepsilon\) (volume \(\varepsilon^n\)) and redefine the expectation integral with a sum. Another way is to convolve the density with a Gaussian kernel with covariance \(\varepsilon^2 I\). The entropy associated with the cube coarse-graining is defined as:
 
             \[\large
-            H^{\varepsilon}(t) = -\sum_{i=1}^N p_i(t) \log p_i(t), \quad p_i(t) = \int_{C_i} \rho(x,t)\, dx
+            H_\text{cube}^{\varepsilon}(t) = -\sum_{i=1}^N p_i(t) \log p_i(t), \quad p_i(t) = \int_{C_i} \rho(x,t)\, dx
             \]
             
-            where \(C_i\) is the \(i\)th \(\varepsilon\)-cube. This is known to be related to the differential entropy by the following asymptotic \(\varepsilon \to 0\) relation:
+            where \(C_i\) is the \(i\)th \(\varepsilon\)-cube. The Gaussian coarse-graining is defined as:
+
+            \[\large
+            H_\text{conv}^{\varepsilon}(t) = -\int_{\mathbb{R}^n} \rho(x,t) \log \left(\int_{\mathbb{R}^n} \rho(y,t)\, e^{-\frac{\|x-y\|^2}{2\varepsilon^2}}\, dy\right)\, dx
+            \]
+            
+            
+            This is known to be related to the differential entropy by the following asymptotic \(\varepsilon \to 0\) relation:
 
             \[\large
             H^{\varepsilon}(t) = h(t) - D_I \log \varepsilon + \mathcal{O}(1), \quad D_I \in [0,n]
