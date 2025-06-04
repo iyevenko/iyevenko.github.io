@@ -186,7 +186,7 @@
             How do we avoid this? Well, it turns out that there is a subspace of \(\mathbb{R}^n\) which contains only the vectors that do not get rotated onto other singular vectors. The space, as implied in \eqref{3}, is called \(E_i(x)\) and it is the set of vectors which does not get rotated by the flow and gets stretched like \(e^{\lambda_i(x)t}\) asymptotically. The simplest example of such a space is just \(\operatorname{span}\{f(x)\}\). This corresponds to \(\lambda_i(x) = 0\) because perturbations in this direction don't grow or shrink, they just push the state forward or backward along the trajectory it was already going to take. If the ODE has any other symmetry besides time (e.g. rotation, scale invariance), then \(E_i(x)\) will have one dimension for each symmetry. 
         </p>
         <p>
-            Oseledet's Theorem (which, contrary to what Wikipedia says has nothing to do with ergodicity), states that as long as the expected norm of \(\nabla \Phi(x_0,1)\) is finite, then there exists a "spltting" of \(\mathbb{R}^n\) into independent subspaces \(E_i(x)\) which are invariant under the flow and grow like \(e^{\lambda_i(x)t}\). In simpler terms, that means for every lyapunov exponent, there is a corresponding vector space which contains perturbations that grow like that exponent. These subspaces span all of \(\mathbb{R}^n\) but they are not an orthogonal basis. You cannot project a given perturbation vector on to the basis by simple dot product, you must perform a \(QR\) decomposition of the basis and the project the vector with \(R^{-1}Q^\top\). Furthermore, linear combination of perturbation vectors with different Lyapunov exponents will grow like the largest exponent. That means we can actually generalize \eqref{3} to:
+            Oseledet's Theorem (which, contrary to what Wikipedia says has nothing to do with ergodicity), states that as long as the expected log norm of \(\nabla \Phi(x_0,1)\) is finite, then there exists a "splitting" of \(\mathbb{R}^n\) into independent subspaces \(E_i(x)\) which are invariant under the flow and grow like \(e^{\lambda_i(x)t}\). In simpler terms, that means for every lyapunov exponent, there is a corresponding vector space which contains perturbations that grow like that exponent. These subspaces span all of \(\mathbb{R}^n\) but they are not an orthogonal basis. You cannot project a given perturbation vector on to the basis by simple dot product, you must perform a \(QR\) decomposition of the basis and then project the vector with \(R^{-1}Q^\top\). Furthermore, linear combination of perturbation vectors with different Lyapunov exponents will grow like the largest exponent. That means we can actually generalize \eqref{3} to:
 
             \[\large
             \begin{equation}
@@ -194,13 +194,13 @@
             \end{equation}
             \]
 
-            The vectors in each of the subspaces \(E_i(x)\) are called covariant Lyapunov vectors, but this is poor naming because Lyapunov exponents already have associated vectors; namely, the left and right singular vectors of \(\nabla \Phi\). Perhaps they should be called Oseledets vectors, but for now I will just call them covariant vectors of the flow. They are called covariant because they vary "with the flow" in some sense. In particular:
+            The vectors in each of the subspaces \(E_i(x)\) are called covariant Lyapunov vectors. This is poor naming because Lyapunov exponents are already associated with another set of vectors; namely, the left and right singular vectors of \(\nabla \Phi\). Perhaps they should be called Oseledets vectors, but for now I will just call them covariant vectors of the flow. They are called covariant because their direction does not change under the flow:
 
             \[\large
-            \dot v_i(x) = \nabla f(x)\, v_i(x)
+            \nabla \Phi(x,t) \, v_i(x) \propto v_i(\Phi(x,t))
             \]
 
-            Although it appears possible, \(v_i(x)\) cannot be solved using information about \(\nabla f\) alone. We really do need to take the long time limit in practice to calculate them. But once you know these covariant vectors, it opens the door to making informed perturbations that can actually drive a system to entirely new behaviors. 
+            From the previous definition, the proportionality constant will scale like \(e^{\lambda_i(x)t}\) as \(t \to \infty\). We really do need to take the long time limit in practice to calculate them. But once you know these covariant vectors, it opens the door to making informed perturbations that can actually drive a system to entirely new behaviors. 
         </p>
         <h2>3. The Attractor and its Dimension</h2>
         <p>
