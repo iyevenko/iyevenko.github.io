@@ -54,8 +54,10 @@
     <main>
         <h1>Dynamical Systems for Generalists</h1>
         <p>
-            <!-- Dynamical systems theory is a field which has largely been abandoned since the 1990s. It was developed by applied mathematicians -->
-            <!-- It's almost entirely unknown to physicists, biologists and ML researchers  -->
+            Dynamical systems theory is a field which has largely been abandoned since the 1990s when chaos was still a hot topic. It was developed by mathematicians studying general forms of differential equations and the kinds of behaviors they can exhibit. That's why the theory is incredibly difficult to learn. The best resources are buried in pages of proofs about abstract function spaces and ergodic measures, so it's nearly impossible for physicists, biologists and ML researchers to make sense of it. At this point I've exhausted every available resource on dynamical systems and I have yet to find one which would make sense to a non-mathematician. That's why I wrote this post! 
+        </p>
+        <p>
+            Hopefully, I can convince you that this theory is the best tool we have for studying any kind of complex system. With that, let's begin the math.
         </p>
         <h2>1. Flow: A Mathematical and Geometric Interpretation</h2>
         <p>
@@ -65,7 +67,7 @@
             \frac{dx}{dt} = f(x), \quad x \in \mathbb{R}^n, \quad x(0) = x_0
             \]
             
-            This ODE is autonomous, meaning the dynamics do not depend on time. This is analogous to a Markov process. We're interested in the behavior (dynamics) of \(x\) for a general non-linear function \(f\). Why non-linear? Because a linear system has a closed form solution and that's not very exciting:
+            This ODE is autonomous, meaning the dynamics do not depend on time. We're interested in the behavior (dynamics) of \(x\) for a general non-linear function \(f\). Why non-linear? Because a linear system has a closed form solution and that's not very exciting:
 
             \[\large
             \frac{dx}{dt} = Ax \implies x(t) = e^{tA}\,x_0
@@ -141,13 +143,13 @@
 
             One more important note is that if there are multiple identical singular values, then \(U\) and \(V\) are actually arbitrary vectors that just span the space. They don't have a unique evolution equation. 
 
-            Now that we know how \(Sigma\) evolves, we see that it is just a matrix whose diagonal elements exponentially shrink/grow depending on the projection of the Jacobian of \(f\) onto the left singular vectors. In geometric terms, that means there is some ellipsoid that is advected, rotated and exponentially stretched/squeezed depending on how it aligns with the spatial variation in the flow. Still, this analogy is lacking because if you really were to drop some finite ellipsoid into the flow, it would get distorted until it was no longer an ellipsoid.
+            Now that we know how \(\Sigma\) evolves, we see that it is just a matrix whose diagonal elements exponentially shrink/grow depending on the projection of the Jacobian of \(f\) onto the left singular vectors. In geometric terms, that means there is some ellipsoid that is advected, rotated and exponentially stretched/squeezed depending on how it aligns with the spatial variation in the flow. Still, this analogy is lacking because if you really were to drop some finite ellipsoid into the flow, it would get distorted until it was no longer an ellipsoid.
         </p>
         <p>
             Fortunately, there exists a better interpretation. It turns out that the singular values of a Jacobian also appear in the study of continuum mechanics! The right/left Cauchy-Green deformation tensors are defined as \(J^\top J = U^\top \Sigma^2 U\) and \(JJ^\top\ = V^\top \Sigma^2 V\) respectively, where \(J\) is the Jacobian of some deformation map. The eigenvalues of these tensors are the diagonal of \(\Sigma^2\) in both cases. Formally, \(J^\top J\) is the <i>metric tensor</i> which describes the local geometry as compared to the Euclidean metric. Physically, it encodes the squared local changes in distance. The singular values of the Jacobian are the ratio between the original lengths in Euclidean coordinates, and the stretched/compressed lengths in some rotated coordinates. This is directly related to strain, which is defined as a relative difference \(\frac{l - l_0}{l_0}\) so you just need to subtract the identity matrix from the metric tensor. 
         </p>
         <p>
-            Since \(\nabla \Phi\) is a Jacobian, we can interpret the flow \(\Phi\) as some kind of deformation in space which drastically changes the lengths between points so that in some directions, they shrink onto the same point, and in others they grow apart. But remember that these contractions and expansions are entirely <i>local</i>. Exponential growth of local distances does not imply that a small initial distance will exponentially grow forever. Just like when studying the deformation of a metal rod, we are making a very good first-order approximation of the actual deformation. The rod will eventually begin to buckle, tear, and fracture if you keep stretching far enough. In a similar way, a flow will eventually have higher order effects which behave nothing like exponential stretching/compression. The analogy only draws a parallel between the deformation of the lattice of atoms in a material and the abstract notion of coordinates deformed by a flow. Globally, a flow really behaves more like, well, a flow. 
+            Since \(\nabla \Phi\) is a Jacobian, we can interpret the flow \(\Phi\) as some kind of deformation in space which drastically changes the lengths between points so that in some directions they shrink onto the same point, and in others they grow apart. But remember that these contractions and expansions are entirely <i>local</i>. Exponential growth of local distances does not imply that a small initial distance will exponentially grow forever. Just like when studying the deformation of a metal rod, we are making a very good first-order approximation of the actual deformation. The rod will eventually begin to buckle, tear, and fracture if you keep stretching far enough. In a similar way, a flow will eventually have higher order effects which behave nothing like exponential stretching/compression. The analogy only draws a parallel between the deformation of the lattice of atoms in a material and the abstract notion of coordinates deformed by a flow. Globally, a flow really behaves more like, well, something that flows. 
          </p>
         <h2>2. Lyapunov Exponents and their Corresponding Vectors</h2>
         <p>
@@ -177,9 +179,7 @@
             ...except it would normally be missing all the important details, which I will now explain. You see, you might expect that the vectors which satisfy the above equation are just the left or right singular vectors of the \(\nabla \Phi\). It's not that simple!
         </p>
         <p>
-            Let's say you choose an initial condition \(x_0\) and some large time \(t\) and calculate that the \(i\)th right singular value of \(\nabla \Phi(x_0,t)\) is \(v_i\). Then, you plug that vector naively that into \eqref{3}. What you will get is not \(\lambda_i(x_0)\). Instead, the formula will give you \(\lambda_1(x_0)\) for every single \(v_i\)! This is because, as we derived before, the singular values constantly rotate over time. So, after a short time \(v_i\) will no longer correspond to a singular vector in \(V\) and it will have components in each one of the basis directions. That means it will have a finite component in the direction of the largest singular vector, and this component asymptotically will grow like the \(e^{\lambda_1(x_0)t}\). If the largest Lyapunov exponent is positive, then this immediately implies that almost any initial perturbation vector will grow exponentially. This is precisely the definition of a chaotic system.
-
-            [image of double pendulum]
+            Let's say you choose an initial condition \(x_0\) and some large time \(t\) and calculate that the \(i\)th right singular value of \(\nabla \Phi(x_0,t)\) is \(v_i\). Then, you plug that vector naively into \eqref{3}. What you will get is not \(\lambda_i(x_0)\). Instead, the formula will give you \(\lambda_1(x_0)\) for every single \(v_i\)! This is because, as we derived before, the singular values constantly rotate over time. So, after a short time \(v_i\) will no longer correspond to a singular vector in \(V\) and it will have components in each one of the basis directions. That means it will have a finite component in the direction of the largest singular vector, and this component asymptotically will grow like the \(e^{\lambda_1(x_0)t}\). If the largest Lyapunov exponent is positive, then this immediately implies that almost any initial perturbation vector will grow exponentially. This is precisely the definition of a chaotic system.
         </p>
 
         <p>
@@ -194,7 +194,7 @@
             \end{equation}
             \]
 
-            The vectors in each of the subspaces \(E_i(x)\) are called covariant Lyapunov vectors. This is poor naming because Lyapunov exponents are already associated with another set of vectors; namely, the left and right singular vectors of \(\nabla \Phi\). Perhaps they should be called Oseledets vectors, but for now I will just call them covariant vectors of the flow. They are called covariant because their direction does not change under the flow:
+            The vectors in each of the subspaces \(E_i(x)\) are called covariant Lyapunov vectors. This is poor naming because Lyapunov exponents are already associated with another set of vectors; namely, the left and right singular vectors of \(\nabla \Phi\). Perhaps they should be called Oseledets vectors, but for now I will just call them covariant vectors of the flow. They are called covariant because the field \(v_i(x)\) is fixed, and evolving a vector in the field will keep it aligned with the field:
 
             \[\large
             \nabla \Phi(x,t) \, v_i(x) \propto v_i(\Phi(x,t))
@@ -259,16 +259,19 @@
             H_\text{conv}^{\varepsilon}(t) = -\int_{\mathbb{R}^n} \rho(x,t) \log \left(\int_{\mathbb{R}^n} \rho(y,t)\, e^{-\frac{\|x-y\|^2}{2\varepsilon^2}}\, dy\right)\, dx
             \]
             
-            
             This is known to be related to the differential entropy by the following asymptotic \(\varepsilon \to 0\) relation:
 
             \[\large
-            H^{\varepsilon}(t) = h(t) - D_I \log \varepsilon + \mathcal{O}(1), \quad D_I \in [0,n]
+            H^{\varepsilon}(t) = h(t) - \mathcal{D}_I \log \varepsilon + \mathcal{O}(1), \quad \mathcal{D}_I \in [0,n]
             \]
             
-            where the \(\mathcal{O}(1)\) terms come from particular choice of coarse-graining procedure. \(D_I\) is a constant known as the <i>information dimension</i> of the attractor. In this form, \(D_I\) just looks like an empirical constant and that's the way it's been largely been treated in the literature. I will show that with my (mostly) novel reinterpretation of the existing math, \(D_I\) becomes intimately tied to the dynamics of the system.
+            where the \(\mathcal{O}(1)\) terms come from particular choice of coarse-graining procedure. \(\mathcal{D}_I\) is a constant known as the <i>information dimension</i> of the attractor. In this form, \(\mathcal{D}_I\) just looks like an empirical constant and that's the way it's largely been treated in the literature, but it's a very important physically relevant quantity! It answers the question: <i>how many real numbers do I need to encode the state of a system?</i> as opposed to the classical notion of entropy which only tells you how many bits you need in total. This is about as close as you can get to a universal definition for complexity in a physical system!
+
+            The biggest problem with information dimension is that it's exactly \(n\) for all finite times. It's defined in a way that only after taking the limit as \(t \to \infty\) can you ever get a smaller number. This makes it impossible to assign an intermediate value or associate an "energy" to this "force". What causes information dimension to decrease? Until we have a definition which has a meaningful finite time value and a finite rate of change, we cannot pin down the cause. That's why I'm working on defining a new quantity which equals the information dimension at the limit, but has a physically meaningful intermediate values. Paper coming soon!
+            
+            <!-- I will show that with my (mostly) novel reinterpretation of the existing math, \(\mathcal{D}_I\) becomes intimately tied to the dynamics of the system. -->
         </p>
-        <p>
+        <!-- <p>
             The coarse-graining trick I'll use is to bake information loss into the dynamics, rather than sampling the density after the fact. To do this, let's consider upgrading the dynamics to the SDE:
 
             \[\large
@@ -296,7 +299,7 @@
 
             where \(\mathcal{I}(\cdot)\) is the non-parametric Fisher information.
 
-            <!-- \[\large
+            \[\large
             \begin{align*}
             \partial_t \rho_\infty^\varepsilon &= - \nabla \cdot (f\, \rho_\infty^\varepsilon) + \varepsilon^2\, \nabla^2 \rho_\infty^\varepsilon = 0 & \text{(Stationary Fokker-Planck)} \\[8pt]
             \implies \dot h_\infty^\varepsilon &\colon\!= - \partial_t \int_{\mathbb{R}^n} \rho_\infty^\varepsilon \log \rho_\infty^\varepsilon\, dx \\[8pt]
