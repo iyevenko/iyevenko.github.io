@@ -1,5 +1,5 @@
 const RSIZE = 128;
-const SCALE = 4;
+const SCALE = 2;
 var SIZE = RSIZE * SCALE;
 const PRECISION = 1000000;
 var NS = 18*SCALE;  // R = space resolution = kernel radius (neighborhood size) in cells
@@ -11,7 +11,7 @@ var kernel_A = 4;
 // var kernel_B = [1];
 var kernel_B = [1,1/2,1/2,1];
 
-var growth_fn = 0; // poly growth
+var growth_fn = 1; // poly growth
 var growth_m = 0.24;
 var growth_s = 0.02;
 
