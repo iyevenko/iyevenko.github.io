@@ -18,7 +18,7 @@
         }
         .paper-image img {
             width: 100%;
-            height: auto;
+            height: 200px;
             object-fit: contain;
             border: 1px solid #ccc;
             padding: 5px;
@@ -94,6 +94,7 @@
         <ul class="dashed">
             <li>What is complexity? How does it emerge?</li>
             <li>What is information? How do you describe life as an informational process?</li>
+            <li>What is computation? How and why does matter compute?</li>
         </ul>
         <p>I believe creating artificial life is a good test for whether you understand life, but an even better test is <i>designing</i> life.
         This is analogous to both creating AGI and solving the alignment problem.
@@ -101,39 +102,40 @@
         More on my <a href="philosophy.html" target="_blank">research philosophy.</a></p>
     
         <br>
-        <h2>Papers</h2>
+        <h2>Research</h2>
         <hr>
-        <!-- <div class="paper">
-            <div class="paper-content">
-                <h3 style="margin-bottom: 0;">*WIP* Understanding information as an intrinsic property of fields</h3>
-                <p style="margin-top: 0; margin-bottom: 0;">[<a href="/paper3.html" target="_blank">Notes</a>]</p>
-                <p class="paper-abstract">
-                    Info
-                </p>
-            </div>
-            <a href="/paper3.html" target="_blank" class="paper-image">
-                <img class="paper-img" src="images/paper3_fig.png" alt="Paper 3 figure">
-            </a>
-        </div>
 
-        <hr> -->
-        <!-- <div class="paper">
+        <div class="paper">
             <div class="paper-content">
-                <h3 style="margin-bottom: 0;">*WIP* A mechanism for emergence of complex patterns in continuous CA's</h3>
+                <h3 style="margin-bottom: 0;">Dynamical systems for generalists</h3>
                 <p style="margin-top: 0; margin-bottom: 0;">
-                    [<a href="/paper2.html" target="_blank">Notes</a>]
-                    [<a href="/alenia.html" target="_blank">Sandbox</a>]
+                    [<a href="dynamical_systems.html" target="_blank">Blog</a>]
                 </p>
                 <p class="paper-abstract">
-                    Why do complex patterns emerge in continuous cellular automata? This seems like a question that cannot have a simple answer, much less a mathematically rigorous proof of its correctness. However, by assuming the existence of analytical forms of solutions to a general class of CA's, I find a set of conditions that necessarily imply the existence of complex solutions to the governing PDE. These solutions correspond directly to symmetries of the governing equation, and they can be used to find regions of persistent, dynamic patterns. What's even more exciting is that knowing the conditions for emergence of complex patterns potentially allows us to design CA's from scratch that exhibit complex behavior.
+                    Dynamical systems theory is a field which has largely been abandoned since the 1990s when chaos was still a hot topic. It was developed by mathematicians studying general forms of differential equations and the kinds of behaviors they can exhibit. That's why the theory is incredibly difficult to learn. The best resources are buried in pages of proofs about abstract function spaces and ergodic measures, so it's nearly impossible for physicists, biologists and ML researchers to make sense of it. At this point I've exhausted every available resource on dynamical systems and I have yet to find one which would make sense to a non-mathematician. That's why I wrote this post! 
                 </p>
             </div>
-            <a href="/paper2.html" target="_blank" class="paper-image">
-                <img class="paper-img" src="images/paper2_fig.png" alt="Paper 2 figure">
+            <a href="dynamical_systems.html"    target="_blank" class="paper-image">
+                <img class="paper-img" src="images/image.png" alt="Dynamical systems figure">
             </a>
         </div>
+        <hr>
 
-        <hr> -->
+        <div class="paper">
+            <div class="paper-content">
+                <h3 style="margin-bottom: 0;">Asymptotic Lenia playground</h3>
+                <p style="margin-top: 0; margin-bottom: 0;">
+                    [<a href="alenia.html" target="_blank">Playground</a>]
+                </p>
+                <p class="paper-abstract">
+                    Hey! You might be wondering what's going on here. Lenia is a continuous version of Conway's Game of Life, meaning the cells take on a values between 0 and 1 and space and time are defined on an infinitely small grid. Just like GoL, each cell looks at its neighbors and decides whether to increase or decrease using a function called the growth function. To make the math nice, we model this with a partial differential equation for the state of the system \(A(\mathbf{x}, t)\):
+                </p>
+            </div>
+            <a href="alenia.html" target="_blank" class="paper-image">
+                <img class="paper-img" src="images/interface.png" alt="Asymptotic Lenia playground interface">
+            </a>
+        </div>
+        <hr>
 
         <div class="paper">
             <div class="paper-content">
