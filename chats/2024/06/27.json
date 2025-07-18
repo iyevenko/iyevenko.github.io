@@ -1,0 +1,504 @@
+[
+  {
+    "title": "Mutual Information Overview",
+    "create_time": 1719462362.161361,
+    "update_time": 1719462455.132179,
+    "mapping": {
+      "d42cf899-7e5e-4c63-a552-9e17f7e74a83": {
+        "id": "d42cf899-7e5e-4c63-a552-9e17f7e74a83",
+        "message": {
+          "id": "d42cf899-7e5e-4c63-a552-9e17f7e74a83",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 0.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "d2583bf9-55fb-4589-bd03-53f1c955adeb",
+        "children": [
+          "c5fc77d3-0be4-4187-ac94-dcd91d51a2dc"
+        ]
+      },
+      "d2583bf9-55fb-4589-bd03-53f1c955adeb": {
+        "id": "d2583bf9-55fb-4589-bd03-53f1c955adeb",
+        "message": null,
+        "parent": null,
+        "children": [
+          "d42cf899-7e5e-4c63-a552-9e17f7e74a83"
+        ]
+      },
+      "c5fc77d3-0be4-4187-ac94-dcd91d51a2dc": {
+        "id": "c5fc77d3-0be4-4187-ac94-dcd91d51a2dc",
+        "message": {
+          "id": "c5fc77d3-0be4-4187-ac94-dcd91d51a2dc",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_user_system_message": true,
+            "is_visually_hidden_from_conversation": true,
+            "user_context_message_data": {
+              "about_model_message": "Never use bing. Never search for an answer, use your knowledge on the subject instead."
+            }
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "d42cf899-7e5e-4c63-a552-9e17f7e74a83",
+        "children": [
+          "28844762-d54b-4e61-bcf6-995c731a7500"
+        ]
+      },
+      "28844762-d54b-4e61-bcf6-995c731a7500": {
+        "id": "28844762-d54b-4e61-bcf6-995c731a7500",
+        "message": {
+          "id": "28844762-d54b-4e61-bcf6-995c731a7500",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462362.172136,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "What is the quantity p(x0,x1,\u2026)/prod(p(x0)p(x1)\u2026)"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "89a2ad322d0017e8-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "c5fc77d3-0be4-4187-ac94-dcd91d51a2dc",
+        "children": [
+          "3202dc63-391b-4fae-a553-2013c9ca5902"
+        ]
+      },
+      "3202dc63-391b-4fae-a553-2013c9ca5902": {
+        "id": "3202dc63-391b-4fae-a553-2013c9ca5902",
+        "message": {
+          "id": "3202dc63-391b-4fae-a553-2013c9ca5902",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462372.904076,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "parent_id": "28844762-d54b-4e61-bcf6-995c731a7500",
+            "request_id": "89a2ad322d0017e8-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "28844762-d54b-4e61-bcf6-995c731a7500",
+        "children": [
+          "a44eb7f7-5b82-4fc7-9c87-5a751203b401"
+        ]
+      },
+      "a44eb7f7-5b82-4fc7-9c87-5a751203b401": {
+        "id": "a44eb7f7-5b82-4fc7-9c87-5a751203b401",
+        "message": {
+          "id": "a44eb7f7-5b82-4fc7-9c87-5a751203b401",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462372.904132,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The quantity \\(\\frac{p(x_0, x_1, \\ldots, x_n)}{\\prod p(x_0)p(x_1)\\ldots p(x_n)}\\) is known as the **mutual information** when applied to probability distributions.\n\nIn more detail:\n\n1. **Joint Probability**: \\(p(x_0, x_1, \\ldots, x_n)\\) represents the joint probability distribution of the random variables \\(x_0, x_1, \\ldots, x_n\\).\n\n2. **Marginal Probabilities**: \\(p(x_0), p(x_1), \\ldots, p(x_n)\\) are the marginal probability distributions of each individual variable \\(x_0, x_1, \\ldots, x_n\\).\n\nThe ratio \\(\\frac{p(x_0, x_1, \\ldots, x_n)}{\\prod p(x_0)p(x_1)\\ldots p(x_n)}\\) indicates how the joint probability of these variables compares to what their joint probability would be if they were independent (i.e., the product of their marginal probabilities). \n\nIf the variables are independent, this ratio will be 1 because the joint probability equals the product of the marginal probabilities. Values different from 1 indicate some degree of dependence among the variables. This ratio is fundamental in information theory and statistics, often used to measure the degree of dependence or correlation among multiple variables."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "citations": [],
+            "gizmo_id": null,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAAAAAAA",
+            "parent_id": "3202dc63-391b-4fae-a553-2013c9ca5902",
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "is_complete": true,
+            "request_id": "89a2ad322d0017e8-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "3202dc63-391b-4fae-a553-2013c9ca5902",
+        "children": [
+          "59c1081a-d1d7-4e16-be3b-8b36e9508ae4"
+        ]
+      },
+      "59c1081a-d1d7-4e16-be3b-8b36e9508ae4": {
+        "id": "59c1081a-d1d7-4e16-be3b-8b36e9508ae4",
+        "message": {
+          "id": "59c1081a-d1d7-4e16-be3b-8b36e9508ae4",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462434.823654,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Wait but mutual information is a property between random variables, not probabilities. Just like entropy is a property of random variables or distributions"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "89a2aef87c1617e8-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "a44eb7f7-5b82-4fc7-9c87-5a751203b401",
+        "children": [
+          "b10c31b1-8a5f-4233-95dd-0e8bab71d654"
+        ]
+      },
+      "b10c31b1-8a5f-4233-95dd-0e8bab71d654": {
+        "id": "b10c31b1-8a5f-4233-95dd-0e8bab71d654",
+        "message": {
+          "id": "b10c31b1-8a5f-4233-95dd-0e8bab71d654",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462454.906201,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "You're correct; mutual information is indeed a property of random variables or their distributions, not individual probabilities. Let's clarify the quantity:\n\nThe ratio \\(\\frac{p(x_0, x_1, \\ldots, x_n)}{\\prod p(x_0)p(x_1)\\ldots p(x_n)}\\) measures the relative likelihood of observing the joint configuration \\((x_0, x_1, \\ldots, x_n)\\) compared to what we would expect if all the variables were independent.\n\nThis quantity is often associated with the concept of **mutual information** in information theory, but strictly speaking, the formula given is a probability ratio, not mutual information itself. Mutual information is derived from this ratio, and it quantifies the amount of information shared among the variables.\n\nFor a clearer understanding, here's how mutual information is related:\n\n### Mutual Information (MI)\nMutual information \\(I(X;Y)\\) between two random variables \\(X\\) and \\(Y\\) is defined as:\n\\[ I(X; Y) = \\sum_{x, y} p(x, y) \\log \\frac{p(x, y)}{p(x)p(y)} \\]\n\nFor multiple variables \\(X_0, X_1, \\ldots, X_n\\), the mutual information can be generalized. However, the ratio \\(\\frac{p(x_0, x_1, \\ldots, x_n)}{\\prod p(x_i)}\\) itself represents the relative likelihood and can be interpreted as indicating dependency among the variables.\n\n### Pointwise Mutual Information (PMI)\nThe specific quantity \\(\\log \\frac{p(x_0, x_1, \\ldots, x_n)}{\\prod p(x_i)}\\) is called the **pointwise mutual information** (PMI), which measures the association between specific values of the random variables:\n\\[ \\text{PMI}(x_0, x_1, \\ldots, x_n) = \\log \\frac{p(x_0, x_1, \\ldots, x_n)}{\\prod p(x_i)} \\]\n\nIn summary, while the ratio \\(\\frac{p(x_0, x_1, \\ldots, x_n)}{\\prod p(x_i)}\\) directly measures the relative likelihood under the assumption of independence, mutual information and pointwise mutual information build upon this concept to quantify the information shared among random variables."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "citations": [],
+            "gizmo_id": null,
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "is_complete": true,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAAAAAAAAAAAAAA",
+            "parent_id": "59c1081a-d1d7-4e16-be3b-8b36e9508ae4",
+            "request_id": "89a2aef87c1617e8-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "59c1081a-d1d7-4e16-be3b-8b36e9508ae4",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "b10c31b1-8a5f-4233-95dd-0e8bab71d654",
+    "plugin_ids": null,
+    "conversation_id": "8a188df9-9d83-4887-b7a3-e664e232deaf",
+    "conversation_template_id": null,
+    "gizmo_id": null,
+    "gizmo_type": null,
+    "is_archived": false,
+    "is_starred": null,
+    "safe_urls": [],
+    "default_model_slug": "auto",
+    "conversation_origin": null,
+    "voice": null,
+    "async_status": null,
+    "disabled_tool_ids": [],
+    "id": "8a188df9-9d83-4887-b7a3-e664e232deaf"
+  },
+  {
+    "title": "Sum of Binary Random Variables",
+    "create_time": 1719462054.234445,
+    "update_time": 1719462063.41721,
+    "mapping": {
+      "0d995828-c959-49da-b659-401fef2428cb": {
+        "id": "0d995828-c959-49da-b659-401fef2428cb",
+        "message": {
+          "id": "0d995828-c959-49da-b659-401fef2428cb",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 0.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "d2583bf9-55fb-4589-bd03-53f1c955adeb",
+        "children": [
+          "b0aedd3c-2d1b-40ac-b81d-2744c7c9b332"
+        ]
+      },
+      "d2583bf9-55fb-4589-bd03-53f1c955adeb": {
+        "id": "d2583bf9-55fb-4589-bd03-53f1c955adeb",
+        "message": null,
+        "parent": null,
+        "children": [
+          "0d995828-c959-49da-b659-401fef2428cb"
+        ]
+      },
+      "b0aedd3c-2d1b-40ac-b81d-2744c7c9b332": {
+        "id": "b0aedd3c-2d1b-40ac-b81d-2744c7c9b332",
+        "message": {
+          "id": "b0aedd3c-2d1b-40ac-b81d-2744c7c9b332",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_user_system_message": true,
+            "is_visually_hidden_from_conversation": true,
+            "user_context_message_data": {
+              "about_model_message": "Never use bing. Never search for an answer, use your knowledge on the subject instead."
+            }
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "0d995828-c959-49da-b659-401fef2428cb",
+        "children": [
+          "f2fdd1c7-1fc1-4bfa-be2c-f1487bd2f914"
+        ]
+      },
+      "f2fdd1c7-1fc1-4bfa-be2c-f1487bd2f914": {
+        "id": "f2fdd1c7-1fc1-4bfa-be2c-f1487bd2f914",
+        "message": {
+          "id": "f2fdd1c7-1fc1-4bfa-be2c-f1487bd2f914",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462054.241553,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "What\u2019s the name for the distribution of the sum of n binary random processes?"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "89a2a5adac6fceb9-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "b0aedd3c-2d1b-40ac-b81d-2744c7c9b332",
+        "children": [
+          "d1089a14-a3fe-41f7-8c1c-f6df6ca90e0f"
+        ]
+      },
+      "d1089a14-a3fe-41f7-8c1c-f6df6ca90e0f": {
+        "id": "d1089a14-a3fe-41f7-8c1c-f6df6ca90e0f",
+        "message": {
+          "id": "d1089a14-a3fe-41f7-8c1c-f6df6ca90e0f",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462062.602961,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "parent_id": "f2fdd1c7-1fc1-4bfa-be2c-f1487bd2f914",
+            "request_id": "89a2a5adac6fceb9-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "f2fdd1c7-1fc1-4bfa-be2c-f1487bd2f914",
+        "children": [
+          "b5686af6-07e9-4f08-a408-ba08634b96c1"
+        ]
+      },
+      "b5686af6-07e9-4f08-a408-ba08634b96c1": {
+        "id": "b5686af6-07e9-4f08-a408-ba08634b96c1",
+        "message": {
+          "id": "b5686af6-07e9-4f08-a408-ba08634b96c1",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1719462062.603026,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The distribution of the sum of \\( n \\) independent and identically distributed binary random variables (each taking the value 0 or 1) follows a **Binomial distribution**. The sum of these variables represents the number of successes (1s) in \\( n \\) trials. If each binary random variable has a probability \\( p \\) of being 1, the sum \\( X \\) follows the Binomial distribution with parameters \\( n \\) (number of trials) and \\( p \\) (probability of success).\n\nThe probability mass function of a Binomial distribution is given by:\n\n\\[ P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k} \\]\n\nwhere \\( \\binom{n}{k} \\) is the binomial coefficient, representing the number of ways to choose \\( k \\) successes out of \\( n \\) trials."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "citations": [],
+            "gizmo_id": null,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAAAAAAAAAAA",
+            "parent_id": "d1089a14-a3fe-41f7-8c1c-f6df6ca90e0f",
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "is_complete": true,
+            "request_id": "89a2a5adac6fceb9-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "d1089a14-a3fe-41f7-8c1c-f6df6ca90e0f",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "b5686af6-07e9-4f08-a408-ba08634b96c1",
+    "plugin_ids": null,
+    "conversation_id": "8240b046-2e68-4f60-8b27-5be52a3c7dc2",
+    "conversation_template_id": null,
+    "gizmo_id": null,
+    "gizmo_type": null,
+    "is_archived": false,
+    "is_starred": null,
+    "safe_urls": [],
+    "default_model_slug": "auto",
+    "conversation_origin": null,
+    "voice": null,
+    "async_status": null,
+    "disabled_tool_ids": [],
+    "id": "8240b046-2e68-4f60-8b27-5be52a3c7dc2"
+  }
+]

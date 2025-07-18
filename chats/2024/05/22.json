@@ -1,0 +1,497 @@
+[
+  {
+    "title": "Spherical Motion in nD.",
+    "create_time": 1716414847.192903,
+    "update_time": 1716416185.118473,
+    "mapping": {
+      "2568a038-f81b-4916-b03f-e0c5815827ed": {
+        "id": "2568a038-f81b-4916-b03f-e0c5815827ed",
+        "message": {
+          "id": "2568a038-f81b-4916-b03f-e0c5815827ed",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 0.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "7ce7c331-32d0-4ca0-a585-adb997aad095",
+        "children": [
+          "e060809e-3696-449b-b696-8c1d32e9a756"
+        ]
+      },
+      "7ce7c331-32d0-4ca0-a585-adb997aad095": {
+        "id": "7ce7c331-32d0-4ca0-a585-adb997aad095",
+        "message": null,
+        "parent": null,
+        "children": [
+          "2568a038-f81b-4916-b03f-e0c5815827ed"
+        ]
+      },
+      "e060809e-3696-449b-b696-8c1d32e9a756": {
+        "id": "e060809e-3696-449b-b696-8c1d32e9a756",
+        "message": {
+          "id": "e060809e-3696-449b-b696-8c1d32e9a756",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_user_system_message": true,
+            "is_visually_hidden_from_conversation": true,
+            "user_context_message_data": {
+              "about_model_message": "Never use bing. Never search for an answer, use your knowledge on the subject instead."
+            }
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "2568a038-f81b-4916-b03f-e0c5815827ed",
+        "children": [
+          "45043803-c3f7-4377-a411-9dab8ec4a53b"
+        ]
+      },
+      "45043803-c3f7-4377-a411-9dab8ec4a53b": {
+        "id": "45043803-c3f7-4377-a411-9dab8ec4a53b",
+        "message": {
+          "id": "45043803-c3f7-4377-a411-9dab8ec4a53b",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716414847.19972,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "What\u2019s the n dimensional equivalent of 2D circular motion with constant angular belocity"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "88800af998b37ac1-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "e060809e-3696-449b-b696-8c1d32e9a756",
+        "children": [
+          "360bf5ff-bccd-4f4b-8c6d-0c04f2cba610"
+        ]
+      },
+      "360bf5ff-bccd-4f4b-8c6d-0c04f2cba610": {
+        "id": "360bf5ff-bccd-4f4b-8c6d-0c04f2cba610",
+        "message": {
+          "id": "360bf5ff-bccd-4f4b-8c6d-0c04f2cba610",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716414859.302033,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The \\(n\\)-dimensional equivalent of 2D circular motion with constant angular velocity is known as **motion on an \\(n\\)-sphere** or **\\(n\\)-dimensional spherical motion**. Here are some key points to understand this concept:\n\n1. **2D Circular Motion**: In 2D, an object moves in a circle with a constant angular velocity \\(\\omega\\). The position of the object at any time \\(t\\) can be described by:\n   \\[\n   \\begin{cases}\n   x(t) = r \\cos(\\omega t) \\\\\n   y(t) = r \\sin(\\omega t)\n   \\end{cases}\n   \\]\n   where \\(r\\) is the radius of the circle.\n\n2. **3D Spherical Motion**: In 3D, the equivalent motion would be on the surface of a 3-sphere (or 2-sphere in mathematical terms, which is the surface of a 3D sphere). The motion can be more complex but a simple case can be represented using two angles (say \\(\\theta\\) and \\(\\phi\\)):\n   \\[\n   \\begin{cases}\n   x(t) = r \\sin(\\theta(t)) \\cos(\\phi(t)) \\\\\n   y(t) = r \\sin(\\theta(t)) \\sin(\\phi(t)) \\\\\n   z(t) = r \\cos(\\theta(t))\n   \\end{cases}\n   \\]\n   where \\(\\theta\\) and \\(\\phi\\) might change in time representing angular velocities in different planes.\n\n3. **General \\(n\\)-Dimensional Motion**: For \\(n\\) dimensions, the motion occurs on an \\((n-1)\\)-sphere. The position of an object moving with constant angular velocity can be parameterized using a set of angles \\(\\theta_1, \\theta_2, \\ldots, \\theta_{n-1}\\). In the simplest form, using hyperspherical coordinates, it can be represented as:\n   \\[\n   \\begin{cases}\n   x_1(t) = r \\cos(\\theta_1(t)) \\\\\n   x_2(t) = r \\sin(\\theta_1(t)) \\cos(\\theta_2(t)) \\\\\n   x_3(t) = r \\sin(\\theta_1(t)) \\sin(\\theta_2(t)) \\cos(\\theta_3(t)) \\\\\n   \\vdots \\\\\n   x_{n-1}(t) = r \\sin(\\theta_1(t)) \\sin(\\theta_2(t)) \\ldots \\cos(\\theta_{n-1}(t)) \\\\\n   x_n(t) = r \\sin(\\theta_1(t)) \\sin(\\theta_2(t)) \\ldots \\sin(\\theta_{n-1}(t))\n   \\end{cases}\n   \\]\n   where each \\(\\theta_i(t)\\) represents an angular coordinate and typically \\(\\theta_1, \\theta_2, \\ldots, \\theta_{n-2}\\) range from \\(0\\) to \\(\\pi\\) while \\(\\theta_{n-1}\\) ranges from \\(0\\) to \\(2\\pi\\).\n\nIn such \\(n\\)-dimensional motion, maintaining constant angular velocity implies that the time derivatives of the angular coordinates \\(\\dot{\\theta}_i(t)\\) are constants. This higher-dimensional motion generalizes the idea of rotation to more complex geometric structures beyond the plane and simple 3D space."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "citations": [],
+            "gizmo_id": null,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAAAAAAAAAAAAAA",
+            "parent_id": "45043803-c3f7-4377-a411-9dab8ec4a53b",
+            "is_complete": true,
+            "request_id": "88800af998b37ac1-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "45043803-c3f7-4377-a411-9dab8ec4a53b",
+        "children": [
+          "7f626c2a-2baf-4b23-98d4-b17a713ad652"
+        ]
+      },
+      "7f626c2a-2baf-4b23-98d4-b17a713ad652": {
+        "id": "7f626c2a-2baf-4b23-98d4-b17a713ad652",
+        "message": {
+          "id": "7f626c2a-2baf-4b23-98d4-b17a713ad652",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416101.841222,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Is dot productive commutative"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "8880299aeb35fa3a-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "360bf5ff-bccd-4f4b-8c6d-0c04f2cba610",
+        "children": [
+          "8a9909fc-c9a9-4ad8-808b-418f57f41db8"
+        ]
+      },
+      "8a9909fc-c9a9-4ad8-808b-418f57f41db8": {
+        "id": "8a9909fc-c9a9-4ad8-808b-418f57f41db8",
+        "message": {
+          "id": "8a9909fc-c9a9-4ad8-808b-418f57f41db8",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416107.58214,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Yes, the dot product (also known as the scalar product) is commutative. For any two vectors \\(\\mathbf{a}\\) and \\(\\mathbf{b}\\), the dot product satisfies the commutative property:\n\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\mathbf{b} \\cdot \\mathbf{a}\n\\]\n\nTo see why this is true, consider the definition of the dot product in terms of the components of the vectors. For vectors \\(\\mathbf{a} = (a_1, a_2, \\ldots, a_n)\\) and \\(\\mathbf{b} = (b_1, b_2, \\ldots, b_n)\\), the dot product is defined as:\n\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = a_1 b_1 + a_2 b_2 + \\ldots + a_n b_n\n\\]\n\nSince multiplication of real numbers is commutative (i.e., \\(a_i b_i = b_i a_i\\)), each term in the sum can be rearranged without changing the result. Therefore:\n\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = a_1 b_1 + a_2 b_2 + \\ldots + a_n b_n = b_1 a_1 + b_2 a_2 + \\ldots + b_n a_n = \\mathbf{b} \\cdot \\mathbf{a}\n\\]\n\nThus, the dot product is commutative."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "citations": [],
+            "gizmo_id": null,
+            "is_complete": true,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "parent_id": "7f626c2a-2baf-4b23-98d4-b17a713ad652",
+            "request_id": "8880299aeb35fa3a-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "7f626c2a-2baf-4b23-98d4-b17a713ad652",
+        "children": [
+          "3bef3397-8c0f-41ff-8df6-0bb8757e1b1a"
+        ]
+      },
+      "3bef3397-8c0f-41ff-8df6-0bb8757e1b1a": {
+        "id": "3bef3397-8c0f-41ff-8df6-0bb8757e1b1a",
+        "message": {
+          "id": "3bef3397-8c0f-41ff-8df6-0bb8757e1b1a",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416111.863486,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "What about associative"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "888029da0f33fa3a-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "8a9909fc-c9a9-4ad8-808b-418f57f41db8",
+        "children": [
+          "f58d3e91-05df-49f4-bdf8-d9f8328eb4f9"
+        ]
+      },
+      "f58d3e91-05df-49f4-bdf8-d9f8328eb4f9": {
+        "id": "f58d3e91-05df-49f4-bdf8-d9f8328eb4f9",
+        "message": {
+          "id": "f58d3e91-05df-49f4-bdf8-d9f8328eb4f9",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416119.264273,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The dot product is **not** associative. This means that for vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\), the expression \\((\\mathbf{a} \\cdot \\mathbf{b}) \\cdot \\mathbf{c}\\) does not make sense because the dot product of two vectors results in a scalar, and taking the dot product of a scalar with a vector is not defined.\n\nTo illustrate this, let's break down the operations involved:\n\n1. **Dot Product**: The dot product of two vectors \\(\\mathbf{a}\\) and \\(\\mathbf{b}\\) is a scalar:\n   \\[\n   \\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i b_i\n   \\]\n\n2. **Scalar**: The result of \\(\\mathbf{a} \\cdot \\mathbf{b}\\) is a single number (a scalar), not a vector.\n\n3. **Operation Mismatch**: Attempting to compute \\((\\mathbf{a} \\cdot \\mathbf{b}) \\cdot \\mathbf{c}\\) involves trying to dot a scalar with a vector, which is not a defined operation in vector algebra.\n\nTherefore, the dot product operation does not have an associative property because it operates on pairs of vectors to produce scalars, and there is no meaningful way to extend this to an associative operation involving three vectors.\n\nIn contrast, if you are referring to associativity within the context of multiplication in general (not specifically dot product), scalar multiplication and the cross product have their own rules and properties, but these do not make the dot product associative."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "citations": [],
+            "gizmo_id": null,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAAAA",
+            "parent_id": "3bef3397-8c0f-41ff-8df6-0bb8757e1b1a",
+            "is_complete": true,
+            "request_id": "888029da0f33fa3a-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "3bef3397-8c0f-41ff-8df6-0bb8757e1b1a",
+        "children": [
+          "277c9cd2-6268-4614-baf0-8d96441f39b3"
+        ]
+      },
+      "277c9cd2-6268-4614-baf0-8d96441f39b3": {
+        "id": "277c9cd2-6268-4614-baf0-8d96441f39b3",
+        "message": {
+          "id": "277c9cd2-6268-4614-baf0-8d96441f39b3",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416138.976398,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "What about associative"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "88802a81cfd7fa3a-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "f58d3e91-05df-49f4-bdf8-d9f8328eb4f9",
+        "children": [
+          "e8a64b8a-a31f-4500-b164-32d3ef0b9e61"
+        ]
+      },
+      "e8a64b8a-a31f-4500-b164-32d3ef0b9e61": {
+        "id": "e8a64b8a-a31f-4500-b164-32d3ef0b9e61",
+        "message": {
+          "id": "e8a64b8a-a31f-4500-b164-32d3ef0b9e61",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416148.538358,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "The dot product of vectors is **not associative** in the context of vector operations because the dot product is an operation that produces a scalar, not another vector. This makes it fundamentally different from operations like addition or scalar multiplication of vectors, which are associative.\n\nTo understand why the dot product is not associative, consider the following:\n\n1. **Dot Product Definition**: For vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\):\n   \\[\n   \\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i b_i\n   \\]\n\n2. **Scalar Result**: The result of the dot product \\(\\mathbf{a} \\cdot \\mathbf{b}\\) is a scalar, not a vector.\n\n3. **Operation Mismatch**: Associativity typically refers to expressions of the form \\( (A \\cdot B) \\cdot C \\). For vector dot products, however, this doesn't make sense because:\n   - \\(\\mathbf{a} \\cdot \\mathbf{b}\\) results in a scalar \\( s \\).\n   - The expression \\( s \\cdot \\mathbf{c} \\) is undefined because the dot product requires two vectors, not a scalar and a vector.\n\nThus, it is impossible to define an expression like \\((\\mathbf{a} \\cdot \\mathbf{b}) \\cdot \\mathbf{c}\\) in a meaningful way within the context of vector dot products. This lack of a well-defined operation demonstrates that the dot product does not exhibit associativity.\n\nFor clarity, here is a correct and incorrect example of operations:\n\n- **Correct**: \\((\\mathbf{a} \\cdot \\mathbf{b}) + (\\mathbf{b} \\cdot \\mathbf{c})\\) produces a scalar because each dot product produces a scalar, and the sum of scalars is well-defined.\n- **Incorrect**: \\((\\mathbf{a} \\cdot \\mathbf{b}) \\cdot \\mathbf{c}\\) is undefined because it tries to dot a scalar with a vector.\n\nIn summary, the dot product is not associative because it produces a scalar from two vectors, and the operation involving a scalar and a vector in this manner is not defined."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "citations": [],
+            "gizmo_id": null,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAAAA",
+            "parent_id": "277c9cd2-6268-4614-baf0-8d96441f39b3",
+            "is_complete": true,
+            "request_id": "88802a81cfd7fa3a-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "277c9cd2-6268-4614-baf0-8d96441f39b3",
+        "children": [
+          "1785ac97-aeef-4e3a-838b-f4b0cba1d6fc"
+        ]
+      },
+      "1785ac97-aeef-4e3a-838b-f4b0cba1d6fc": {
+        "id": "1785ac97-aeef-4e3a-838b-f4b0cba1d6fc",
+        "message": {
+          "id": "1785ac97-aeef-4e3a-838b-f4b0cba1d6fc",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416172.890714,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "What about distributive"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "88802b576e19fa3a-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "e8a64b8a-a31f-4500-b164-32d3ef0b9e61",
+        "children": [
+          "59261bb0-1114-497f-97ea-1a057b80e1d2"
+        ]
+      },
+      "59261bb0-1114-497f-97ea-1a057b80e1d2": {
+        "id": "59261bb0-1114-497f-97ea-1a057b80e1d2",
+        "message": {
+          "id": "59261bb0-1114-497f-97ea-1a057b80e1d2",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1716416184.944855,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Yes, the dot product is distributive over vector addition. This means that for any vectors \\(\\mathbf{a}\\), \\(\\mathbf{b}\\), and \\(\\mathbf{c}\\), the following property holds:\n\n\\[\n\\mathbf{a} \\cdot (\\mathbf{b} + \\mathbf{c}) = \\mathbf{a} \\cdot \\mathbf{b} + \\mathbf{a} \\cdot \\mathbf{c}\n\\]\n\nTo understand why this is true, let's break it down using the definition of the dot product and vector addition. \n\nFor vectors \\(\\mathbf{a} = (a_1, a_2, \\ldots, a_n)\\), \\(\\mathbf{b} = (b_1, b_2, \\ldots, b_n)\\), and \\(\\mathbf{c} = (c_1, c_2, \\ldots, c_n)\\), the dot product is defined as:\n\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} = \\sum_{i=1}^n a_i b_i\n\\]\n\nAnd the vector addition is defined component-wise as:\n\n\\[\n(\\mathbf{b} + \\mathbf{c}) = (b_1 + c_1, b_2 + c_2, \\ldots, b_n + c_n)\n\\]\n\nUsing these definitions, we can expand the left side of the distributive property:\n\n\\[\n\\mathbf{a} \\cdot (\\mathbf{b} + \\mathbf{c}) = \\mathbf{a} \\cdot (b_1 + c_1, b_2 + c_2, \\ldots, b_n + c_n)\n\\]\n\nThis equals:\n\n\\[\n\\mathbf{a} \\cdot (\\mathbf{b} + \\mathbf{c}) = \\sum_{i=1}^n a_i (b_i + c_i)\n\\]\n\nApplying the distributive property of multiplication over addition inside the sum:\n\n\\[\n\\sum_{i=1}^n a_i (b_i + c_i) = \\sum_{i=1}^n (a_i b_i + a_i c_i)\n\\]\n\nThis can be separated into two sums:\n\n\\[\n\\sum_{i=1}^n (a_i b_i + a_i c_i) = \\sum_{i=1}^n a_i b_i + \\sum_{i=1}^n a_i c_i\n\\]\n\nWhich is:\n\n\\[\n\\mathbf{a} \\cdot \\mathbf{b} + \\mathbf{a} \\cdot \\mathbf{c}\n\\]\n\nTherefore:\n\n\\[\n\\mathbf{a} \\cdot (\\mathbf{b} + \\mathbf{c}) = \\mathbf{a} \\cdot \\mathbf{b} + \\mathbf{a} \\cdot \\mathbf{c}\n\\]\n\nThis confirms that the dot product is distributive over vector addition."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "citations": [],
+            "gizmo_id": null,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAA",
+            "parent_id": "1785ac97-aeef-4e3a-838b-f4b0cba1d6fc",
+            "is_complete": true,
+            "request_id": "88802b576e19fa3a-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "1785ac97-aeef-4e3a-838b-f4b0cba1d6fc",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "59261bb0-1114-497f-97ea-1a057b80e1d2",
+    "plugin_ids": null,
+    "conversation_id": "7bfa199f-aad4-40ce-9d24-98d29468089d",
+    "conversation_template_id": null,
+    "gizmo_id": null,
+    "gizmo_type": null,
+    "is_archived": false,
+    "is_starred": null,
+    "safe_urls": [],
+    "default_model_slug": "auto",
+    "conversation_origin": null,
+    "voice": null,
+    "async_status": null,
+    "disabled_tool_ids": [],
+    "id": "7bfa199f-aad4-40ce-9d24-98d29468089d"
+  }
+]

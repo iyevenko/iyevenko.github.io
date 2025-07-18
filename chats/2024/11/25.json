@@ -1,0 +1,237 @@
+[
+  {
+    "title": "Isotropy vs Rotation-Equivariance in NCA",
+    "create_time": 1732547294.380414,
+    "update_time": 1732547399.084414,
+    "mapping": {
+      "aaa119c1-d6da-454f-9bc9-3db5dd370a97": {
+        "id": "aaa119c1-d6da-454f-9bc9-3db5dd370a97",
+        "message": null,
+        "parent": null,
+        "children": [
+          "792ea5eb-c500-4bf7-80cb-12553ed1614c"
+        ]
+      },
+      "792ea5eb-c500-4bf7-80cb-12553ed1614c": {
+        "id": "792ea5eb-c500-4bf7-80cb-12553ed1614c",
+        "message": {
+          "id": "792ea5eb-c500-4bf7-80cb-12553ed1614c",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 0.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "aaa119c1-d6da-454f-9bc9-3db5dd370a97",
+        "children": [
+          "aaa2599b-5f9e-4c6b-bc12-8ea5bdf7cd1d"
+        ]
+      },
+      "aaa2599b-5f9e-4c6b-bc12-8ea5bdf7cd1d": {
+        "id": "aaa2599b-5f9e-4c6b-bc12-8ea5bdf7cd1d",
+        "message": {
+          "id": "aaa2599b-5f9e-4c6b-bc12-8ea5bdf7cd1d",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1732547293.736,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "wha'ts the differnce between isotropy and roation-equivaraince in neural cellular automata"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "serialization_metadata": {
+              "custom_symbol_offsets": []
+            },
+            "request_id": "8e828d8c7edeaae5-YYZ",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "792ea5eb-c500-4bf7-80cb-12553ed1614c",
+        "children": [
+          "b01154d7-5cb4-4b49-8fc7-f80733b2cabb"
+        ]
+      },
+      "b01154d7-5cb4-4b49-8fc7-f80733b2cabb": {
+        "id": "b01154d7-5cb4-4b49-8fc7-f80733b2cabb",
+        "message": {
+          "id": "b01154d7-5cb4-4b49-8fc7-f80733b2cabb",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1732547294.445177,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Isotropy and rotation-equivariance are related concepts in neural cellular automata (NCA) and similar systems, but they have distinct meanings and implications. Here's how they differ:\n\n---\n\n### **Isotropy**\n- **Definition:** Isotropy refers to the property of being invariant under all directions. In the context of NCAs, this means the update rules of the automaton produce the same result regardless of how the inputs are rotated.\n- **Implication:** An isotropic NCA does not favor any particular direction in its computations. This is a stricter condition than rotation-equivariance because it implies that the system's behavior is fully symmetric under rotation.\n- **Use Case:** Isotropy is especially important in simulating systems like physical phenomena (e.g., diffusion or wave propagation) where the rules of evolution should inherently not depend on orientation.\n\n---\n\n### **Rotation-equivariance**\n- **Definition:** Rotation-equivariance means that if the input to a system is rotated, the output will also be rotated by the same amount. However, the system's behavior need not be identical across all rotations, just consistent with the rotation applied to the input.\n- **Implication:** A rotation-equivariant NCA allows for structured directional dependencies in its computations while still respecting rotational transformations. This makes it less strict than isotropy, as it can encode directional rules but still respects rotational transformations systematically.\n- **Use Case:** This property is useful in tasks where the NCA should respond to rotations in a predictable way, such as in certain pattern recognition tasks or in cases where input-output relationships must remain consistent under rotation.\n\n---\n\n### **Key Differences**\n| Aspect                | Isotropy                                      | Rotation-equivariance                         |\n|-----------------------|-----------------------------------------------|----------------------------------------------|\n| **Definition**        | Fully invariant under all rotations.         | Responds to rotations in a predictable way.  |\n| **Directionality**    | No preferred direction in computations.       | Can encode directional dependencies.         |\n| **Transformation**    | Same output for rotated inputs.              | Output is a rotated version of the input.    |\n| **Strictness**        | Stricter; implies full symmetry.             | Less strict; only requires consistency.      |\n\n---\n\n### **Analogy**\nThink of isotropy as a perfect sphere (same in every direction), while rotation-equivariance is like a wheel: it has structured directionality but behaves predictably when rotated.\n\nIn the context of neural cellular automata, choosing isotropy or rotation-equivariance depends on whether the modeled system should ignore all directional biases (isotropy) or respect and maintain relationships under rotations (rotation-equivariance)."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "is_complete": true,
+            "sonic_classification_result": {
+              "latency_ms": 14750986054.450397,
+              "search_prob": 0.0003268131583652616
+            },
+            "citations": [],
+            "content_references": [],
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "gpt-4o",
+            "parent_id": "aaa2599b-5f9e-4c6b-bc12-8ea5bdf7cd1d",
+            "request_id": "8e828d8c7edeaae5-YYZ",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "aaa2599b-5f9e-4c6b-bc12-8ea5bdf7cd1d",
+        "children": [
+          "aaa26744-939d-4053-8b5a-f44dc1146257"
+        ]
+      },
+      "aaa26744-939d-4053-8b5a-f44dc1146257": {
+        "id": "aaa26744-939d-4053-8b5a-f44dc1146257",
+        "message": {
+          "id": "aaa26744-939d-4053-8b5a-f44dc1146257",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1732547367.915,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Growing Steerable Neural Cellular Automata\nEttore Randazzo,1 Alexander Mordvintsev,1\nand Craig Fouts2\n1 Google Research\n{etr, moralex}@google.com\n2 Columbia University\ncwf2117@columbia.edu\nAbstract\nNeural Cellular Automata (NCA) models have shown remarkable capacity for pattern formation and complex global\nbehaviors stemming from local coordination. However, in\nthe original implementation of NCA, cells are incapable of\nadjusting their own orientation, and it is the responsibility\nof the model designer to orient them externally. A recent\nisotropic variant of NCA (Growing Isotropic Neural Cellular\nAutomata) makes the model orientation-independent - cells\ncan no longer tell up from down, nor left from right - by removing its dependency on perceiving the gradient of spatial\nstates in its neighborhood. In this work, we revisit NCA with\na different approach: we make each cell responsible for its\nown orientation by allowing it to \"turn\" as determined by an\nadjustable internal state. The resulting Steerable NCA contains cells of varying orientation embedded in the same pattern. We observe how, while Isotropic NCA are orientationagnostic, Steerable NCA have chirality: they have a predetermined left-right symmetry. We therefore show that we can\ntrain Steerable NCA in similar but simpler ways than their\nIsotropic counterpart by (1) breaking symmetries using only\ntwo seeds, or (2) introducing a rotation-invariant training objective and relying on asynchronous cell updates to break the\nup-down symmetry of the system.\nIntroduction\nRecently, Neural Cellular Automata (NCA) have shown remarkable capacity for discovering complex rules for a variety of tasks, including digit classification (Randazzo et al.,\n2020; Walker et al., 2022), texture generation (Niklasson\net al., 2021b; Mordvintsev et al., 2021), morphogenesis\n(Mordvintsev et al., 2020, 2022; Sudhakaran et al., 2021;\nGrattarola et al., 2021), adversarial attacks (Randazzo et al.,\n2021; Cavuoti et al., 2022), and control systems (Variengien\net al., 2021). For the most part, implementations of such\nNCA are anisotropic: cells are directionally-dependent on\nsome external factors, such as a predetermined orientation\nand coordinate system or an oriented perception kernel.\nAnisotropy may be an undesirable property, as it makes it\nimpossible to produce groups of cells with inherently different orientations unless externally defined, and it relies on\nnon-local information (such as a grid- or axis-alignment)\nthat may or may not be available in practical applications.\nIsotropy in Cellular Automata\nIsotropic cellular automata is not a novel concept: indeed,\nConway\u2019s Game of Life is isotropic (Gardner, 1970). Generalizations, such as Lenia (Chan, 2019), are also inherently\nisotropic and rely on the initial configuration of cells for the\nemergence of complex behaviours. Until very recently, however, discovering complex isotropic rules has been achieved\nwith limited success, with procedures mostly dependent on\nmanual search and evolutionary strategies.\nWith the advent of NCA, end-to-end differentiable optimization has provided a powerful medium for discovering\nmore complex rules. An example of fully isotropic NCA\nis presented in Mordvintsev et al. (2021), where the NCA\ncan be seen as a reaction-diffusion system. However, the\nloss used is a rotation-invariant variation of the texture loss\nused in Niklasson et al. (2021b), which is not invariant to\nreflections, and the resulting textures are not capable of creating very complex shapes. In a more recent work (Mordvintsev et al., 2022), a fully isotropic NCA (IsoNCA) is introduced for complex pattern formation. This is the first\nstudy on NCA that explicitly addresses issues with training\nfully isotropic pattern growth, such as the inherent rotation\nand reflection symmetry of any target pattern. The authors\nsolved these issues with two alternative approaches: (1) by\nbreaking the up-down and left-right symmetries of the system with the initial conditions by means of structured seeds,\nand (2) by introducing a novel rotation-reflection invariant\nloss with additional enhancements to facilitate training.\nWe also want to highlight that, since NCA can be seen as\na special case of Graph Neural Networks, one can construct\nthem to be isotropic (Grattarola et al., 2021; Gala et al.,\n2023). The focus of this paper, however, is on the more\ntraditional grid-based NCA, such as in IsoNCA, where cells\nare immovable and their perception is restricted by a local\nneighborhood that cannot be arbitrarily distant.\nChirality and Steerable NCA\nWhile IsoNCA might be an appropriate choice of architecture for a variety of tasks, sometimes the property of\nreflection-invariance is unnecessary or even undesirable.\nDownloaded from http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf by CONRAD GREBEL UNIV COLLEGE user on 25 November 2024\nFigure 1: Rotation-invariant Steerable NCA training pipeline. The target pattern is augmented with extra channels (a) to break\nsymmetries that may interfere with training. Both the target- and NCA-grown patterns are sharpened (b) to steer optimization\ninto preserving fine details. A polar transformation (c) is applied to turn the unknown rotation between two images into\na horizontal shift. Fourier-domain image matching then enables efficient computation of pixel-matching losses across all\norientations (d). The blue plot shows losses with respect to all rotations of the original pattern. The minimal loss value is\nselected for backpropagation.\nMany biological molecules and structures, such as proteins,\nsugars, nucleic acids, and amino acids, exhibit chirality. It is\npossible that chirality at this level helps break asymmetry at\nhigher levels such as organs, which are highly asymmetric\nin most animals (Inaki et al., 2016).\nInspired by biological cells, we develop and train NCA\nthat have an inherent cellular chirality, which we call Steerable NCA due to their capacity to self-orient their perception field. Steerable NCA are capable of perceiving gradients of states in their neighborhood, like in Mordvintsev\net al. (2020), but the orientation of the perception field is dependent on internal states which may vary from cell to cell.\nSince the orientation is exclusively defined by an angle for\neach cell, the x-y gradients have an inherent chirality.\nSimilarly to IsoNCA, we show that Steerable NCA can\nbe trained in two possible ways: (1) Steerable NCA can be\ninitialized with two different seeds - as opposed to the minimum of 3 required to train IsoNCA - positioned near one another to break the up-down symmetry (where \u2019seeds\u2019 refers\nto alive cells placed in the initial state of the system), and\n(2) a single seed can be used alongside a rotation-invariant\nloss - as opposed to the rotation-reflection variant used for\nIsoNCA - and stochastic updates are responsible for breaking the up-down symmetry of the system. These simplifications are possible because Steerable NCA need only break\na single up-down symmetry, as opposed to both up-down\nand left-right required by IsoNCA, resulting in simpler and\nfaster training regimes.\nWe released a set of Google Colab notebooks to easily\nreproduce the entirety of the experiments presented in this\npaper, available at https://github.com/google-research/selforganising-systems/tree/master/isotropic_nca.\nSteerable Neural CA model\nThe Steerable NCA model described here can be seen as\na variant of the Growing NCA model (Mordvintsev et al.,\n2020), differing only in its perception phase. This section\ncovers key features of the model design. Below, we adapt\nthe equivalent section in (Mordvintsev et al., 2022) to better\nshowcase the similarities and differences between the two\napproaches.\nGrid Cells exist on a regular Cartesian grid; the state of\neach cell is represented by a vector\ns = [s\n0 = R, s1 = G, s2 = B, s3 = A, ..., sC\u22121\n]\nwhere C is the number of channels and the first four channels represent a visible RGBA image. The whole grid is\ninitialized with zero values, except for the seed cell in which\nA = 1. Setting the A value to 1 ensures that the seed starts\nin an alive configuration, as we will explain later. Cells then\niteratively update their states using only the information collected from their 3x3 Moore neighbourhood.\nStochastic updates Cell updates occur stochastically: at\neach NCA step, cells are updated with probability pupd (we\nDownloaded from http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf by CONRAD GREBEL UNIV COLLEGE user on 25 November 2024\nuse pupd = 0.5 in our experiments). This stochasticity is\nmeant to eliminate dependence on a global shared clock\nthat synchronizes the updates between cells. Previous work\non NCA discusses the impact of this strategy on NCA robustness (Niklasson et al., 2021a). In Isotropic and Steerable NCA models, asynchronicity plays a critical role in\nthe symmetry-breaking process; this asynchronicity can be\nseen as a strategy for generating noise, which has been documented to help biological systems construct complex functions in simple ways (Samoilov et al., 2006).\n\u201cAlive\u201d and \u201cempty\u201d cells The alpha channel (s\n3 = A)\nplays a special role in determining whether a cell is currently\n\u201calive\u201d or \u201cempty\u201d; here, a cell is alive if A > 0.1 or if it has\nat least one alive cell in its 3x3 neighbourhood. The state of\nempty cells is explicitly set to zeros after each NCA step.\nPerception Each cell collects information about the state\nof its neighborhood using three filters: a per-channel discrete\n3x3 Laplacian filter Klap, and Sobel filters Kx, Ky for the\nx- and y-axis respectively. The Laplacian filter computes the\ndifference between the state of the cell and the average state\nof its neighbours, where:\nKlap =\n\uf8ee\n\uf8f0\n1 2 1\n2 \u221212 2\n1 2 1\n\uf8f9\n\uf8fb , Kx =\n\uf8ee\n\uf8f0\n\u22121 0 1\n\u22122 0 2\n\u22121 0 1\n\uf8f9\n\uf8fb\nand Ky = K>\nx\n.\nThe Sobel filters accumulate information about state gradients along their respective axis, resulting, for each cell, in\na gradient vector for the x-axis, gx, and one for the y-axis,\ngy. In Growing NCA, these state gradients were rotated by\na predetermined angle, \u03b8, to perceive correspondingly rotated x- and y-axis gradients. In Steerable NCA, each cell\ndetermines its own rotation angle, which it uses to rotate\nits perception field accordingly. In this work, we show two\nvariants of Steerable NCA that accomplish the same goal in\ndifferent ways: angle- and gradient-based rotations.\nWe highlight that the addition of the Laplacian filter\n(missing in the original Growing NCA paper) greatly improves training speed and performance with respect to models whose perception is solely made up of Sobel filters.\nAngle-based rotation In this variant, each cell maintains\nits orientation angle, s\u03b8, as one of its state channels. The cell\ncannot perceive this angle in any way, but the update rule can\nstill modify it, causing the cell to rotate its perception over\ntime. For each step, the final perception state p is computed\nas follows, with input x = (s, s\u03b8):\ngx = Kx \u2217 s, gy = Ky \u2217 s\npx = gxcos(s\u03b8) + gysin(s\u03b8)\npy = gycos(s\u03b8) \u2212 gxsin(s\u03b8)\np = concat(s, Klap \u2217 s, px, py)\nThis variant is very intuitive, but it requires attention - rotating the cells\u2019 angle states accordingly - while performing\nexternal rotations on groups of cells to prevent them from\nbehaving unexpectedly. The gradient-based variant is designed to circumvent this issue.\nGradient-based rotation In this variant, the orientation\nangle for each cell is dynamically inferred from the cell\u2019s\nrespective neighborhood. To accomplish this, a concentration state, sconc, is passed through the Sobel filters to determine its respective gradients in the x- and y-direction. This\npair of numbers is then normalized, and the resulting x and y\nnormalized gradients are respectively used as the cosine and\nsine of the cell\u2019s implicit rotation angle. To stabilize computations, we clip the minimum value of the dividend to 1 during normalization. This has the effect that when the gradient\nof sconc is minimal, the perceived state gradients are effectively multiplied by zero. For each step, the final perception\nstate p is computed as follows, with input x = (s, sconc):\ngconc = [Kx \u2217 sconc, Ky \u2217 sconc]\n[cos\u03b8, sin\u03b8] = gconc\nClip(Norm(gconc), 1, \u221e)\ngx = Kx \u2217 s, gy = Ky \u2217 s\npx = gxcos\u03b8 + gysin\u03b8\npy = gycos\u03b8 \u2212 gxsin\u03b8\np = concat(x, Klap \u2217 x, px, py)\nNote how in this variant, cells can perceive sconc without incurring any issues; as introduced in the previous paragraph, if one were to rotate a group of cells externally, the\nresulting system would not abruptly vary its behaviour.\nUpdate rule Cells stochastically update their states using\na learned rule that is represented by a two-layer neural network:\nst+1 = st + relu(ptW0 + b0)W1\nwhere parameters W0, b0, and W1 have shapes (32, 192),\n(192) and (192, 16), respectively, giving a total of 9408\nlearned parameters.\nTraining Steerable NCA\nAs introduced before, Steerable NCA can be trained in two\ndifferent ways: (1) by breaking symmetries during initialization using two different seeds, or (2) by starting with a single\nseed and using a rotation-invariant loss function to train the\nsystem to break up-down symmetry itself.\nDownloaded from http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf by CONRAD GREBEL UNIV COLLEGE user on 25 November 2024\nTwo seeds strategy\nBy initializing the system with two different seeds - distinguished by their RGB configuration and placed slightly apart\nfrom one another - we define a more restrictive initial condition which implicitly resolves up-down symmetry. Doing\nso enables us to choose an arbitrary \"training alignment\" for\nthe target pattern with which we can perform pixel-wise L2\nloss, identically to the training procedure in Growing NCA.\nHere, just like IsoNCA, each seed serves as a point of origin\nfor one of two sub-regions of the resultant shape. However,\nunlike IsoNCA, the chirality of our model precludes the necessity of left-right symmetry breaking, allowing us to train\nthe model with two seeds instead of three (see Figure 2 for\none possible two-seed mapping).\nFigure 2: Two-seed mapping paradigm from which Steerable NCA can be trained to grow with the traditional pixelwise L2 loss and without any additional auxiliary losses.\nTo generate visually- and spatially-differentiated seeds,\nwe map their RGB encodings to distinct HSV hues and separate them by eight cells. While the exact specification is arbitrary, this procedure guarantees that (1) the seeds lie within\nthe target pattern, and (2) they can be distinguished from one\nanother by the model. As we\u2019ll see in the next section, this\ndifferentiation enables us to implicitly specify the model\u2019s\norientation by imposing a rotation on the seed structure.\nSingle seed strategy\nIn the single seed strategy, we start from a single seed cell\nand train Steerable NCA using a loss dependent on the target\npattern. Similarly to IsoNCA, we use pixel-wise differences\nto match the pattern produced by the trained model to the target, but modify the loss function to make it rotation-invariant\nonly and not rotation-reflection invariant. Because we cannot know a priori what rotation the resulting pattern will\nhave (decided by the random up-down symmetry breaking\nthat could happen along any axis in the 2d plane), we instead\nselect an individual rotation of the target that minimizes the\npixel-wise loss value for each NCA-generated sample in the\ntraining batch. Note that there is no need for reflectioninvariance in the training loss because once one symmetry is\nbroken, the perception scheme of Steerable NCA automatically determines an orthogonal axis always in the same way\nand, therefore, deterministically breaks left-right symmetry.\nFigure 3 shows a visual representation of how the minimal\nloss is selected.\nFigure 3: How the rotation-invariant loss gets computed: to\nthe left, as a reference, we calculate the loss with respect\nto the target pattern for every rotation and see the minimum\nvalue is at 0 degrees. To the right, we calculate the loss of a\npartially-formed pattern during training. The minimum loss\ncan be seen at roughly 60 degrees, and it gets selected for\nbackpropagation.\nWe use the same algorithm presented in IsoNCA to optimize computation, using a polar coordinate transformation\nand Fast Fourier Transform (FFT) to efficiently compute the\ndiscrepancy across different target rotations. We refer to\nMordvintsev et al. (2022) for more implementation details.\nFigure 4: Target patterns and corresponding auxiliary targets\nused for the rotation-invariant training: (a) the spiderweb\ndoes not use auxiliary targets; (b) the lizard uses a binary\nauxiliary target; (c) the heart uses both binary and radialencoding auxiliary targets.\nDownloaded from http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf by CONRAD GREBEL UNIV COLLEGE user on 25 November 2024\nAuxiliary channels This rotation-invariant loss suffers\nfrom the same issues described in IsoNCA, where some patterns exhibit strong local minima within different rotations.\nWe solve this issue in the same way as IsoNCA, using auxiliary channels. Here, we mirror the single-seed experiments\nin IsoNCA and showcase the same three example patterns:\nthe spiderweb, where no auxiliary loss is needed; the lizard,\nwhere a binary auxiliary channel is needed; and the heart,\nwhere both the binary and radial-encoding auxiliary channels are needed (see Figure 4).\nResults\nTwo seeds experiments\nBy adjusting the rotation of our seed structure, we see in\nFigure 5 that Steerable NCA are able to self-orient based on\ntheir initial conditions. In this figure, we present the anglebased variant, but the gradient-based variant demonstrates\nidentical behavior.\nFigure 5: Starting in the top-left corner and moving clockwise, 0 degree, 30 degree, 170 degree, and 280 degree patterns produced by angle-based Steerable NCA trained with\npixel-wise L2 loss to grow at 0 degrees. Nonzero degree\nrotations are inferred by the model during growth based on\nthe arrangement of the starting condition\u2019s two constituent\nseeds.\nModifying the diameter of the seed structure after training\nfurther highlights the model\u2019s dependence on the intercellular message passing that occurs during the formative stage\nof model growth. We see this in Figure 6, where the cells\nattempt to align with one another based on the level of separation between the two seeds.\nWe further analyze this dependence in Figure 7, wherein\nwe highlight the directional state of angle-based Steerable\nNCA at snapshots before and after the growths originating\nfrom the two seeds intersect. Here, the seed angles are initialized randomly, and the emerging cells progressively selforient into a coherent vector field that describes the model\u2019s\ninternal representation of its own orientation. Moreover, we\nsee that distributing growth between the seeds this way produces an inflection point at which the model \"decides\" the\norientation of the resulting pattern.\nFigure 6: Starting in the top-left corner and moving clockwise, seeds with a diameter of 0 cells, 2 cells, 6 cells, and\n8 cells and their resultant patterns produced by angle-based\nSteerable NCA trained with pixel-wise L2 loss to grow from\na seed with a 4 cell diameter at 0 degrees.\nIt\u2019s worth noting the lack of residue - especially in the\nlater stages of growth - of the two seeds here, in contrast\nto the single-seed case presented in Figure 11. In the latter\nscenario, the initial seed position can be discerned even after\n5000 steps by observing the vector field formed by the cells\u2019\ninternal angles; in the context of two seeds, however, the\noriginal seed configuration is obscured after only 40 steps.\nThis suggests some additional structure necessitated by the\nrotation-invariant training, dependent on an orientation selected by the model rather than one imposed on it.\nSingle seed experiments\nFigure 8 shows the execution in time of three different\ntrained angle-based Steerable NCA models, starting from\na single seed and running for up to 5000 steps. Here, we\ncan observe how trained patterns tend to rotate very slowly.\nThis is an artifact of the rotation-invariant loss used, which\ndoes not enforce patterns to stand still; every possible rotation of the pattern has the same loss and, thus, a dynamically\nrotating final state will have the same loss as a static, nonrotating one. Note in Figure 10 how every run of the same\nmodel results in a different pattern rotation, but always the\nsame reflection. Figure 8 and Figure 10 show the anglebased model, but gradient-based models manifest similar behaviours. Figure 9 compares the lizard pattern produced by\nthe angle- and gradient-based models.\nTraining Steerable NCA appears to be faster than training IsoNCA. For instance, training a stable and well-formed\nlizard takes only 10000 training steps for the Steerable variant, as opposed to 30000 steps for the Isotropic variant with\nthe exact same training configurations. Moreover, the Steerable models empirically grow their target shape faster. This\nis likely due to Steerable NCA having to break only one\nsymmetry as opposed to the two required by IsoNCA.\nFigure 11 shows the internal angles of both Steerable\nNCA model variants for the lizard pattern, after a time unDownloaded from http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf by CONRAD GREBEL UNIV COLLEGE user on 25 November 2024\nFigure 7: Snapshots of angle-based Steerable NCA angle\nstates during the early alignment phase in which the growths\nproduced by each seed intersect and self-orient.\nFigure 8: Unfolding of three trained angle-based Steerable\nNCA rules.\nfolding of 5000 steps. Here, it appears that cells favour having diverging angles from one another. The angles in the\nangle-based model (left) seem to generate a spiral originating at the center of the pattern field. On the other hand,\nangles in gradient-based model (right) cannot create discontinuities, as the angle gradients are continuous by construction. However, there appear to be some uniform manifolds\nwhere angles are suppressed.\nConclusion and future work\nIn this work we demonstrated the capability of chiral NCA\nmodels to reliably grow complex asymmetric patterns. We\nshow that they are capable of both inferring a specified orientation based on initial conditions as well as learning to\nbreak symmetries independently using a rotation-invariant\nloss function. Steerable NCA are shown to be simpler to\ntrain than their Isotropic counterparts, while maintaining loFigure 9: Comparison between angle-based Steerable NCA\n(top) and gradient-based Steerable NCA (bottom).\nFigure 10: Step 5000 for different runs of three trained\nangle-based Steerable NCA models.\ncal coordination properties. We believe that this added tool\nin the differentiable morphogenetic toolbox may be useful\nin morphogenesis simulations and multi-agent-based modeling, where agents might benefit from having an inner sense\nof orientation.\nReferences\nCavuoti, L., Sacco, F., Randazzo, E., and Levin, M. (2022). Adversarial takeover of neural cellular automata. volume ALIFE 2022: The 2022 Conference on Artificial Life of ALIFE\n2022: The 2022 Conference on Artificial Life. 38.\nChan, B. W.-C. (2019). Lenia: Biology of artificial life. Complex\nSystems, 28(3):251\u2013286.\nGala, G., Grattarola, D., and Quaeghebeur, E. (2023). E(n)-\nequivariant graph neural cellular automata.\nGardner, M. (1970). Mathematical games. Scientific American,\n223(4):120\u2013123.\nGrattarola, D., Livi, L., and Alippi, C. (2021). Learning graph\ncellular automata. In Ranzato, M., Beygelzimer, A., Dauphin,\nY., Liang, P., and Vaughan, J. W., editors, Advances in Neural\nInformation Processing Systems, volume 34, pages 20983\u2013\n20994. Curran Associates, Inc.\nInaki, M., Liu, J., and Matsuno, K. (2016). Cell chirality: its origin and roles in left-right asymmetric development. Philos.\nTrans. R. Soc. Lond. B Biol. Sci., 371(1710).\nMordvintsev, A., Randazzo, E., and Fouts, C. (2022). Growing\nisotropic neural cellular automata. volume ALIFE 2022: The\n2022 Conference on Artificial Life of ALIFE 2022: The 2022\nConference on Artificial Life. 65.\nMordvintsev, A., Randazzo, E., and Niklasson, E. (2021). Differentiable programming of reaction-diffusion patterns. In ALIFE\n2021: The 2021 Conference on Artificial Life. MIT Press.\nDownloaded from http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf by CONRAD GREBEL UNIV COLLEGE user on 25 November 2024\nFigure 11: Internal angles for each cell in the Steerable NCA\nlizard models, snapshot at 5000 steps. Left: an angle-based\nmodel in which the angles form a spiral originating at the\ncenter. Right: a gradient-based model in which angles cannot have discontinuities, and instead are suppressed, forming\na manifold of adirectional cells within the lizard.\nMordvintsev, A., Randazzo, E., Niklasson, E., and Levin,\nM. (2020). Growing neural cellular automata. Distill\n.\nhttps://distill.pub/2020/growing-ca.\nNiklasson, E., Mordvintsev, A., and Randazzo, E. (2021a). Asynchronicity in neural cellular automata. volume ALIFE 2021:\nThe 2021 Conference on Artificial Life of ALIFE 2021: The\n2021 Conference on Artificial Life. 116.\nNiklasson, E., Mordvintsev, A., Randazzo, E., and Levin,\nM. (2021b). Self-organising textures. Distill\n.\nhttps://distill.pub/selforg/2021/textures.\nRandazzo, E., Mordvintsev, A., Niklasson, E., and Levin, M.\n(2021). Adversarial reprogramming of neural cellular automata. Distill. https://distill.pub/selforg/2021/adversarial.\nRandazzo, E., Mordvintsev, A., Niklasson, E., Levin, M., and\nGreydanus, S. (2020). Self-classifying mnist digits. Distill\n.\nhttps://distill.pub/2020/selforg/mnist.\nSamoilov, M. S., Price, G., and Arkin, A. P. (2006). From fluctuations to phenotypes: the physiology of noise. Sci. STKE,\n2006(366):re17.\nSudhakaran, S., Grbic, D., Li, S., Katona, A., Najarro, E., Glanois,\nC., and Risi, S. (2021). Growing 3d artefacts and functional\nmachines with neural cellular automata. The 2021 Conference on Artificial Life.\nVariengien, A., Nichele, S., Glover, T., and Pontes-Filho, S. (2021).\nTowards self-organized control: Using neural cellular automata to robustly control a cart-pole agent.\nWalker, K., Palm, R. B., Garcia, R. M., Faina, A., Stoy, K., and\nRisi, S. (2022). Physical neural cellular automata for 2d shape\nclassification.\nDownloaded from http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf by CONRAD GREBEL UNIV COLLEGE user on 25 November 2024\n\nexplain what isoptropy means in this paper"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "serialization_metadata": {
+              "custom_symbol_offsets": []
+            },
+            "request_id": "8e828f5ca90eac70-YYZ",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "b01154d7-5cb4-4b49-8fc7-f80733b2cabb",
+        "children": [
+          "01c80889-424d-4bd6-a18a-c463084dd694"
+        ]
+      },
+      "01c80889-424d-4bd6-a18a-c463084dd694": {
+        "id": "01c80889-424d-4bd6-a18a-c463084dd694",
+        "message": {
+          "id": "01c80889-424d-4bd6-a18a-c463084dd694",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1732547374.079573,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "In the context of this paper, **isotropy** refers to the property of a system where the behavior of cells is **independent of their orientation** within the spatial grid. This means that the cells in the **isotropic Neural Cellular Automata (NCA)** cannot distinguish between directions such as up, down, left, or right. \n\n### Key Characteristics of Isotropy in This Paper:\n\n1. **Orientation-Independence:**\n   - Isotropic NCA do not rely on directional cues like predefined coordinate systems or gradients that distinguish directions. This ensures the system behaves the same way regardless of how it is rotated or mirrored.\n\n2. **Symmetry in Patterns:**\n   - The patterns grown by isotropic NCA are symmetric in the sense that they are invariant to rotations and reflections, unless the symmetry is deliberately broken during initialization (e.g., through seeding strategies).\n\n3. **Training Challenges:**\n   - Training isotropic NCA can be challenging because the model must learn to grow complex patterns without relying on directionally specific cues. Symmetry in the target pattern (e.g., rotational or reflective symmetry) can create local minima during optimization, making it harder to converge on the correct solution.\n   - To address these challenges, the paper discusses strategies like using rotation-reflection invariant loss functions and structured initial seeding to break symmetries.\n\n4. **Biological Analogy:**\n   - The isotropic property is inspired by natural systems, such as certain biological processes, where the local interactions between cells or molecules do not depend on a fixed global orientation.\n\n### Summary in This Paper's Context:\nIsotropy in this paper highlights the **orientation-agnostic nature** of the NCA, meaning the update rules and behavior of the automaton do not depend on directional orientation. It contrasts with systems that require predefined gradients or axes for computation, thereby making isotropic NCA more flexible and general but also harder to train due to increased symmetry-related constraints."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "citations": [],
+            "content_references": [],
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "gpt-4o",
+            "parent_id": "aaa26744-939d-4053-8b5a-f44dc1146257",
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "is_complete": true,
+            "request_id": "8e828f5ca90eac70-YYZ",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "aaa26744-939d-4053-8b5a-f44dc1146257",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "01c80889-424d-4bd6-a18a-c463084dd694",
+    "plugin_ids": null,
+    "conversation_id": "674492de-3944-8005-98de-46b2b0ec54f7",
+    "conversation_template_id": null,
+    "gizmo_id": null,
+    "gizmo_type": null,
+    "is_archived": false,
+    "is_starred": null,
+    "safe_urls": [
+      "https://distill.pub/2020/growing-ca",
+      "https://github.com/google-research/selforganising-systems/tree/master/isotropic_nca",
+      "https://distill.pub/selforg/2021/adversarial",
+      "https://distill.pub/selforg/2021/textures",
+      "http://direct.mit.edu/isal/proceedings-pdf/isal2023/35/2/2355103/isal_a_00564.pdf",
+      "https://distill.pub/2020/selforg/mnist"
+    ],
+    "default_model_slug": "gpt-4o",
+    "conversation_origin": null,
+    "voice": null,
+    "async_status": null,
+    "disabled_tool_ids": [],
+    "id": "674492de-3944-8005-98de-46b2b0ec54f7"
+  }
+]

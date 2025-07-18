@@ -1,0 +1,177 @@
+[
+  {
+    "title": "Derivative of Dot Product",
+    "create_time": 1718323026.646807,
+    "update_time": 1718323034.117976,
+    "mapping": {
+      "e6f63b6c-fa76-4a10-886d-1fc29d203262": {
+        "id": "e6f63b6c-fa76-4a10-886d-1fc29d203262",
+        "message": {
+          "id": "e6f63b6c-fa76-4a10-886d-1fc29d203262",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 0.0,
+          "metadata": {
+            "is_visually_hidden_from_conversation": true
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "11d625b9-3d8b-4638-9c1d-74ec663c1510",
+        "children": [
+          "e022b88b-9fea-420d-bdba-c71f17154043"
+        ]
+      },
+      "11d625b9-3d8b-4638-9c1d-74ec663c1510": {
+        "id": "11d625b9-3d8b-4638-9c1d-74ec663c1510",
+        "message": null,
+        "parent": null,
+        "children": [
+          "e6f63b6c-fa76-4a10-886d-1fc29d203262"
+        ]
+      },
+      "e022b88b-9fea-420d-bdba-c71f17154043": {
+        "id": "e022b88b-9fea-420d-bdba-c71f17154043",
+        "message": {
+          "id": "e022b88b-9fea-420d-bdba-c71f17154043",
+          "author": {
+            "role": "system",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": null,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              ""
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "is_user_system_message": true,
+            "is_visually_hidden_from_conversation": true,
+            "user_context_message_data": {
+              "about_model_message": "Never use bing. Never search for an answer, use your knowledge on the subject instead."
+            }
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "e6f63b6c-fa76-4a10-886d-1fc29d203262",
+        "children": [
+          "b7ce3168-cd8b-4e7a-982d-9c55ae99057d"
+        ]
+      },
+      "b7ce3168-cd8b-4e7a-982d-9c55ae99057d": {
+        "id": "b7ce3168-cd8b-4e7a-982d-9c55ae99057d",
+        "message": {
+          "id": "b7ce3168-cd8b-4e7a-982d-9c55ae99057d",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1718323026.654226,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "What\u2019s d/dt x(t) \u2022 y(t), where \u2022 is a dot product of vestoes"
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "request_id": "893605633f367aaa-SJC",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "e022b88b-9fea-420d-bdba-c71f17154043",
+        "children": [
+          "afd1d5b6-afe6-4be5-a62a-4c3d360291a5"
+        ]
+      },
+      "afd1d5b6-afe6-4be5-a62a-4c3d360291a5": {
+        "id": "afd1d5b6-afe6-4be5-a62a-4c3d360291a5",
+        "message": {
+          "id": "afd1d5b6-afe6-4be5-a62a-4c3d360291a5",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1718323033.32212,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Given two vector functions \\(\\mathbf{x}(t)\\) and \\(\\mathbf{y}(t)\\), the derivative of their dot product with respect to time \\(t\\) is found using the product rule for differentiation. If \\(\\mathbf{x}(t) \\cdot \\mathbf{y}(t)\\) represents the dot product of these two vector functions, then the derivative is:\n\n\\[\n\\frac{d}{dt} [\\mathbf{x}(t) \\cdot \\mathbf{y}(t)] = \\mathbf{x}'(t) \\cdot \\mathbf{y}(t) + \\mathbf{x}(t) \\cdot \\mathbf{y}'(t)\n\\]\n\nwhere:\n- \\(\\mathbf{x}'(t)\\) is the derivative of \\(\\mathbf{x}(t)\\) with respect to \\(t\\),\n- \\(\\mathbf{y}'(t)\\) is the derivative of \\(\\mathbf{y}(t)\\) with respect to \\(t\\),\n- \\(\\cdot\\) represents the dot product of vectors.\n\nThis result follows from the product rule in differentiation, which states that the derivative of a product of two functions is the derivative of the first function times the second function plus the first function times the derivative of the second function."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "citations": [],
+            "gizmo_id": null,
+            "message_type": null,
+            "model_slug": "gpt-4o",
+            "default_model_slug": "auto",
+            "pad": "AAAAAAAAAAA",
+            "parent_id": "b7ce3168-cd8b-4e7a-982d-9c55ae99057d",
+            "finish_details": {
+              "type": "stop",
+              "stop_tokens": [
+                200002
+              ]
+            },
+            "is_complete": true,
+            "request_id": "893605633f367aaa-SJC",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "b7ce3168-cd8b-4e7a-982d-9c55ae99057d",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "afd1d5b6-afe6-4be5-a62a-4c3d360291a5",
+    "plugin_ids": null,
+    "conversation_id": "3d60a9be-fcf7-43c0-b58a-37d68ef302fd",
+    "conversation_template_id": null,
+    "gizmo_id": null,
+    "gizmo_type": null,
+    "is_archived": false,
+    "is_starred": null,
+    "safe_urls": [],
+    "default_model_slug": "auto",
+    "conversation_origin": null,
+    "voice": null,
+    "async_status": null,
+    "disabled_tool_ids": [],
+    "id": "3d60a9be-fcf7-43c0-b58a-37d68ef302fd"
+  }
+]
