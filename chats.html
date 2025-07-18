@@ -187,6 +187,49 @@
         margin-top: 20px;
       }
       
+      /* Loading animation */
+      .loading-container {
+        display: none;
+        margin: 20px 0;
+        padding: 20px;
+      }
+      
+      .loading-bar {
+        width: 100%;
+        height: 4px;
+        background-color: #f0f0f0;
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .loading-bar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, #0969da, transparent);
+        animation: loading-slide 1.5s infinite;
+      }
+      
+      @keyframes loading-slide {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+      
+      .loading-text {
+        text-align: center;
+        color: #656d76;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+      
       #root {
         display: flex;
         flex-direction: column;
@@ -346,6 +389,10 @@
 
     <div id="chat-container">
       <div class="selected-date" id="selected-date"></div>
+      <div class="loading-container" id="loading-container">
+        <div class="loading-bar"></div>
+        <div class="loading-text">Loading chats...</div>
+      </div>
       <div id="root"></div>
     </div>
 
@@ -354,14 +401,18 @@
       let currentYear = new Date().getFullYear();
       let selectedDate = null;
       var assetsJson = null;
+      let calendarDataLoaded = false;
+      let calendarGenerated = false;
+      let pendingHashDate = null;
 
       // Initialize year display immediately
       document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('current-year').textContent = currentYear;
         
-        // Check if there's a date in the URL hash
+        // Check if there's a date in the URL hash - store it for later processing
         const hashDate = window.location.hash.substring(1); // Remove the #
         if (hashDate && /^\d{4}-\d{2}-\d{2}$/.test(hashDate)) {
+          pendingHashDate = hashDate;
           // Update the year to match the hash date if needed
           const hashYear = parseInt(hashDate.split('-')[0]);
           if (hashYear !== currentYear) {
@@ -375,36 +426,44 @@
       window.addEventListener('hashchange', function() {
         const hashDate = window.location.hash.substring(1);
         if (hashDate && /^\d{4}-\d{2}-\d{2}$/.test(hashDate)) {
+          pendingHashDate = hashDate;
           // Update year if needed
           const hashYear = parseInt(hashDate.split('-')[0]);
           if (hashYear !== currentYear) {
             currentYear = hashYear;
             document.getElementById('current-year').textContent = currentYear;
-            generateCalendar();
+            calendarGenerated = false; // Will need to regenerate
+            if (calendarDataLoaded) {
+              generateCalendar();
+            }
           } else {
-            // Just select the date if we're already in the right year
-            selectDate(hashDate);
+            // Try to process the pending hash date
+            processPendingHashDate();
           }
         }
       });
+      
+      // Process pending hash date when both calendar data and DOM are ready
+      function processPendingHashDate() {
+        if (pendingHashDate && calendarDataLoaded && calendarGenerated) {
+          selectDate(pendingHashDate);
+          pendingHashDate = null; // Clear after processing
+        }
+      }
 
       // Load calendar data
       fetch('chats/calendar_data.json')
         .then(response => response.json())
         .then(data => {
           calendarData = data;
+          calendarDataLoaded = true;
           // Ensure year display is in sync
           document.getElementById('current-year').textContent = currentYear;
           generateCalendar();
-          
-          // After calendar is generated, check for hash date
-          const hashDate = window.location.hash.substring(1);
-          if (hashDate && /^\d{4}-\d{2}-\d{2}$/.test(hashDate)) {
-            selectDate(hashDate);
-          }
         })
         .catch(error => {
           console.error('Error loading calendar data:', error);
+          calendarDataLoaded = true; // Mark as loaded even if empty to prevent infinite waiting
           // Ensure year display is in sync even if data fails to load
           document.getElementById('current-year').textContent = currentYear;
           generateCalendar();
@@ -413,6 +472,7 @@
       function changeYear(delta) {
         currentYear += delta;
         document.getElementById('current-year').textContent = currentYear;
+        calendarGenerated = false; // Will need to regenerate
         generateCalendar();
         
         // Clear hash when changing years
@@ -531,6 +591,10 @@
           
           tbody.appendChild(tr);
         }
+        
+        // Mark calendar as generated and process any pending hash date
+        calendarGenerated = true;
+        processPendingHashDate();
       }
 
       function isLeapYear(year) {
@@ -558,6 +622,15 @@
       }
 
       function loadChatData(dateStr) {
+        // Show loading animation
+        const container = document.getElementById('chat-container');
+        const loadingContainer = document.getElementById('loading-container');
+        const root = document.getElementById('root');
+        
+        container.style.display = 'block';
+        loadingContainer.style.display = 'block';
+        root.style.display = 'none';
+        
         if (!calendarData[dateStr]) {
           displayChats([], dateStr);
           return;
@@ -586,6 +659,11 @@
         const container = document.getElementById('chat-container');
         const root = document.getElementById('root');
         const dateDisplay = document.getElementById('selected-date');
+        const loadingContainer = document.getElementById('loading-container');
+        
+        // Hide loading animation and show content
+        loadingContainer.style.display = 'none';
+        root.style.display = 'block';
         
         root.innerHTML = '';
         
@@ -605,6 +683,42 @@
           return;
         }
         
+        function escapeHtml(text) {
+          return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+
+        function parseCodeBlocks(text) {
+          // Find all code blocks and replace them with placeholders
+          let codeBlocks = [];
+          let placeholder = "___CODEBLOCK_PLACEHOLDER___";
+          let idx = 0;
+          text = text.replace(/```(\w+)?\n([\s\S]*?)```/g, function(match, lang, code) {
+            lang = lang ? `language-${lang}` : "";
+            let html = `<pre class="language-${lang}"><code class="language-${lang}">${escapeHtml(code)}</code></pre>`;
+            codeBlocks.push(html);
+            return `${placeholder}${idx++}___`;
+          });
+
+          // Now process the rest of the markdown (headings, bold, italics, etc)
+          // so that markdown inside code blocks is not parsed
+          return text.replace(/\n*#### (.*?)$\n*/gm, "\n<h4>$1</h4>")
+            .replace(/\n*### (.*?)$\n*/gm, "\n<h3>$1</h3>")
+            .replace(/\n*## (.*?)$\n*/gm, "\n<h2>$1</h2>")
+            .replace(/\n*# (.*?)$\n*/gm, "\n<h1>$1</h1>")
+            .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
+            .replace(/\*(.*?)\*/g, "<i>$1</i>")
+            .replace(/---/g, "<hr>")
+            // Restore code blocks
+            .replace(new RegExp(placeholder + "(\\d+)___", "g"), function(_, n) {
+              return codeBlocks[parseInt(n)];
+            });
+        }
+
         for (var i = 0; i < jsonData.length; i++) {
           var conversation = jsonData[i];
           var messages = getConversationMessages(conversation);
@@ -623,14 +737,9 @@
                 if (part.text) {
                   var replacedText = part.text;
                   if (messages[j].author !== "user") {
-                    replacedText = replacedText
-                      .replace(/\n*#### (.*?)$\n*/gm, "\n<h4>$1</h4>")
-                      .replace(/\n*### (.*?)$\n*/gm, "\n<h3>$1</h3>")
-                      .replace(/\n*## (.*?)$\n*/gm, "\n<h2>$1</h2>")
-                      .replace(/\n*# (.*?)$\n*/gm, "\n<h1>$1</h1>")
-                      .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
-                      .replace(/\*(.*?)\*/g, "<i>$1</i>")
-                      .replace(/---/g, "<hr>");
+                    replacedText = parseCodeBlocks(replacedText);
+                  } else {
+                    // For user messages, just use the text as is
                   }
                   message.innerHTML += `<div>${replacedText}</div>`;
                 } else if (assetsJson) {
