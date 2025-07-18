@@ -1,5 +1,6 @@
 <html>
   <head>
+    <link rel="stylesheet" href="fonts.css">
     <title>Ivan Yevenko - ChatGPT history</title>
     <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -27,7 +28,6 @@
         font-family: sans-serif;
         margin: 0;
       }
-      
       /* Calendar styles */
       .calendar-container {
         margin: 20px auto;
@@ -190,23 +190,69 @@
       #root {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
       }
       .conversation {
-        border: 1px solid black;
-        padding: 20px;
-        background-color: #f3f3f3;
+        border: none;
+        padding: 25px;
+        background-color: transparent;
+        border-radius: 8px;
       }
+      
+      .conversation h4 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: #24292f;
+        border-bottom: 1px solid #d0d7de;
+        padding-bottom: 10px;
+      }
+      
       .message {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif !important;
+        line-height: 1.5;
+        font-size: 14px;
         white-space: pre-wrap;
-        margin: 20px 0;
+        margin: 12px 0;
+        background-color: #ffffff;
+        border: 1px solid #d0d7de;
+        border-radius: 8px;
+        padding: 12px 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        position: relative;
       }
+      
+      .message mjx-container {
+        font-size: 16px !important;
+      }
+      
       .author {
-        font-weight: bold;
-        margin-bottom: 4px;
-      }
-      .author::first-letter {
+        font-weight: 600;
+        font-size: 12px;
+        margin-bottom: 6px;
+        color: #656d76;
         text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      .message div:not(.author) {
+        color: #24292f;
+      }
+      
+      .message h2 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif !important;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 16px 0 8px 0;
+        color: #24292f;
+      }
+      
+      .message h3 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif !important;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 14px 0 6px 0;
+        color: #24292f;
       }
       
       .selected-date {
@@ -232,7 +278,7 @@
   </head>
   <body>
     <header>
-        <div style="display: flex; align-items: center; justify-content: space-between; font-family: CMU Serif;">
+        <div style="display: flex; align-items: center; justify-content: space-between">
             <a href="/" style="text-decoration: none; color: inherit;">
                 <h1>Ivan Yevenko</h1>
             </a>
@@ -523,7 +569,6 @@
         
         root.innerHTML = '';
         
-        // Fix timezone issue by parsing the date string directly
         const [year, month, day] = dateStr.split('-');
         const displayDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
         dateDisplay.textContent = `Chats for ${displayDate.toLocaleDateString()}`;
@@ -556,7 +601,13 @@
               for (var k = 0; k < messages[j].parts.length; k++) {
                 var part = messages[j].parts[k];
                 if (part.text) {
-                  message.innerHTML += `<div>${part.text}</div>`;
+                  // Replace **text** with <b>text</b> and --- with <hr>
+                  var replacedText = part.text
+                    .replace(/### (.*?)$/gm, "<h3>$1</h3>")
+                    .replace(/## (.*?)$/gm, "<h2>$1</h2>")
+                    .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
+                    .replace(/---/g, "<hr>");
+                  message.innerHTML += `<div>${replacedText}</div>`;
                 } else if (assetsJson) {
                   if (part.transcript) {
                     message.innerHTML += `<div>[Transcript]: ${part.transcript}</div>`;
