@@ -605,6 +605,7 @@
                   var replacedText = part.text
                     .replace(/### (.*?)$/gm, "<h3>$1</h3>")
                     .replace(/## (.*?)$/gm, "<h2>$1</h2>")
+                    .replace(/\*(.*?)\*/g, "<i>$1</i>")
                     .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
                     .replace(/---/g, "<hr>");
                   message.innerHTML += `<div>${replacedText}</div>`;
