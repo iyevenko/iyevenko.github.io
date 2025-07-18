@@ -238,19 +238,39 @@
       .message div:not(.author) {
         color: #24292f;
       }
-      
+
+      .message h1 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif !important;
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 1.6;
+        margin: 26px 0 14px 0;
+        color: #24292f;
+      }
+
       .message h2 {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif !important;
-        font-size: 18px;
+        font-size: 22px;
         font-weight: 600;
-        margin: 16px 0 8px 0;
+        line-height: 1.6;
+        margin: 20px 0 10px 0;
         color: #24292f;
       }
       
       .message h3 {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif !important;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.6;
+        margin: 16px 0 8px 0;
+        color: #24292f;
+      }
+
+      .message h4 {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif !important;
         font-size: 16px;
         font-weight: 600;
+        line-height: 1.6;
         margin: 14px 0 6px 0;
         color: #24292f;
       }
@@ -590,7 +610,7 @@
           var messages = getConversationMessages(conversation);
           var div = document.createElement("div");
           div.className = "conversation";
-          div.innerHTML = "<h4>" + conversation.title + "</h4>";
+          div.innerHTML = "<h1>" + conversation.title + "</h1>";
           
           for (var j = 0; j < messages.length; j++) {
             var message = document.createElement("pre");
@@ -601,13 +621,17 @@
               for (var k = 0; k < messages[j].parts.length; k++) {
                 var part = messages[j].parts[k];
                 if (part.text) {
-                  // Replace **text** with <b>text</b> and --- with <hr>
-                  var replacedText = part.text
-                    .replace(/### (.*?)$/gm, "<h3>$1</h3>")
-                    .replace(/## (.*?)$/gm, "<h2>$1</h2>")
-                    .replace(/\*(.*?)\*/g, "<i>$1</i>")
-                    .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
-                    .replace(/---/g, "<hr>");
+                  var replacedText = part.text;
+                  if (messages[j].author !== "user") {
+                    replacedText = replacedText
+                      .replace(/\n*#### (.*?)$\n*/gm, "\n<h4>$1</h4>")
+                      .replace(/\n*### (.*?)$\n*/gm, "\n<h3>$1</h3>")
+                      .replace(/\n*## (.*?)$\n*/gm, "\n<h2>$1</h2>")
+                      .replace(/\n*# (.*?)$\n*/gm, "\n<h1>$1</h1>")
+                      .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
+                      .replace(/\*(.*?)\*/g, "<i>$1</i>")
+                      .replace(/---/g, "<hr>");
+                  }
                   message.innerHTML += `<div>${replacedText}</div>`;
                 } else if (assetsJson) {
                   if (part.transcript) {
@@ -627,7 +651,6 @@
                 }
               }
             }
-            
             div.appendChild(message);
             MathJax.typeset([message]);
           }
