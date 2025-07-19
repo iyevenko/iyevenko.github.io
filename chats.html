@@ -712,7 +712,7 @@
             .replace(/\n*# (.*?)$\n*/gm, "\n<h1>$1</h1>")
             .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
             .replace(/\*(.*?)\*/g, "<i>$1</i>")
-            .replace(/---/g, "<hr>")
+            .replace(/\n---\n/g, "\n<hr>\n")
             // Restore code blocks
             .replace(new RegExp(placeholder + "(\\d+)___", "g"), function(_, n) {
               return codeBlocks[parseInt(n)];

@@ -1,0 +1,193 @@
+[
+  {
+    "title": "SSH Jupyter session timeout fix",
+    "create_time": 1745288817.437288,
+    "update_time": 1745288894.358891,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": [
+          "e7a1ca0c-3338-4072-a69b-b043b1ca8fbf"
+        ]
+      },
+      "e7a1ca0c-3338-4072-a69b-b043b1ca8fbf": {
+        "id": "e7a1ca0c-3338-4072-a69b-b043b1ca8fbf",
+        "message": {
+          "id": "e7a1ca0c-3338-4072-a69b-b043b1ca8fbf",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1745288817.084,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "When I leave SSH sessions and then Jupiter notebook in VS code open for too long, and I come back to my computer, they're always disconnected. And then whatever was running is not recoverable. Like I just lose whatever it was running. How do I fix that? "
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": null,
+          "weight": 1.0,
+          "metadata": {
+            "selected_github_repos": [],
+            "serialization_metadata": {
+              "custom_symbol_offsets": []
+            },
+            "dictation": false,
+            "request_id": "9341ade37f56b0a3-ORD",
+            "message_source": null,
+            "timestamp_": "absolute",
+            "message_type": null
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "client-created-root",
+        "children": [
+          "bac1f030-fde6-4449-b146-32e0f34db6ce"
+        ]
+      },
+      "bac1f030-fde6-4449-b146-32e0f34db6ce": {
+        "id": "bac1f030-fde6-4449-b146-32e0f34db6ce",
+        "message": {
+          "id": "bac1f030-fde6-4449-b146-32e0f34db6ce",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1745288830.544197,
+          "update_time": null,
+          "content": {
+            "content_type": "thoughts",
+            "thoughts": [
+              {
+                "summary": "Fixing SSH & Jupyter disconnections",
+                "content": "The user seems to be facing disconnections when using SSH and Jupyter in VS Code, often losing session states. There are a few fixes: using tmux or screen to keep sessions alive, autosaving notebooks, or running a Jupyter server remotely with persistent settings. Configuring SSH\u2019s keep-alive features seems crucial, such as setting serverAliveInterval and serverAliveCountMax. In VS Code, enabling \u201cReconnect on reload\u201d or adjusting SSH settings in the config could help too."
+              }
+            ],
+            "source_analysis_msg_id": "9887928f-7485-4000-abca-d62efbb39cca"
+          },
+          "status": "finished_successfully",
+          "end_turn": false,
+          "weight": 1.0,
+          "metadata": {
+            "reasoning_status": "is_reasoning",
+            "citations": [],
+            "content_references": [],
+            "message_type": null,
+            "model_slug": "o4-mini-high",
+            "default_model_slug": "o4-mini-high",
+            "parent_id": "e7a1ca0c-3338-4072-a69b-b043b1ca8fbf",
+            "request_id": "9341ade37f56b0a3-ORD",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "e7a1ca0c-3338-4072-a69b-b043b1ca8fbf",
+        "children": [
+          "e18b469f-9642-4028-9e96-9fa6d59cadd6"
+        ]
+      },
+      "e18b469f-9642-4028-9e96-9fa6d59cadd6": {
+        "id": "e18b469f-9642-4028-9e96-9fa6d59cadd6",
+        "message": {
+          "id": "e18b469f-9642-4028-9e96-9fa6d59cadd6",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1745288830.544317,
+          "update_time": null,
+          "content": {
+            "content_type": "reasoning_recap",
+            "content": "Thought for 12 seconds"
+          },
+          "status": "finished_successfully",
+          "end_turn": false,
+          "weight": 1.0,
+          "metadata": {
+            "reasoning_status": "reasoning_ended",
+            "finished_duration_sec": 12,
+            "message_type": null,
+            "model_slug": "o4-mini-high",
+            "default_model_slug": "o4-mini-high",
+            "parent_id": "bac1f030-fde6-4449-b146-32e0f34db6ce",
+            "request_id": "9341ade37f56b0a3-ORD",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": null
+        },
+        "parent": "bac1f030-fde6-4449-b146-32e0f34db6ce",
+        "children": [
+          "f72f7863-fe35-48a5-9f24-ca7cf59364ca"
+        ]
+      },
+      "f72f7863-fe35-48a5-9f24-ca7cf59364ca": {
+        "id": "f72f7863-fe35-48a5-9f24-ca7cf59364ca",
+        "message": {
+          "id": "f72f7863-fe35-48a5-9f24-ca7cf59364ca",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "create_time": 1745288817.51387,
+          "update_time": null,
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "When you leave a Remote\u2011SSH window in VS\u00a0Code open for a long time, two things happen:\n\n1. **Your SSH connection eventually goes idle** (and the server or some network device kills it).\n2. **Jupyter (by default) will shut down idle kernels** after a timeout when no client is connected.\n\nTo solve this, you need to tackle both:\n\n---\n\n## 1. Stop SSH from dropping idle connections\n\n### A. Client\u2011side keep\u2011alives\nAdd something like this to your **`~/.ssh/config`** on your local machine:\n\n```sshconfig\nHost myserver\n  HostName  your.remote.host\n  User      you\n  # send a keep\u2010alive packet every 60 seconds\n  ServerAliveInterval 60\n  # if no response after 5 tries, drop the connection\n  ServerAliveCountMax 5\n```\n\n> **What this does:**  \n> Every 60\u00a0seconds SSH will send a \u201cstill here?\u201d packet.  If the server never replies after 5 tries, SSH gives up.  Otherwise your connection stays up even through idle stretches.\n\n### B. VS\u00a0Code Remote\u2011SSH keep\u2011alives\nIf you\u2019re using the **Remote\u2011SSH** extension in VS\u00a0Code, you can also set in your settings.json:\n\n```jsonc\n{\n  // send an SSH keep-alive every minute\n  \"remote.SSH.serverAliveInterval\": 60,\n  // optional: increase the number of retries before giving up\n  \"remote.SSH.serverAliveCountMax\": 5\n}\n```\n\n1. Press `Ctrl+Shift+P` \u2192 **Preferences: Open Settings (JSON)**\n2. Paste those two lines in\n3. Save and reconnect\n\n---\n\n## 2. Prevent Jupyter from auto\u2011shutting your kernels\n\nBy default Jupyter may shut down kernels if no client has connected in a while.  You can disable (or extend) that timeout in your **Jupyter config** on the remote:\n\n1. Generate a config if you haven\u2019t already:\n   ```bash\n   jupyter notebook --generate-config\n   ```\n   This creates `~/.jupyter/jupyter_notebook_config.py`.\n\n2. Edit `~/.jupyter/jupyter_notebook_config.py` and add:\n   ```python\n   # don\u2019t kill kernels when disconnected\n   c.MappingKernelManager.shutdown_no_activity_timeout = 0\n   # don\u2019t auto-stop the notebook server itself\n   c.NotebookApp.shutdown_no_activity_timeout = 0\n   ```\n\n   - Setting each to `0` means **never** shut down for inactivity.\n   - If you\u2019d rather have, say, a 4\u2011hour window, use `4*3600` instead of `0`.\n\n3. Restart your Jupyter server.\n\n---\n\n## 3. Decouple long\u2010running work from your VS\u00a0Code window\n\nEven with the above you might still lose state if your laptop truly disconnects (e.g. you go to sleep).  A more bulletproof pattern is:\n\n1. **Use a terminal multiplexer** like `tmux` or `screen` on the remote:\n   ```bash\n   tmux new -s notebook\n   jupyter notebook --no-browser --port=8888\n   # hit Ctrl\u2011B D to detach\n   ```\n2. **Leave that tmux session running** on the remote.  If SSH drops, your notebook kernel stays alive inside tmux.\n3. In VS\u00a0Code, use **\u201cAttach to Running Jupyter Server\u2026\u201d** and point it at `http://localhost:8888/?token=\u2026` (you can tunnel 8888 over SSH).\n\nThat way:\n\n- SSH can drop and reconnect at will.\n- tmux keeps the notebook process alive on the server.\n- VS\u00a0Code just re\u2011attaches the UI layer without affecting your kernel.\n\n---\n\n### In practice\n\n1. **Edit `~/.ssh/config`** (or VS\u00a0Code settings) to send keep\u2011alives every minute.  \n2. **Disable Jupyter\u2019s idle shutdown** via its config.  \n3. (Optional but recommended) **Run Jupyter inside tmux** so even a full SSH disconnect won\u2019t kill your kernels.\n\nWith that combo in place, you can step away for hours (or even reboot VS\u00a0Code) and then come back, re\u2011open the notebook, and pick up exactly where you left off."
+            ]
+          },
+          "status": "finished_successfully",
+          "end_turn": true,
+          "weight": 1.0,
+          "metadata": {
+            "citations": [],
+            "content_references": [],
+            "message_type": null,
+            "model_slug": "o4-mini-high",
+            "default_model_slug": "o4-mini-high",
+            "parent_id": "e18b469f-9642-4028-9e96-9fa6d59cadd6",
+            "request_id": "9341ade37f56b0a3-ORD",
+            "timestamp_": "absolute"
+          },
+          "recipient": "all",
+          "channel": "final"
+        },
+        "parent": "e18b469f-9642-4028-9e96-9fa6d59cadd6",
+        "children": []
+      }
+    },
+    "moderation_results": [],
+    "current_node": "f72f7863-fe35-48a5-9f24-ca7cf59364ca",
+    "plugin_ids": null,
+    "conversation_id": "6806fe71-4024-8005-bc22-7992c912ac37",
+    "conversation_template_id": null,
+    "gizmo_id": null,
+    "gizmo_type": null,
+    "is_archived": false,
+    "is_starred": null,
+    "safe_urls": [
+      "http://localhost:8888/?token="
+    ],
+    "blocked_urls": [],
+    "default_model_slug": "o4-mini-high",
+    "conversation_origin": null,
+    "voice": null,
+    "async_status": null,
+    "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
+    "id": "6806fe71-4024-8005-bc22-7992c912ac37"
+  }
+]

@@ -41,8 +41,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               "Im running a double pendlum simulation and I notice the hamitonian is growing over time. why is this? suggest multiple reasons. Here's the code:\n```python\nfrom numba import jit\n@jit(nopython=True, parallel=True, fastmath=True)\ndef simulate_double_pendulums(theta_0, omega_0, T, dt=0.01):\n    \"\"\"\n    Simulate N double pendulums for T timesteps, only keeping final state\n    Vectorized and parallelized implementation\n    \n    Args:\n        initial_conditions: Nx2 array of initial angles [theta1, theta2]\n        T: Number of timesteps to simulate\n        dt: Time step size\n        \n    Returns:\n        Nx2 array of final angles\n    \"\"\"\n    N = theta_0.shape[0]\n    \n    # Initialize state arrays for current timestep only\n    theta = np.zeros((N, 2))  # angles\n    omega = np.zeros((N, 2))  # angular velocities\n    \n    # Set initial conditions\n    theta[:] = theta_0\n    omega[:] = omega_0\n    \n    # Time evolution using St\u00f6rmer-Verlet method\n    for t in range(T):\n        # Half step in momentum\n        acc = compute_accelerations(theta, omega)\n        omega += 0.5 * dt * acc\n        \n        # Full step in position\n        theta += dt * omega\n        \n        # Half step in momentum\n        acc = compute_accelerations(theta, omega)\n        omega += 0.5 * dt * acc\n    \n    return theta, omega\n\n@jit(nopython=True)\ndef compute_accelerations(theta, omega):\n    # Constants\n    g = 9.81  # gravity\n    L1, L2 = 1.0, 1.0  # lengths\n    m1, m2 = 1.0, 1.0  # masses\n    \n    # Move acceleration calculations to separate function\n    N = theta.shape[0]\n    acc = np.zeros_like(omega)\n    \n    delta = theta[:, 1] - theta[:, 0]\n    den = 2*m1 + m2 - m2*np.cos(2*delta)\n    \n    acc[:, 0] = ((g*(2*m1 + m2)*np.sin(theta[:, 0]) - \n                  m2*g*np.sin(theta[:, 0] - 2*theta[:, 1]) -\n                  2*m2*np.sin(delta)*(omega[:, 1]**2*L2 + \n                                    omega[:, 0]**2*L1*np.cos(delta))) /\n                 (L1*den))\n    \n    acc[:, 1] = ((2*np.sin(delta)*(omega[:, 0]**2*L1*(m1 + m2) +\n                  g*(m1 + m2)*np.cos(theta[:, 0]) +\n                  omega[:, 1]**2*L2*m2*np.cos(delta))) /\n                 (L2*den))\n    \n    return acc\n\ndef double_pend_hamiltonian(theta, omega, m1=1, m2=1, l1=1, l2=1, g=9.81):\n    \"\"\"\n    Calculate the Hamiltonian for a double pendulum system.\n    \n    Parameters:\n    theta: array of shape (N,2) containing [theta1, theta2]\n    omega: array of shape (N,2) containing [omega1, omega2]\n    m1, m2: masses of the pendulums\n    l1, l2: lengths of the pendulums\n    g: gravitational acceleration\n    \n    Returns:\n    H: Hamiltonian energy of the system\n    \"\"\"\n    theta1, theta2 = theta[:, 0], theta[:, 1]\n    omega1, omega2 = omega[:, 0], omega[:, 1]\n    \n    # Kinetic energy terms\n    K11 = 0.5 * (m1 + m2) * l1**2 * omega1**2\n    K12 = 0.5 * m2 * l2**2 * omega2**2\n    K_cross = m2 * l1 * l2 * omega1 * omega2 * np.cos(theta1 - theta2)\n    K = K11 + K12 + K_cross\n    \n    # Potential energy terms\n    V1 = -(m1 + m2) * g * l1 * np.cos(theta1)\n    V2 = -m2 * g * l2 * np.cos(theta2)\n    V = V1 + V2\n    \n    return K + V\n```"
@@ -133,8 +135,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               "# Initialize 100 random pendulums\nn_pendulums = 100\nn_timesteps = 4000\ntheta_hist = np.zeros((n_timesteps, n_pendulums, 2))\nomega_hist = np.zeros((n_timesteps, n_pendulums, 2))\nH_hist = np.zeros((n_timesteps, n_pendulums))\n\n# Initial conditions\ntheta_0 = np.random.rand(n_pendulums, 2)*2*np.pi\nomega_0 = np.zeros((n_pendulums, 2))\n\n# Track state and hamiltonian at each timestep\nfor t in range(n_timesteps):\n    theta, omega = simulate_double_pendulums(theta_0, omega_0, t+1, dt=0.0001)\n    theta_hist[t] = theta\n    omega_hist[t] = omega\n    H_hist[t] = double_pend_hamiltonian(theta, omega)\n\n# Plot hamiltonian evolution for each pendulum\nplt.figure(figsize=(10, 6))\nfor i in range(n_pendulums):\n    plt.plot(range(n_timesteps), H_hist[:,i], alpha=0.3)\nplt.xlabel('Timestep')\nplt.ylabel('Hamiltonian Energy')\nplt.title('Evolution of Hamiltonian Energy for 100 Double Pendulums')\nplt.grid(True)\nplt.show()\n\nThis is how I generated the plots. It's obviously drifting as you can see. What are possible reasons>?"
@@ -205,11 +209,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "67748269-d934-8005-bd4a-875d5c503926"
   },
   {
@@ -629,11 +637,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "677426b2-7ef0-8005-86d3-d53e3c108913"
   },
   {
@@ -764,11 +776,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "6774216a-f3b4-8005-9085-d4c6f1eea25a"
   },
   {
@@ -813,8 +829,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               "why mioght the distribtuio of hamiltonians for every possible state i nthe double pendulum be a gamma distribution (or similar)? THis is the data I fit. Is this a known result? What are similar results?"
@@ -978,8 +996,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               {
@@ -997,8 +1017,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               "For a double pendulum, the angles (top) and angular velocities (bottom) are not simple gaussians. The chaotic dynamics makes a fractal distribution. How do you explain the hamiltonian distribution?"
@@ -1142,11 +1164,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "677373a3-e780-8005-b264-9305b54a64c6"
   },
   {
@@ -1191,8 +1217,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               "what do these remind you of?"
@@ -1336,11 +1364,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "67739510-19d8-8005-8812-0b06584e2b52"
   },
   {
@@ -1385,8 +1417,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               "can u explain plz what is power specturm"
@@ -1457,11 +1491,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "677395f1-9bc0-8005-b89d-3cb638c2332f"
   },
   {
@@ -1506,8 +1544,10 @@
                   "container_pixel_width": null,
                   "emu_omit_glimpse_image": null,
                   "emu_patches_override": null,
+                  "lpe_keep_patch_ijhw": null,
                   "sanitized": true,
-                  "asset_pointer_link": null
+                  "asset_pointer_link": null,
+                  "watermarked_asset_pointer": null
                 }
               },
               "explain"
@@ -1581,11 +1621,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "677395d9-9a58-8005-b66a-699c553efc38"
   },
   {
@@ -1683,11 +1727,15 @@
     "is_archived": false,
     "is_starred": null,
     "safe_urls": [],
+    "blocked_urls": [],
     "default_model_slug": "o1",
     "conversation_origin": null,
     "voice": null,
     "async_status": null,
     "disabled_tool_ids": [],
+    "is_do_not_remember": null,
+    "memory_scope": "global_enabled",
+    "sugar_item_id": null,
     "id": "67736d65-2b68-8005-882b-497280493e97"
   }
 ]
