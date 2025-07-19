@@ -657,38 +657,46 @@
           });
       }
 
-      async function processMathJax(messageElements) {
+      function processMathJax(messageElements) {
         if (!messageElements || messageElements.length === 0) return;
         
-        // Process MathJax in smaller batches to avoid overwhelming it
-        const batchSize = 5;
+        let currentIndex = 0;
         
-        for (let i = 0; i < messageElements.length; i += batchSize) {
-          const batch = messageElements.slice(i, i + batchSize);
+        function processNext() {
+          if (currentIndex >= messageElements.length) return;
+          
+          const element = messageElements[currentIndex];
+          currentIndex++;
           
           try {
-            // Add a small delay between batches
-            if (i > 0) {
-              await new Promise(resolve => setTimeout(resolve, 50));
-            }
+            // Use MathJax.typeset which returns a promise
+            const promise = MathJax.typeset([element]);
             
-            // Process this batch
-            await MathJax.typeset(batch);
+            // Handle the promise properly
+            if (promise && typeof promise.then === 'function') {
+              promise
+                .then(() => {
+                  // Successfully processed, move to next after a short delay
+                  setTimeout(processNext, 100);
+                })
+                .catch((error) => {
+                  console.warn('MathJax error for element:', error);
+                  // Continue with next element even if this one failed
+                  setTimeout(processNext, 100);
+                });
+            } else {
+              // If no promise returned, just continue after delay
+              setTimeout(processNext, 100);
+            }
           } catch (error) {
-            // Log MathJax errors but don't break the display
-            console.warn('MathJax processing error for batch:', error);
-            
-            // Try to process individual elements in this batch
-            for (const element of batch) {
-              try {
-                await MathJax.typeset([element]);
-              } catch (individualError) {
-                console.warn('MathJax error for individual element:', individualError);
-                // Continue with next element
-              }
-            }
+            console.warn('MathJax error for element:', error);
+            // Continue with next element
+            setTimeout(processNext, 100);
           }
         }
+        
+        // Start processing
+        processNext();
       }
 
       function displayChats(jsonData, dateStr) {
