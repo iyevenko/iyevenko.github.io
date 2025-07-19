@@ -184,6 +184,12 @@
         }
     });
 
+    function checkHashAndOpenModal() {
+        if (window.location.hash === '#poster') {
+            openModal('images/alife_poster.png');
+        }
+    }
+
     function adjustAbstractLines() {
         const abstracts = document.querySelectorAll('.paper-abstract');
         const images = document.querySelectorAll('.paper-img');
@@ -205,8 +211,12 @@
             }
         });
     }
-    window.addEventListener('load', adjustAbstractLines);
+    window.addEventListener('load', function() {
+        adjustAbstractLines();
+        checkHashAndOpenModal();
+    });
     window.addEventListener('resize', adjustAbstractLines);
+    window.addEventListener('hashchange', checkHashAndOpenModal);
     </script>
 </body>
 </html>
