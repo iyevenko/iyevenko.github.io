@@ -647,12 +647,48 @@
             return response.json();
           })
           .then(data => {
+            // Only catch fetch/JSON parsing errors here
             displayChats(data, dateStr);
           })
           .catch(error => {
-            console.error('Error loading chat data:', error);
+            // Only handle fetch/network errors, not MathJax errors
+            console.error('Error fetching chat data:', error);
             displayChats([], dateStr);
           });
+      }
+
+      async function processMathJax(messageElements) {
+        if (!messageElements || messageElements.length === 0) return;
+        
+        // Process MathJax in smaller batches to avoid overwhelming it
+        const batchSize = 5;
+        
+        for (let i = 0; i < messageElements.length; i += batchSize) {
+          const batch = messageElements.slice(i, i + batchSize);
+          
+          try {
+            // Add a small delay between batches
+            if (i > 0) {
+              await new Promise(resolve => setTimeout(resolve, 50));
+            }
+            
+            // Process this batch
+            await MathJax.typeset(batch);
+          } catch (error) {
+            // Log MathJax errors but don't break the display
+            console.warn('MathJax processing error for batch:', error);
+            
+            // Try to process individual elements in this batch
+            for (const element of batch) {
+              try {
+                await MathJax.typeset([element]);
+              } catch (individualError) {
+                console.warn('MathJax error for individual element:', individualError);
+                // Continue with next element
+              }
+            }
+          }
+        }
       }
 
       function displayChats(jsonData, dateStr) {
@@ -719,6 +755,9 @@
             });
         }
 
+        // Collect all message elements for batch MathJax processing
+        const messageElements = [];
+        
         for (var i = 0; i < jsonData.length; i++) {
           var conversation = jsonData[i];
           var messages = getConversationMessages(conversation);
@@ -761,10 +800,13 @@
               }
             }
             div.appendChild(message);
-            MathJax.typeset([message]);
+            messageElements.push(message);
           }
           root.appendChild(div);
         }
+        
+        // Process MathJax asynchronously after DOM updates
+        processMathJax(messageElements);
         
         container.style.display = 'block';
       }
