@@ -360,7 +360,12 @@
         </div>
     </header>
 
-    <div class="calendar-container">
+    <div style="width: fit-content; margin: 0 auto; max-width: 100%;">
+      <div style="text-align: left; margin-bottom: 12px; color: #656d76; font-size: 14px;">
+        <span id="year-stats">Loading...</span>
+      </div>
+
+      <div class="calendar-container" style="margin: 0;">
       <div class="calendar-header" style="justify-content: center;">
         <div class="year-selector">
           <button class="year-nav" onclick="changeYear(-1)">&lt;</button>
@@ -384,6 +389,7 @@
         <div class="legend-item" style="background-color: #216e39;"></div>
         <div class="legend-item" style="background-color: #0d4429;"></div>
         <span>More</span>
+      </div>
       </div>
     </div>
 
@@ -469,6 +475,29 @@
           generateCalendar();
         });
 
+      function updateYearStats() {
+        const yearStatsElement = document.getElementById('year-stats');
+        
+        if (!calendarDataLoaded) {
+          yearStatsElement.textContent = 'Loading...';
+          return;
+        }
+        
+        // Calculate total messages for current year
+        const currentYearData = Object.entries(calendarData)
+          .filter(([date]) => date.startsWith(currentYear.toString()))
+          .map(([date, data]) => data.messages);
+        
+        const totalMessages = currentYearData.reduce((sum, messages) => sum + messages, 0);
+        const totalDays = currentYearData.length;
+        
+        if (totalMessages === 0) {
+          yearStatsElement.textContent = `No messages in ${currentYear}`;
+        } else {
+          yearStatsElement.textContent = `${totalMessages.toLocaleString()} messages in ${currentYear}`;
+        }
+      }
+
       function changeYear(delta) {
         currentYear += delta;
         document.getElementById('current-year').textContent = currentYear;
@@ -487,6 +516,9 @@
         
         // Ensure year display is always in sync
         document.getElementById('current-year').textContent = currentYear;
+        
+        // Update year statistics
+        updateYearStats();
         
         // Calculate max messages for color scaling
         const currentYearData = Object.entries(calendarData)
