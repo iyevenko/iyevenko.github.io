@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-light.min.css" rel="stylesheet" />
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          tags: 'ams',
+          loader: {load: ['[tex]/mathtools']},
+          packages: {'[+]': ['mathtools']}
+        }
+      };
+    </script>
+    <title>Information Dimension Reduction of Time-Evolving Densities</title>
+    <style>
+        br {
+            content: "";
+            display: block;
+            margin-bottom: 2.5em;
+        }
+        /* Make inline refs black */
+        a mjx-mrow.MathJax_ref {
+            color: black;
+            text-decoration: none;
+        }
+        @media (max-width: 512px) {
+            .hide-on-mobile {
+                display: none !important;
+            }
+        }
+        blockquote {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>Ivan Yevenko</h1>
+            </a>
+            <div style="display: flex; align-items: center;">
+                <span class="hide-on-mobile" style="margin-right: 15px; display: flex; align-items: center;">Let's write a paper!</span>
+                <a href="mailto:theleniac@gmail.com" style="margin-right: 15px; margin-left: 15px; display: flex;">
+                    <img src="images/email_icon.svg" alt="Email" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://x.com/ivan_yevenko" target="_blank" style="display: flex;">
+                    <img src="images/x_logo.svg" alt="X" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://github.com/iyevenko" target="_blank" style="margin-left: 15px; display: flex;">
+                    <img src="images/github_logo.svg" alt="GitHub" style="width: 20px; height: 20px">
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h1>Information Dimension Reduction of Time-Evolving Densities</h1>
+        <p>
+        Fractal dimension is a quantity defined for measures, and it is only useful when the measure is singular, because absolutely continuous measures always have dimension equal to the dimension of the space. For applications to dynamical systems, the formula thus far has been 1) evolve the system for infinite time, 2) calculate a dimension for the invariant measure or make approximations otherwise. The first problem with this approach is that the infinite time limit of the measure may not exist, which forces us to do things like restrict analysis to ergodic theory and use dimension approximations like Kaplan-Yorke dimension. While this already complicates things significantly, the bigger problem is that there is no explanation for what happens to dimension in between finite-time evolution and the infinite time limit. Dimension instantaneously collapses from the ambient dimension to the attractor dimension when transitioning between finite and infinite time. In this picture, dimension has no physical meaning because any reduction of dimension can't be attributed to any physical process!
+        </p>
+        <div style="text-align: center; margin: 30px 0;">
+            <img src="images/info.png" alt="Information Dimension Illustration" style="max-width: 100%; height: auto;">
+        </div>
+        <p>
+        In the following sections, I derive a definition for dimension which gives it a physically meaningful time evolution equation. I define information dimension entirely in terms of a smooth measure evolving under the Liouville equation by analyzing its finite-time asymptotic behavior.
+        </p>
+
+        <h2>1. Dynamical Setting</h2>
+        <p>
+        <b>Consider the general nonlinear autonomous ODE:</b>
+        </p>
+        <p>
+        \[
+        \frac{\mathrm d}{\mathrm dt} x(t) = f(x(t)), \qquad x(0) = x_0 \in \mathbb{R}^n
+        \]
+        </p>
+        <p>
+        Assume it has a unique solution, and therefore a semi-flow \(\Phi_t: \mathbb{R}^n \mapsto \mathbb{R}^n\) exists such that \(x(t) = \Phi_t(x_0)\). If instead of looking at one state-space trajectory, we define a probability distribution over states \(\rho(x,t)\), then we can write its evolution under the flow with the Liouville equation:
+        </p>
+        <p>
+        \begin{align*}
+        \partial_t \rho(x,t) &= \mathcal{L}_f \rho(x,t) = -\nabla \cdot \left( f(x)\, \rho(x,t) \right) \\[8pt]
+        \rho(x,0) &= \rho_0(x) \in C^\infty(\mathbb{R}^n)
+        \end{align*}
+        </p>
+        <p>
+        where \(\mathcal{L}_f\) is the Liouville operator which we'll use as shorthand for this equation. The equation has the solution:
+        </p>
+        <p>
+        \[
+        \rho(x,t) = e^{t \mathcal{L}_f} \rho_0(x)
+        \]
+        </p>
+        <p>
+        This expression holds for any finite time, but once we take the limit \(t \to \infty\), the distribution may not be smooth, and thus cannot be represented by a density function. To avoid unnecessarily complicating notation, we'll use the same exponentiated Liouville operator notation to mean the action of pushing forward the initial measure \(\mu_0(\mathrm dx) = \rho_0(x) \mathrm dx\) like so:
+        </p>
+        <p>
+        \[
+        \mu_t = e^{t \mathcal{L}_f} \mu_0 := (\Phi_t)_\# \mu_0
+        \]
+        \[
+        \int_{\mathbb{R}^n} \phi(x)\, \mu_t(dx) = \int_{\mathbb{R}^n} \phi(\Phi_t(x))\, \mu_0(dx)
+        \]
+        </p>
+        <p>
+        for any smooth test function \(\phi\). We take differential operators acting on \(\mu\) to mean the distributional derivative, so the Liouville equation for measures is interpreted as follows:
+        </p>
+        <p>
+        \[
+        \partial_t \mu_t = \mathcal{L}_f \mu_t= -\nabla \cdot (f\, \mu_t)
+        \]
+        \[
+        \int_\Omega \phi(x)\, \partial^k \mu(\mathrm dx) = (-1)^k \int_\Omega \partial^k \phi(x)\, \mu(\mathrm dx)
+        \]
+        </p>
+        <p>
+        Whenever we are dealing with finite times, we can simply take \(\mu_t(\mathrm dx) = \rho(x,t) dx\).
+        </p>
+
+        <h2>2. Definition of Information Dimension</h2>
+        <p>
+        The standard definition of information dimension of a measure requires you to partition \(\mathbb{R}^n\) into \(\varepsilon^{-n}\) discrete points \(x_i\) and integrate the measure over the \(\varepsilon\)-diameter ball \(B_\varepsilon(x_i)\) around each point. If the limit exists, the information dimension is defined as follows:
+        </p>
+        <p>
+        \begin{align*}
+        H_\varepsilon[\mu] &= -\sum_i \mu(B_\varepsilon(x_i)) \log \mu(B_\varepsilon(x_i)) \\
+        \mathcal{D}_I[\mu] &= \lim_{\varepsilon \downarrow 0} \frac{H_\varepsilon[\mu]}{\log(1/\varepsilon)}
+        \end{align*}
+        </p>
+        <p>
+        This definition is not very insightful for measures that evolve over time because the partition is rigid and can't be linked to the dynamics into a meaningful way. We will instead focus on an equivalent but lesser known definition which simply uses a gaussian kernel to coarse-grain the measure:
+        </p>
+        <p>
+        \begin{align*}
+        g_\sigma(x) &= \frac{1}{(\sqrt{2\pi} \sigma)^n}\exp\left(-\frac{\|x\|^{2}}{2\sigma^2}\right) \\[8pt]
+        \rho_\sigma(x) &= (\mu * g_\sigma)(x) = \int_{\mathbb{R}^n} g_\sigma(x-y)\, \mu(\mathrm dy) \\[8pt]
+        \mathcal{D}_I[\mu] &= n + \lim_{\sigma \downarrow 0} \frac{h[\rho_\sigma]}{\log(1/\sigma)}
+        \end{align*}
+        </p>
+        <p>
+        with \(h[\rho]=-\int_{\mathbb{R}^n} \rho(x) \log \rho(x) \mathrm{d}x \), the differential entropy functional. In this form, we need not define a rigid partition, which grants of differentiability w.r.t. \(\sigma\). In fact, the convolutional definition can already be expressed as the small-\(\sigma\) limit of a logarithmic derivative:
+        </p>
+        <p>
+        \[
+        \mathcal{D}_I = n - \lim_{\sigma \downarrow 0} \frac{d h[\rho_\sigma]}{d \log \sigma} = n - \lim_{\sigma \downarrow 0} \sigma \partial_\sigma h[\rho_\sigma]
+        \]
+        </p>
+        <p>
+        The local dimension \(d_I(x)\), whose expectation under \(\mu\) is \(\mathcal{D}_I\), admits a similar definition in terms of a derivative:
+        </p>
+        <p>
+        \begin{align*}
+        d_I(x)   &= n + \lim_{\sigma \downarrow 0} \sigma \partial_\sigma \log \rho_\sigma(x) \\
+        \mathcal{D}_I &= \int_{\mathbb{R}^n} d_I(x)\, \mu(\mathrm{d}x)
+        \end{align*}
+        </p>
+        <p>
+        Recall that the solution to the heat equation \(\partial_t u = \Delta u\) is identical to convolving a gaussian with width \(\sigma = \sqrt{2t}\). Therefore, a gaussian convolution \((\,\cdot * g_\sigma)\) can be written using the operator exponential \(e^{\frac{1}{2}\sigma^2 \Delta}\). Labelling \(\varepsilon = \tfrac{1}{2}\sigma^2\) and using \(\partial_\sigma = \sigma \partial_\varepsilon\), we get:
+        </p>
+        <p>
+        \begin{align*}
+        d_I[\mu](x) &= n + 2\lim_{\varepsilon \downarrow 0} \varepsilon \partial_\varepsilon \log(e^{\varepsilon \Delta}\mu)(x) \\
+                    &= n + 2\lim_{\varepsilon \downarrow 0} \frac{\varepsilon \Delta \mu}{\rho_\varepsilon(x)} \\
+        \end{align*}
+        </p>
+        <p>
+        where I have somewhat confusingly redefined \(\rho_\varepsilon = (\rho_\sigma)_{\sigma=\sqrt{2 \varepsilon}}\). This will be the notation going forward for the measure coarse-grained by the heat semigroup.
+        </p>
+
+        <h2>3. Information Dimension of Time-Evolving Measures</h2>
+        <p>
+        If we simply plug in a measure \(\mu_t\) evolving under the Liouville equation into the formula for information dimension, we find that for any finite time it is just going to be equal to the state space dimension \(n\) (contingent on \(\mu_0\) being absolutely continuous). This is not particularly useful, so in the study of dynamical systems, the concept of dimension has thus far only been applied to the long time behavior of time evolving measures. Theoretical analyses have focused on systems with invariant measures satisfying \(\mathcal {L}_f \mu = 0\), especially those with a unique invariant measure \(\mu_\infty = \lim_{t \to \infty} \mu_t\). A large body of work focuses on a special case of invariant measures, called ergodic measures, which lets you estimate \(\mu_t\) from time-averaged statistics. Under certain kinds of dynamics, the limit measure \(\mu_\infty\) becomes singular, causing the dimension to drop below the state space dimension \(n\). In such cases, we can plug in the invariant measure into the information dimension formula:
+        </p>
+        <p>
+        \[
+        d_I[\mu_\infty](x) = n + 2\lim_{\varepsilon \downarrow 0} \varepsilon \partial_\varepsilon \log(e^{\varepsilon \Delta}\lim_{t \to \infty} \mu_t)(x) \le n
+        \]
+        </p>
+        <p>
+        While this definition can be informative, its physical interpretation is problematic. If information dimension is trivial for every finite time but collapses in the long time limit, what causes it to collapse? We can't attribute a local cause to the dimension collapse because of this discontinuity, and certainly cannot relate it ot any dynamic phenomena if it itself is constant on finite times. The double limit also poses an interpretational problem, because it's not clear how to associate time evolution followed by coarse-graining with a physical process. Ideally, we would like a quantity which is both continuous in time (and therefore possesses a finite rate of change) and also equals exactly the information dimension at \(t=0\) and \(t \to \infty\).
+        </p>
+        <p>
+        A naive guess is that we can simply turn the inner time limit into a joint \((t,\varepsilon)\) limit by letting \(\varepsilon = \varepsilon(x_0,t)\). It turns out that this can work, but we have to be very careful in picking the relation. So, let's begin with the following guess:
+        </p>
+        <p>
+        \[
+        d_I[\mu_\infty](x) \overset{?}{=} n + 2 \lim_{t \to \infty} \varepsilon(x_0,t)\, \partial_\varepsilon \log(e^{\varepsilon(x_0,t) \Delta} \mu_t)(x)
+        \]
+        </p>
+        <p>
+        or equivalently,
+        </p>
+        <p>
+        \[
+        d_I[\mu_\infty](x) \overset{?}{=} n + 2 \lim_{\varepsilon \downarrow 0} \varepsilon \partial_\varepsilon \log(e^{\varepsilon \Delta} \mu_{t(x_0,\varepsilon)})(x)
+        \]
+        </p>
+        <p>
+        This a true equality if and only if the infinite time limit of the following error is equal to zero:
+        </p>
+        <p>
+        \[
+        \eta(t) := \sup_{x_0} \bigg| \,\varepsilon(x_0,t) \, \partial_\varepsilon \log\left( e^{\varepsilon(x_0,t) \Delta} \mu_t(\Phi_t(x_0)) \right) - \,\varepsilon(x_0,t) \, \partial_\varepsilon \log\left( e^{\varepsilon(x_0,t) \Delta} \mu_\infty(\Phi_t(x_0)) \right) \bigg|
+        \]
+        </p>
+        <p>
+        We can clean this up with some shorthand. First, let \(x = \Phi_t(x_0)\) and let \(\rho_t^\varepsilon\) be the coarse-grained measure at time \(t\) with smoothing parameter \(\varepsilon\). I will drop the time and initial state dependence of \(\varepsilon\) for brevity, but it is understood that \(\varepsilon\) goes to zero as \(t\) goes to infinity. The error term simplifies to:
+        </p>
+        <p>
+        \begin{align*}
+        \eta(t) &= \sup_{x_0} \bigg| \,\varepsilon \, \partial_\varepsilon \log \rho_t^\varepsilon(x) - \,\varepsilon \, \partial_\varepsilon \log \rho_\infty^\varepsilon(x) \bigg| \\
+        &= \sup_{x_0} \bigg| \,\varepsilon \frac{\Delta \rho_t^\varepsilon(x)}{\rho_t^\varepsilon(x)} - \,\varepsilon \frac{\Delta \rho_\infty^\varepsilon(x)}{\rho_\infty^\varepsilon(x)} \bigg| \\
+        &= \sup_{x_0} \bigg| \,\varepsilon \left( \frac{\rho_\infty^\varepsilon \Delta \rho_t^\varepsilon - \rho_t^\varepsilon \Delta \rho_\infty^\varepsilon}{\rho_t^\varepsilon \rho_\infty^\varepsilon} \right) \bigg| \\
+        &= \sup_{x_0} \bigg| \,\varepsilon \left( \frac{\rho_\infty^\varepsilon (\Delta \rho_t^\varepsilon - \Delta \rho_\infty^\varepsilon) + \Delta \rho_\infty^\varepsilon (\rho_\infty^\varepsilon - \rho_t^\varepsilon)}{\rho_t^\varepsilon \rho_\infty^\varepsilon} \right) \bigg| \\
+        &= \sup_{x_0} \bigg| \,\varepsilon\, \frac{\Delta (\rho_t^\varepsilon - \rho_\infty^\varepsilon)}{\rho_t^\varepsilon}
+        + \underbrace{\varepsilon\, \frac{\Delta \rho_\infty^\varepsilon}{\rho_\infty^\varepsilon}}_{\to\, d_I}
+        \frac{(\rho_\infty^\varepsilon - \rho_t^\varepsilon)}{\rho_t^\varepsilon} \bigg| \\
+        \end{align*}
+        </p>
+        <p>
+        One way to ensure that \(\eta(t)\) goes to zero is to assume that the coarse-grained measure is bounded along the scale trajectory, in other words \(\rho_t^\varepsilon(x) > C_1 > 0\) for all \(t\) and \(x\). With this assumption, the second term goes to zero because \(\rho_\infty^\varepsilon\) converges to \(\rho_t^\varepsilon\) as \(t \to \infty\) and the coefficient in front of it is just the information dimension \(d_I\). The first term requires \(\Delta (\rho_t^\varepsilon - \rho_\infty^\varepsilon) < C_2\, \varepsilon^{\,\delta-1},\, \delta > 0\). One could choose a tighter condition on \(\varepsilon\) which only requires \(\rho_t^\varepsilon\) go to zero at a rate slower than both numerators.
+        </p>
+        <p>
+        I will stop here for now, until I can rigorously prove these conditions.
+        </p>
+    </main>
+</body>
