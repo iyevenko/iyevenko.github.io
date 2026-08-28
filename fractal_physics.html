@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-one-light.min.css" rel="stylesheet" />
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {tex:{tags:'ams'}};</script>
+    <title>Fractal Physics: From Artificial Life to Quantum Mechanics and Beyond</title>
+    <style>
+        br {
+            content: "";
+            display: block;
+            margin-bottom: 2.5em;
+        }
+        /* Make inline refs black */
+        a mjx-mrow.MathJax_ref {
+            color: black;
+            text-decoration: none;
+        }
+        @media (max-width: 512px) {
+            .hide-on-mobile {
+                display: none !important;
+            }
+        }
+        blockquote {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>Ivan Yevenko</h1>
+            </a>
+            <div style="display: flex; align-items: center;">
+                <span class="hide-on-mobile" style="margin-right: 15px; display: flex; align-items: center;">Let's write a paper!</span>
+                <a href="mailto:theleniac@gmail.com" style="margin-right: 15px; margin-left: 15px; display: flex;">
+                    <img src="images/email_icon.svg" alt="Email" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://x.com/ivan_yevenko" target="_blank" style="display: flex;">
+                    <img src="images/x_logo.svg" alt="X" style="width: 20px; height: 20px">
+                </a>
+                <a href="https://github.com/iyevenko" target="_blank" style="margin-left: 15px; display: flex;">
+                    <img src="images/github_logo.svg" alt="GitHub" style="width: 20px; height: 20px">
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <h1 style="margin-bottom: 0em;">Fractal Physics</h1>
+            <p style="font-size: 1.5em; margin-top: 0;"><i>From Artificial Life to Quantum Mechanics and Beyond</i></p>
+        </div>
+        <h2>An Autobiographical Introduction to Artificial Life and Fractals</h2>
+        <p>
+            I started playing around with an artificial life simulation called Lenia while totally burned out from trying to scale my startup's hacky side project to millions of users. After 2 months of 16 hour days fighting fires to keep the viral growth of our AI image search product from plateauing, things had finally settled down a little and I took some time off to sort out what I was doing and why. I was approaching the devastating realization that my job as cofounder of this startup would be to incrementally improve a google images competitor for the next 3-5 years for a chance at an acquisition that would make me $XX million by my mid 20s. I was neither qualified nor enthused in the slightest to pursue this path, and the money was simply not worth that level of commitment... what to do?
+        </p>
+        <p>
+            Certainly the right course of action was to entirely sidestep the crushing weight of this decision—I thought. In an enduring fit of procrastination, I began trying to understand how and why the simple PDE behind Lenia (a <a href="https://colab.research.google.com/github/OpenLenia/Lenia-Tutorial/blob/main/Tutorial_From_Conway_to_Lenia.ipynb">continuous generalization</a> of Conway's Game of Life) produced unmistakably <a href="https://www.youtube.com/watch?v=HT49wpyux-k&pp=ygUFbGVuaWE%3D">life-like behavior</a>. I found that visualizing the space of viable creatures produced an archipelago of beautiful fractal islands, and decided to submit these results to the Artificial Life conference in my first ever solo paper. To my surprise I was invited to give a talk about my discoveries, and no sooner than 3 months later I was lecturing leading ALIFE experts on fractal attractors in continuous cellular automata.
+        </p>
+        <p>
+            These experts seemed to all get stuck on the fact that a purely continuous system was producing seemingly infinitely jagged boundaries in its behavior space. "This must be an artifact of discretization", they told me. That was odd, because the moment I saw the high resolution image of the fractal in my Jupyter notebook, it was clear that the space was of solutions was fractal at its most fundamental level. Thus, the researchers' disbelief signalled to me that I had a stumbled upon a genuinely novel (or at least totally unexplored) phenomenon.
+        </p>
+        <p>
+            I would study dynamical systems, fractal attractors, and chaos theory on and off for the next year while wrapping things up at my startup, finishing the last year of my engineering degree at Waterloo, and helping to build an early prototype of <a href="https://bracketbot.com">bracketbot</a>. This culminated in my <a href="https://direct.mit.edu/isal/proceedings/isal2025/37/6/134084">second paper</a>, where I demonstrated that the probability distribution over states is evolved by the dynamics in a way that collapses its effective degrees of freedom to only a finite few relevant dimensions. Crucially, one can very efficiently estimate the effective dimensionality of the stationary distribution which contains all infinite time dynamics, and this effective dimension need not be a whole number. For example, one chaotic solution was measured to have a fractal dimension of approximately 8.5. As far as I can tell, I was the first to employ this method of dimension estimation to a truly infinite dimensional system (simulated as a finite-dimensional system of course), and the results were quite stunning. Qualitatively, the solutions exhibited immense spatiotemporal complexity, but quantitively the numbers told me that you needed no more than 9 variables to encode and evolve the state. How could you take advantage of this?
+        </p>
+        <p>
+            Consider the case of a pure soliton—a pattern that simply translates in a fixed direction over time. Given a start position \((x,y)\) and elapsed time \((\Delta t)\) one could predict the entire state of the system without ever running the full simulation. The process for predicting the state would look like: 1) extract a center of mass and orientation from an image of the state 2) use a fixed velocity to calculate the displacement after \(\Delta t\) time 3) shift the image by that displacement in pixels. Seems relatively trivial, and clearly more efficient than running a full PDE simulation.
+        </p>
+        <p>
+            None of this works if the solution is fractal dimensional. What does it mean to extract a fractional number of variables from an image? How do you evolve a fractal dimensional state as an ODE in time? How do you map a fractal dimensional state back to an image? Entirely unclear. Exciting!
+        </p>
+        <h2>Fractal Physics</h2>
+        <p>
+            Fractal physics begins with the question: "How do you model the long-time dynamics of effectively fractal dimensional solutions to high/infinite dimensional differential equations?". This differs from classical physics only by the word "fractal", which just means the dimension need not be a whole number. The distinction is identical to the one we observed in Lenia: some observed behaviors are whole-dimensional and reduce to simple rigid body kinematics with a clear mapping from full state to low-dimensional representation, and some are fractal dimensional and we have no idea how to model that. The key insight is that the same underlying physical system can converge to both of these solution modes, so there should exist generalized physical equations that represent both possibilities.
+        </p>
+        <p>
+            Deep into unemployment and living off of what savings I had from the measly salary I paid myself during the startup days, I set off to solve this problem in quite... unusual fashion. With the financial support of Hummingbird's <a href="https://magnificentgrants.com">Magnificent Grants</a>, I started a hacker house in San Francisco (the fourth of these I had inhabited in a 2 year span) called <a href="https://calculus.house">calculus house</a> and recruited 6 other "high agency" researchers to live together and grind on totally unrelated but equally technical problems. We ended up taking up a floor in the 30 person mansion now known as the <a href="https://www.livetheresidency.com/residencies">inventors' residency</a>, and I quickly realized this was an undesirable site for a hardcore research lab. Aspiring to turn this hacker house into a legitimate institution, I sought advice from people experienced with running alternative research orgs. Apparently, the modern formula for funding scientific research is some combination of, "raise more money", "go and drop out of MIT", and my personal favorite: "you just gotta convince the rationalists it will solve AI safety".
+        </p>
+        <p>
+            While this advice was clearly effective for the purpose of starting something big, I was totally unimpressed with the work that these big labs with upwards of $100M in funding were putting out. Evidently, going bigger could increase the certainty of progress on incredibly incremental tasks. While incremental progress is absolutely necessary, we live in a world where truly novel scientific breakthroughs are a fantasy reserved for biopics and nostalgic blog posts glazing Bell Labs. No one believes in low hanging fruit so no one is putting any effort into finding it. The truth is, there is no amount of fundraising or scaling that can begin a revolutionary transformation in science. It has to start with revolutionary science.
+        </p>
+        <p>
+            Feeling particularly rebellious and motivated to make something impressive of my research, I left SF and returned to Toronto for a year to focus entirely on solving the problem of fractal physics, which I had concurrently made substantial progress on at calculus house. I had learned that fractal dimension was terribly nonlocal, and naïvely attempting to make it local required an extra direction corresponding to scale that did not commute nicely with time evolution. Resolving this tension has been the focus of my research for the past year now, and to my surprise and delight, it appears to lead directly to both general relativity and quantum mechanics.
+        </p>
+    </main>
+    <br style="margin-bottom: 300px;">
+</body>
+</html>
