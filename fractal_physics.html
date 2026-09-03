@@ -198,7 +198,72 @@
             \mathcal D_I = n - \lim_{L \to \infty} \frac{1}{L}\int_0^L \lim_{T \to \infty} \int_{\mathbb R^n} e^{-2\ell}\left|\nabla \log \rho\left(x,e^{-\ell},T\right)\right|^2 \rho\left(x,e^{-l},T\right)\, d^nx\, d\ell
             \]
 
-            where \(\rho(x,e^{-\ell},T)\) is the gaussian smoothed finite time measure \(\mu_T\), which converges to \(\rho(x,e^{-\ell},\infty)\) in the infinite time limit and which we can set by definition to equal \(\rho(x,e^{-\ell})\) from our initial definition. While this is a plausible definition of information dimension it is very far from a differential-geometric definition.
+            where \(\rho(x,e^{-\ell},T)\) is the gaussian smoothed finite time measure \(\mu_T\), which converges to \(\rho(x,e^{-\ell},\infty)\) in the infinite time limit and which we can set by definition to equal \(\rho(x,e^{-\ell})\) from our initial definition. While this is a plausible definition of information dimension it is very far from differential-geometric. The first problem we can immediately solve is that the integral is only over scale and space and not time. We solve this by simply replacing the limit with a time average integral because a time average converges to the limit when it exists. This gives
+
+            \[
+            \mathcal D_I = n - \lim_{L \to \infty} \frac{1}{L}\int_0^L \lim_{T \to \infty} \frac1T \int_0^T \int_{\mathbb R^n} e^{-2\ell}\left|\nabla \log \rho\left(x,e^{-\ell},t\right)\right|^2 \rho\left(x,e^{-\ell},t\right)\, d^nx\, dt\, d\ell
+            \]
+
+            and we can further simplify to a nested limit under some mild convergence assumptions:
+
+            \[
+            \mathcal D_I = n - \lim_{L \to \infty} \lim_{T \to \infty} \frac{1}{TL}\int_0^L \int_0^T \int_{\mathbb R^n} e^{-2\ell}\left|\nabla \log \rho\left(x,e^{-\ell},t\right)\right|^2 \rho\left(x,e^{-\ell},t\right)\, d^nx\, dt\, d\ell
+            \]
+
+            Here we make a troublesome but suggestive observation: the clearly limits do no commute. Notice that exchanging the order of the limits simply calculates the information dimension of the finite-time measure, but this measure is smooth for all finite time so its information dimension must be exactly the ambient dimension \(n\). So with the order of limits above we get \(\mathcal D_I\) and with the opposite order we get \(0\). Solving this non-commutating limit problem will be exactly what we need to motivate a Lorentzian metric, reduce the limit to a single radial average of Ricci curvature, and get a bulk spacetime with a reversible time direction.
+        </p>
+        <h2>Space+Scale Dynamical Systems</h2>
+        <p>
+            In dynamical systems theory, the motivation for differential geometry comes entirely from the notion of the pushforward measure. This is in contrast to physics where the spacetime metric (or its associated vielbein) is the central geometric object. There is, for example, no well-motivated choice of non-degenerate spacetime metric and consequently no reason to expect a "timelike" time direction that results in a finite speed of light. The theory focuses instead on the Cauchy strain tensor of the flow's jacobian, which encodes the Lyapunov exponents but is purely spatial. Thus, geometry becomes a language for describing the normalizable statistics of a continuously evolving system and the symmetries they possess.
+        </p>
+        <p>
+            In this spirit, we will start with statistics of the scale-dependent measure and attempt to build a geometry for finite-scale dynamical systems. Recall that a gaussian-smoothed expectation takes the following form:
+
+            \[
+            \int_{\mathbb R^n} \varphi(x)\, \rho(x,\sigma)\, d^nx := \int_{\mathbb R^n} \varphi(x) \int_{\mathbb R^n} \frac{1}{(\sqrt{2\pi} \sigma)^n} \exp\left(-\frac{|x-y|^2}{2\sigma^2}\right)\, d \mu(y) \, d^nx
+            \]
+
+            But notice that the LHS is exactly the form of a pushforward density. This begs the question, can we write a \(\rho(x,s)\) as the pushforward density under some flow \(\Psi_\sigma\)?
+
+            \[
+            \int_{\mathbb R^n} \varphi(x)\, \rho(x,s+\sigma)\, d^nx \stackrel{?}{=} \int \varphi(\Psi_\sigma(x)) \,\rho(x,s)\, d^nx
+            \]
+
+            It turns out that yes you can (subject to further formalization), because the heat equation we derived earlier is already in the form of a continuity equation with a velocity field \(u \propto \nabla \log \rho\). There are several caveats, however. First, since the velocity field depends on \(\sigma\) this is not autonomous (time-independent), the best you can do is a two-parameter flow satisfying a composition law like \(\Psi_{r,s} \circ \Psi_{s,t} = \Psi_{r,t}\). Second, \(\sigma\) is not a valid time variable because both \(\rho\) and \(\nabla \log \rho\) generally blow up at the finite scale \(\sigma=0\) so a diffeomorphism can only be parameterized on \(\sigma \in (0,1]\). We can solve both problems by replacing \(\sigma\) with the log scale variable from before \(\ell = -\log \sigma\) and appending \(\ell\) to the state so the vector field becomes autonomous:
+
+            \[
+            \begin{align*}
+            u^i(x,\ell) := \mathbb E_{\mu_\ell}\!\left[Y \,| \,x^i\right] -x^i &=  - \frac{\int_{\mathbb R^n} (x^i-y^i) \exp\left(-\frac{|x-y|^2}{2e^{-2\ell}}\right)\, d \mu(y)}{\int_{\mathbb R^n} \exp\left(-\frac{|x-y|^2}{2e^{-2\ell}}\right)\, d \mu(y)} = e^{-2\ell}\nabla^i \log \rho(x,\ell) \\[8pt]
+            \partial_\lambda \Psi_\lambda(x,\ell) \big|_{\lambda=0} &= \begin{pmatrix} 1 \\ u(x,\ell) \end{pmatrix} =: U(x,\ell) \\[8pt]
+            \end{align*}
+            \]
+
+            Plugging into the pushforward identity, we just recover the heat equation when the density is exactly the same one used to define the vector field \(U\). This clears up an apparent circularity in our definition—the velocity field was defined a priori as a fixed vector field over the extended state space and if you choose the dynamical density to be exactly the exponential of its potential function \(\log \rho\) then the ODE generates a heat equation on the density. I suspect there is an even cleaner formulation with \(\log \rho\) as the extra coordinate itself, making \(U\) a gradient field on the space+scale manifold but have yet to explore this in depth.
+        </p>
+        <p>
+            This particular formalization of scale+space dynamical systems is as far as I can tell a novel idea, but I am far from a mathematician so I've left a lot to be desired in the ways of rigour. I know for a fact that this mathematical construction has very real physical implications because it is exactly the mechanism we need to make fractal dimension geometric and derive previously opaque foundational physics equations. I'm actively seeking help, so contact me if you want to invent a new geometry together!
+        </p>
+        <h2>Making Fractal Dimension Geometric</h2>
+        <p>
+            We are finally ready to build our space+scale+time geometry by combining standard dynamical systems on space+time with the novel space+scale dynamical system. We start by naïvely combining the two definitions of expectation w.r.t. to a parameterized density:
+
+            \[
+            \mathbb E_{\tau, \lambda}[\varphi(x)] := \int_{\mathbb R^n} \varphi(\Phi_\tau(x)) \, \rho(x,\lambda)\, d^nx
+            \]
+
+            In a way, this is the most canonical form since the space+time pushforward density was defined by composition with the flow, while the space+scale flow was derived from the space+scale pushforward density. Evidently, we can use our results from the last section to write the integrand as the composition of two flows with the observable like \(\varphi \circ \Psi_\lambda \circ \Phi_\tau\). Equivalently, we could move both parameters to the density like \(\rho(x,\tau,\lambda)\) by simply taking the \(\tau=0\) density to be \(\rho(x,\lambda)\). This, however, would not be compatible with our definitions because we've assumed that both flows should result in the same singular measure \(\mu_\infty\) in either a \(\tau \to \infty\) or \(\lambda \to \infty\) limit. More precisely, we'd like \(\rho(x,\tau) = \rho(x,\tau,\infty)\) and \(\rho(x,\lambda) = \rho(x,\infty,\lambda)\), with both marginalized densities converging weakly to \(\mu_\infty\). That means our singular measure of interest \(\mu_\infty\) should be a double limit:
+
+            \[
+            \lim_{\tau, \lambda \to \infty} \int_{\mathbb R^n} \varphi(x) \, \rho(x,\tau,\lambda)\, d^nx = \int_{\mathbb R^n} \varphi(x)\, d\mu_\infty(x)
+            \]
+
+            Because \(\Phi_\tau\) and \(\Psi_\lambda\) do not generally commute, we are forced to define the expectation as follows:
+
+            \[
+            \mathbb E_{\tau, \lambda}[\varphi(x)] := \int_{\mathbb R^n} \varphi(\Phi_\tau\circ \Psi_\lambda(x)) \, \rho_0(x)\, d^nx
+            \]
+
+            Where \(\rho_0(x)\) is the initial time density gaussian smoothed with \(\sigma = 1\), since the scale flow starts at \(\ell = 0\) and therefore runs backwards in variance. This is a totally valid construction, but we have implicltly baked in a fixed order of \(\Phi_\tau, \Psi_\lambda\) that works globally but cannot be reconciled locally. In particular, our definition of the density \(\rho(x,\tau,\ell)\) cannot simultaneously satisfy both the continuity equation and the heat equation (continuity in scale) because the operators \(L_v \rho = \nabla \cdot(\rho v)\) and \(L_u \rho = \nabla \cdot (\rho u)\) do not commute.
         </p>
     </main>
     <br style="margin-bottom: 300px;">
